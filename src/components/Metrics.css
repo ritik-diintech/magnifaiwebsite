@@ -1,0 +1,719 @@
+/* Metrics.css - Premium Luxury Gold Editorial Theme */
+
+.metrics-section {
+  position: relative;
+  padding: 160px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(12, 12, 11, 0.08);
+  border-bottom: 1px solid rgba(12, 12, 11, 0.08);
+}
+
+/* Concentric Narrative Ripples in background of title */
+.narrative-ripples {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+@keyframes slowRotateRipples {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(74, 51, 11, 0.05);
+  pointer-events: none;
+  transform-origin: center center;
+  animation: slowRotateRipples 32s linear infinite;
+}
+
+.ripple-1 {
+  width: 280px;
+  height: 280px;
+}
+
+.ripple-2 {
+  width: 480px;
+  height: 480px;
+  animation-duration: 48s;
+  animation-direction: reverse;
+  border-style: dotted;
+  border-color: rgba(74, 51, 11, 0.06);
+}
+
+.ripple-3 {
+  width: 680px;
+  height: 680px;
+  animation-duration: 64s;
+  border-color: rgba(74, 51, 11, 0.04);
+}
+
+/* Explicitly guarantee visibility & high contrast of heading text on gold background */
+.metrics-section .section-h2 {
+  color: #0C0C0B !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  font-weight: 700 !important;
+  font-size: clamp(34px, 4vw, 52px) !important;
+  letter-spacing: 0.05em !important;
+  margin-top: 14px !important;
+  margin-bottom: 24px !important;
+}
+
+/* Luxury Custom Underline and Accent Dot for italics EM */
+.metrics-section .section-h2 em {
+  position: relative;
+  display: inline-block;
+  text-decoration: none !important;
+  font-style: italic !important;
+  font-family: var(--font-brand) !important;
+  color: #0C0C0B !important;
+  padding-bottom: 4px;
+  padding-right: 8px; /* Prevents skewed italic letter clipping */
+}
+
+.metrics-section .section-h2 em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: #0C0C0B;
+}
+
+.metrics-section .section-h2 em::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -9px;
+  width: 6px;
+  height: 6px;
+  background: #4A330B;
+  border-radius: 50%;
+  border: 1px solid #FAF9F6;
+}
+
+/* Luxury Subtitle overrides */
+.metrics-section .section-subtitle {
+  color: #3C382F !important;
+  opacity: 0.85 !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+  max-width: 660px !important;
+  margin: 0 auto !important;
+}
+
+/* Luxury Left-Right Title Line Overrides */
+.metrics-section .luxury-title-wrap .section-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: #4A330B !important;
+  font-weight: 600 !important;
+}
+
+.metrics-section .luxury-title-wrap .section-label::before,
+.metrics-section .luxury-title-wrap .section-label::after {
+  background: rgba(74, 51, 11, 0.22) !important;
+  width: 50px !important;
+}
+
+/* Luxury Divider Ornament below subtitle */
+.luxury-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  position: relative;
+  z-index: 10;
+}
+
+.divider-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 51, 11, 0.2), transparent);
+}
+
+.divider-icon {
+  color: #4A330B;
+  opacity: 0.6;
+  animation: floatY 4s ease-in-out infinite;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+  margin-top: 60px;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: 3D PERSPECTIVE GLASS PLATES
+   ========================================================================== */
+.metrics-editorial-column {
+  perspective: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.metrics-editorial-row {
+  position: relative;
+  padding: 36px 30px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(74, 51, 11, 0.08);
+  border-radius: 4px;
+  box-shadow: -8px 8px 24px rgba(74, 51, 11, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: rotateY(-10deg) rotateX(3deg) translateZ(0px);
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metrics-editorial-row:hover {
+  transform: rotateY(0deg) rotateX(0deg) translateZ(25px) translateX(8px);
+  background: rgba(255, 255, 255, 0.38);
+  border-color: rgba(12, 12, 11, 0.22);
+  box-shadow: -18px 18px 40px rgba(74, 51, 11, 0.07);
+}
+
+.row-hover-highlight {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.metrics-editorial-row:hover .row-hover-highlight {
+  opacity: 1;
+}
+
+.metrics-editorial-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  transform: translateZ(10px);
+}
+
+.metrics-editorial-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #4A330B;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.metrics-editorial-num {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 3.8vw, 48px);
+  color: #0C0C0B;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.metrics-editorial-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateZ(5px);
+}
+
+.metrics-editorial-label {
+  font-family: var(--font-brand);
+  font-size: 11px;
+  color: #4A330B;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+
+.metrics-editorial-desc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: #3C382F;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+
+/* ==========================================================================
+   RIGHT COLUMN: OBSIDIAN BLACK CALCULATOR DECK
+   ========================================================================== */
+.calculator-vessel-dark {
+  position: relative;
+  padding: 60px 48px;
+  background: #0C0C0B !important; /* Solid premium obsidian black background */
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 6px;
+  box-shadow: 0 40px 100px rgba(12, 12, 11, 0.45), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 36px; /* Generous gap to completely avoid overlaps! */
+  z-index: 10;
+  text-align: left;
+}
+
+.calculator-vessel-dark:hover {
+  border-color: rgba(212, 175, 55, 0.25) !important;
+  box-shadow: 0 40px 100px rgba(12, 12, 11, 0.55), 
+              0 10px 40px rgba(212, 175, 55, 0.05) !important;
+}
+
+.vessel-border-glow {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  pointer-events: none;
+}
+
+.vessel-header {
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calculator-vessel-dark .calculator-vessel-title {
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: #FAF9F6 !important;
+  letter-spacing: 0.08em;
+  margin: 0 !important;
+}
+
+.calculator-vessel-dark .calculator-vessel-subtitle {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-weight: 400;
+  margin: 0 !important;
+}
+
+/* Niche selectors (Dark mode styling) */
+.calculator-niche-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calculator-vessel-dark .calculator-niche-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  color: var(--gold-light) !important;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  margin: 0 !important;
+  display: block;
+}
+
+.calculator-niche-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap; /* Supports wrapping safely on small cards */
+}
+
+.calculator-vessel-dark .niche-select-btn {
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #FAF9F6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calculator-vessel-dark .niche-select-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.calculator-vessel-dark .niche-select-btn.active {
+  background: var(--gold-metallic) !important;
+  color: #0C0C0B !important;
+  border-color: var(--gold-metallic) !important;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15) !important;
+}
+
+.calculator-vessel-dark .niche-icon {
+  color: #FAF9F6 !important;
+}
+
+.calculator-vessel-dark .niche-select-btn.active .niche-icon {
+  color: #0C0C0B !important;
+}
+
+/* Slider Section (Dark mode styling) */
+.calculator-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.calculator-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calculator-vessel-dark .slider-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--gold-light) !important;
+  letter-spacing: 0.18em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.calculator-vessel-dark .slider-label-icon {
+  color: var(--gold-light) !important;
+}
+
+.calculator-vessel-dark .calculator-slider-val {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: #FAF9F6 !important;
+  font-weight: 700;
+}
+
+/* Range input track (Dark mode styling) */
+.slider-track-container {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.calculator-vessel-dark .calculator-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12) !important;
+  outline: none;
+  border-radius: 2px;
+  z-index: 2;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+.calculator-vessel-dark .slider-active-bar {
+  position: absolute;
+  left: 0;
+  height: 4px;
+  background: var(--gold) !important;
+  pointer-events: none;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.calculator-vessel-dark .calculator-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FAF9F6 !important;
+  border: 4px solid var(--gold) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calculator-vessel-dark .calculator-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.calculator-vessel-dark .calculator-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FAF9F6 !important;
+  border: 4px solid var(--gold) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calculator-vessel-dark .calculator-slider::-moz-range-thumb:hover {
+  transform: scale(1.25);
+}
+
+.calculator-vessel-dark .calculator-slider-limits {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+
+/* ==========================================================================
+   DYNAMIC COMPOUNDING WAVE GRAPH DECK (GLOWING GOLD IN DARK MODE)
+   ========================================================================== */
+.calculator-vessel-dark .dynamic-graph-container {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 24px 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calculator-vessel-dark .graph-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--gold-light) !important;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  margin: 0 !important;
+}
+
+.graph-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+
+.growth-graph-svg {
+  width: 100%;
+  height: 100px;
+  overflow: visible;
+}
+
+.graph-stroke-path {
+  transition: d 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.graph-fill-path {
+  transition: d 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.graph-node-circle {
+  transition: cy 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calculator-vessel-dark .graph-node-text {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: rgba(255, 255, 255, 0.4) !important;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   PROJECTION MATRIX RESULTS DISPLAY (DARK MODE STYLING)
+   ========================================================================== */
+.calculator-results-vessel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Generous gap between result rows */
+}
+
+.calculator-vessel-dark .calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0; /* Add padding for breathing room */
+}
+
+.calculator-vessel-dark .calc-label {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 400;
+}
+
+.calculator-vessel-dark .calc-val-medium {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #FAF9F6 !important;
+  font-weight: 600;
+}
+
+.calculator-vessel-dark .calc-val-highlight {
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  color: var(--gold-light) !important;
+  font-weight: 700;
+}
+
+.calculator-vessel-dark .calc-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ==========================================================================
+   FINAL HIGHLIGHT RESULTS CARD (OBSIDIAN DARK MATRIX CARD)
+   ========================================================================== */
+.calculator-vessel-dark .final-result-dark {
+  position: relative;
+  margin-top: 10px;
+  padding: 34px 30px;
+  background: #181714 !important; /* Slightly lighter layered warm charcoal background */
+  border: 1px solid rgba(212, 175, 55, 0.18) !important;
+  border-radius: 4px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calculator-vessel-dark .final-result-dark .final-result-border {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(212, 175, 55, 0.22) !important;
+  margin: 4px;
+  pointer-events: none;
+}
+
+.calculator-vessel-dark .final-result-dark .final-result-label-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 !important;
+}
+
+.calculator-vessel-dark .final-result-dark .final-label-icon {
+  color: var(--gold) !important;
+}
+
+.calculator-vessel-dark .final-result-dark .final-result-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold-light) !important;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  margin: 0 !important;
+}
+
+.calculator-vessel-dark .final-result-dark .final-result-value-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 !important;
+}
+
+.font-gold-gradient {
+  background: linear-gradient(90deg, #FFE8A3 0%, #D4AF37 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #D4AF37 !important;
+}
+
+.calculator-vessel-dark .final-result-dark .final-result-value {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(30px, 3.2vw, 40px) !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.01em !important;
+  text-shadow: 0 0 40px rgba(212, 175, 55, 0.15) !important;
+}
+
+.calculator-vessel-dark .final-result-dark .final-result-suffix {
+  font-family: var(--font-sans) !important;
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+  margin-top: 2px !important;
+}
+
+.calculator-vessel-dark .calc-disclaimer {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35) !important;
+  text-align: center;
+  margin: 0 !important;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* High-quality Responsive Adaptations */
+@media (max-width: 1024px) {
+  .metrics-grid {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .metrics-section {
+    padding: 100px 0;
+  }
+  
+  .metrics-section .section-h2 {
+    font-size: clamp(20px, 6vw, 32px) !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.3 !important;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    margin-top: 40px;
+  }
+  
+  .metrics-editorial-row {
+    transform: none !important;
+    padding: 28px 24px;
+  }
+  
+  .metrics-editorial-row:hover {
+    transform: translateY(-5px) !important;
+  }
+  
+  .calculator-vessel-dark {
+    padding: 44px 28px;
+    gap: 28px;
+  }
+}

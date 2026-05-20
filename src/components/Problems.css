@@ -1,0 +1,452 @@
+/* Problems.css — Premium Cardless Accordion Ledger */
+
+.problems-section {
+  position: relative;
+  padding: 160px 0;
+  background-color: #050506; /* Deep obsidian */
+  overflow: hidden;
+}
+
+/* Elegant, soft luxury ambient glow */
+.problems-ambient-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(50px);
+}
+
+/* Simple & Premium Header */
+.problems-premium-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.problems-mono-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.problems-large-title {
+  font-family: var(--font-brand);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.problems-large-title .gold-accent {
+  color: var(--gold);
+}
+
+.problems-header-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-gradient);
+  margin: 0 auto 24px auto;
+}
+
+.problems-description {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ---- ACCORDION LEDGER (100% Cardless & Clean) ---- */
+.problems-accordion-container {
+  width: 100%; /* Direct viewport width bleed! */
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  position: relative;
+  z-index: 5;
+}
+
+/* Centered row wrap to align structural grids inside a centered column */
+.accordion-row-centered-wrap {
+  max-width: 1400px; /* Aligns with luxury-container */
+  margin: 0 auto;
+  padding: 0 50px;
+  width: 100%;
+}
+
+.problems-accordion-row {
+  width: 100%;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  background-color: transparent;
+  position: relative;
+}
+
+/* Dynamic Active State Color Inversion overrides with full width breakout bleed */
+.problems-accordion-row.active {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.problems-accordion-row.active .accordion-title {
+  color: #050506 !important;
+}
+
+.problems-accordion-row.active .accordion-num {
+  color: var(--gold-dim) !important;
+  opacity: 1;
+}
+
+.problems-accordion-row.active .accordion-leak-tag {
+  color: #b30000 !important;
+  opacity: 1;
+}
+
+.problems-accordion-row.active .col-label-red {
+  color: #b30000 !important;
+}
+
+.problems-accordion-row.active .col-label-gold {
+  color: var(--gold-dim) !important;
+}
+
+.problems-accordion-row.active .col-problem-text {
+  color: #121212 !important;
+}
+
+.problems-accordion-row.active .col-solution-text {
+  color: #444444 !important;
+}
+
+.problems-accordion-row.active .col-bullet-tag {
+  color: var(--gold-dim) !important;
+}
+
+.problems-accordion-row.active .col-bullet-divider {
+  color: rgba(153, 101, 21, 0.4) !important;
+}
+
+.problems-accordion-row.active .accordion-header-row {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.problems-accordion-row.active .accordion-inner-grid {
+  padding-left: 88px; /* Align content perfectly under inverted heading spacing */
+  padding-right: 24px;
+}
+
+/* Horizontal slide trigger bottom line */
+.problems-accordion-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: var(--gold-gradient);
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+}
+
+.problems-accordion-row:hover::before,
+.problems-accordion-row.active::before {
+  width: 100%;
+}
+
+/* Header Row */
+.accordion-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 58px 12px;
+  transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.problems-accordion-row:hover .accordion-header-row {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.accordion-num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  min-width: 32px;
+  opacity: 0.65;
+  transition: opacity 0.3s;
+}
+
+.problems-accordion-row:hover .accordion-num,
+.problems-accordion-row.active .accordion-num {
+  opacity: 1;
+}
+
+.accordion-title {
+  font-family: var(--font-brand);
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c5c3be;
+  text-transform: uppercase;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.problems-accordion-row:hover .accordion-title,
+.problems-accordion-row.active .accordion-title {
+  color: #ffffff;
+  letter-spacing: 0.1em;
+}
+
+.header-right-group {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.accordion-leak-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: #ff4a4a;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+
+.problems-accordion-row:hover .accordion-leak-tag {
+  opacity: 1;
+}
+
+/* Glowing Round Toggle Wrap */
+.accordion-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.problems-accordion-row:hover .accordion-icon-wrap {
+  border-color: var(--gold);
+}
+
+.problems-accordion-row.active .accordion-icon-wrap {
+  background-color: var(--gold);
+  color: #050506;
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+}
+
+/* ---- ACCORDION BODY ---- */
+.problems-accordion-body {
+  overflow: hidden;
+}
+
+/* Aligns body content grid precisely with the title */
+.accordion-inner-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 80px;
+  padding: 0 12px 48px 76px; /* 32px gap + 32px num + 12px padding = 76px */
+  border-top: none;
+}
+
+.accordion-col-problem,
+.accordion-col-solution {
+  text-align: left;
+}
+
+.col-label-red {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #ff4a4a;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.col-label-gold {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Beautiful large italic statement problem description */
+.col-problem-text {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(16px, 2.2vw, 24px);
+  font-style: italic;
+  line-height: 1.65;
+  color: #FAF9F6;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.col-solution-text {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+/* Gilded borderless dot list */
+.col-bullets-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.col-bullet-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.col-bullet-divider {
+  font-size: 9px;
+  color: rgba(212, 175, 55, 0.35);
+}
+
+/* ---- RESPONSIVENESS OVERRIDES ---- */
+@media (max-width: 990px) {
+  .problems-section {
+    padding: 120px 0;
+  }
+  .accordion-inner-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-left: 56px; /* Adjust indent */
+  }
+}
+
+@media (max-width: 768px) {
+  .problems-section {
+    padding: 100px 0; /* Bleed paddings out of viewport */
+  }
+
+  .problems-premium-header {
+    margin-bottom: 50px;
+    padding: 0 16px;
+  }
+
+  .accordion-row-centered-wrap {
+    padding: 0 24px;
+  }
+  
+  .accordion-header-row {
+    padding: 38px 8px;
+  }
+  
+  .problems-accordion-row:hover .accordion-header-row {
+    padding-left: 12px; /* Less push on touch screen */
+    padding-right: 8px;
+  }
+
+  .header-left-group {
+    gap: 16px;
+  }
+
+  .accordion-num {
+    min-width: 20px;
+    font-size: 11px;
+  }
+
+  .accordion-title {
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .header-right-group {
+    gap: 16px;
+  }
+
+  .accordion-leak-tag {
+    font-size: 8px;
+  }
+
+  .accordion-icon-wrap {
+    width: 28px;
+    height: 28px;
+  }
+
+  .accordion-inner-grid {
+    padding: 0 8px 36px 36px; /* Align indent with header groups */
+    gap: 32px;
+  }
+
+  .problems-accordion-row.active .accordion-header-row {
+    padding-left: 12px;
+    padding-right: 8px;
+  }
+
+  .problems-accordion-row.active .accordion-inner-grid {
+    padding-left: 36px;
+    padding-right: 8px;
+  }
+
+  .col-problem-text {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .col-solution-text {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .col-bullets-flex {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .accordion-header-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-right-group {
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 36px; /* align under title */
+  }
+}

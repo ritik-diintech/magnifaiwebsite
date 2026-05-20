@@ -1,0 +1,308 @@
+/* Services.css — Frosted Acrylic & Gold Bezel Gallery */
+
+.services-section {
+  position: relative;
+  padding: 160px 0;
+  background: var(--bg); /* Strictly locked to signature MagnifAI metallic gold gradient! */
+  overflow: hidden;
+}
+
+/* Structuring blueprint mesh gridlines overlay */
+.services-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(74, 51, 11, 0.04) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(74, 51, 11, 0.04) 1px, transparent 1px);
+  background-size: 90px 90px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Simple & Premium Header */
+.services-premium-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 85px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.services-mono-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: #4A330B; /* Deep mahogany gold contrast */
+  font-weight: 600;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.services-large-title {
+  font-family: var(--font-brand);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0C0C0B;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.services-large-title .gold-accent {
+  color: #ffffff; /* White contrast accent */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.services-header-line {
+  width: 60px;
+  height: 1.5px;
+  background: #0C0C0B;
+  margin: 0 auto 24px auto;
+}
+
+.services-description {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  color: #3C382F;
+  line-height: 1.7;
+}
+
+/* 2-Column Glassmorphic Grid */
+.services-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Breathtaking Frosted-Glass Acrylic Gallery Cards */
+.ecosystem-gallery-card {
+  background: rgba(255, 255, 255, 0.55); /* Translucent frosted acrylic sheet */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* iOS Safari compatibility */
+  
+  /* Asymmetric light-gleam borders for realistic refractions */
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  border-left: 1px solid rgba(255, 255, 255, 0.55);
+  border-bottom: 1px solid rgba(153, 101, 21, 0.25);
+  border-right: 1px solid rgba(153, 101, 21, 0.25);
+  
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: 
+    0 30px 60px rgba(74, 51, 11, 0.12), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5); /* Inner glass highlight */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Acrylic lights up and hovers upwards smoothly */
+.ecosystem-gallery-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 
+    0 35px 70px rgba(74, 51, 11, 0.22), 
+    0 0 30px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Photo print window with polished gold bezel */
+.gallery-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 2px;
+  border: 1px solid rgba(212, 175, 55, 0.38); /* Polished gold-plated metal bezel */
+  box-shadow: 0 10px 25px rgba(12, 12, 11, 0.08);
+}
+
+.gallery-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Gentle zoom on hover */
+.ecosystem-gallery-card:hover .gallery-card-image {
+  transform: scale(1.05);
+}
+
+/* Warm Golden Light Leak Overlay */
+.gallery-image-light-leak {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, transparent 80%);
+  mix-blend-mode: color-dodge;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.ecosystem-gallery-card:hover .gallery-image-light-leak {
+  opacity: 0.3; /* Fades to reveal pristine colors on focus */
+}
+
+/* Double gold hairline frame inside print border */
+.gallery-frame-hairline {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  z-index: 3;
+  transition: inset 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ecosystem-gallery-card:hover .gallery-frame-hairline {
+  inset: 8px;
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+/* Museum label area */
+.gallery-card-label-area {
+  padding: 24px 4px 4px 4px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Top gold gradient hairline accent line */
+.gallery-label-border-accent {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.25) 0%, transparent 100%);
+}
+
+.gallery-label-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.gallery-label-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #4A330B; /* Deep mahogany gold */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.gallery-label-tagline {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: #5E5A4F;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.gallery-label-title {
+  font-family: var(--font-brand);
+  font-size: clamp(15px, 2.2vw, 18px);
+  font-weight: 700;
+  color: #0C0C0B; /* Deep charcoal black */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.ecosystem-gallery-card:hover .gallery-label-title {
+  color: #4A330B; /* Changes to elegant gold-mahogany */
+}
+
+.gallery-label-desc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #3C382F;
+  line-height: 1.65;
+  margin: 0 0 20px 0;
+}
+
+/* Glass deliverable pills */
+.gallery-label-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto; /* Push tags to the bottom of the card */
+}
+
+.gallery-label-pill {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: #4A330B;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 2px 5px rgba(74, 51, 11, 0.03);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Glow capsules on hover */
+.ecosystem-gallery-card:hover .gallery-label-pill {
+  background: #ffffff;
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 3px 8px rgba(74, 51, 11, 0.06);
+}
+
+/* ---- RESPONSIVENESS OVERRIDES ---- */
+@media (max-width: 990px) {
+  .services-section {
+    padding: 120px 0;
+  }
+
+  .services-portfolio-grid {
+    grid-template-columns: 1fr; /* Stacks vertically */
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 100px 16px;
+  }
+
+  .services-premium-header {
+    margin-bottom: 50px;
+  }
+
+  .ecosystem-gallery-card {
+    padding: 18px;
+  }
+
+  .gallery-card-label-area {
+    padding: 20px 0 0 0;
+  }
+  
+  .gallery-image-wrap {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-label-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

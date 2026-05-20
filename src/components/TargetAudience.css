@@ -1,0 +1,400 @@
+/* TargetAudience.css — Cinematic Executive Segmented Deck */
+
+.audience-section {
+  position: relative;
+  padding: 160px 0;
+  background-color: #FAF9F5; /* Warm premium ivory paper texture */
+  overflow: hidden;
+}
+
+/* Structural warm gold blueprint mesh overlay */
+.audience-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(153, 101, 21, 0.03) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(153, 101, 21, 0.03) 1px, transparent 1px);
+  background-size: 90px 90px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Premium Header Area */
+.audience-premium-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.audience-mono-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.audience-large-title {
+  font-family: var(--font-brand);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0C0C0B;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.audience-large-title .gold-accent {
+  color: var(--gold-dim);
+}
+
+.audience-header-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 0 auto 24px auto;
+}
+
+.audience-description {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: #4B4A45;
+  line-height: 1.7;
+}
+
+/* ---- SEGMENTED CAPSULE DECK (TAB SELECTOR) ---- */
+.audience-tabs-capsule {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(153, 101, 21, 0.15);
+  padding: 6px;
+  border-radius: 40px;
+  max-width: fit-content;
+  margin: 0 auto 75px auto;
+  position: relative;
+  z-index: 5;
+  box-shadow: 
+    0 15px 30px rgba(74, 51, 11, 0.04), 
+    0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.audience-capsule-btn {
+  position: relative;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  color: #5D5A4F;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.audience-capsule-btn.active {
+  color: #0c0c0b;
+  background: #ffffff;
+  border-color: #0c0c0b; /* Gorgeous permanent high-contrast premium charcoal outline */
+  box-shadow: 0 4px 15px rgba(74, 51, 11, 0.08);
+}
+
+.audience-capsule-btn:focus,
+.audience-capsule-btn:focus-visible {
+  outline: none !important;
+}
+
+.tab-btn-icon {
+  font-size: 13px;
+  position: relative;
+  z-index: 2;
+}
+
+.tab-btn-text {
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- CATEGORY GRID LAYOUT ---- */
+.audience-grid-spread {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* ---- LEFT COLUMN: Cinematic Photo Mount ---- */
+.audience-visual-column {
+  width: 100%;
+}
+
+.audience-canvas-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 13;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.35); /* Polished gold plated bezel */
+  box-shadow: 0 25px 50px rgba(74, 51, 11, 0.15);
+  background-color: #0c0c0e;
+}
+
+.audience-canvas-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.audience-canvas-frame:hover .audience-canvas-image {
+  transform: scale(1.018);
+}
+
+/* Double gold framing borders inside image boundaries */
+.audience-canvas-frame-hairline {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+  z-index: 3;
+  transition: inset 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.audience-canvas-frame:hover .audience-canvas-frame-hairline {
+  inset: 12px;
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+/* Delicate warm gold light leak color dodge overlay */
+.audience-canvas-light-leak {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, transparent 80%);
+  mix-blend-mode: color-dodge;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---- RIGHT COLUMN: Strategic HUD Playbook ---- */
+.audience-hud-column {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-column-tagline {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--gold-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.hud-column-title {
+  font-family: var(--font-brand);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: #0C0C0B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.hud-column-description {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 300;
+  font-style: italic;
+  color: #3C382F;
+  line-height: 1.7;
+  margin: 0 0 28px 0;
+  letter-spacing: -0.01em;
+}
+
+/* Gold-Foil Frosted Highlight Metric Banner */
+.hud-stats-foil-banner {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Thick solid gold ribbon left side, thin refractions other sides */
+  border-left: 3px solid var(--gold-dim);
+  border-top: 1px solid rgba(153, 101, 21, 0.12);
+  border-right: 1px solid rgba(153, 101, 21, 0.12);
+  border-bottom: 1px solid rgba(153, 101, 21, 0.12);
+  
+  padding: 16px 24px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 36px;
+  box-shadow: 
+    0 8px 25px rgba(74, 51, 11, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.stats-foil-content {
+  font-family: var(--font-mono);
+  font-size: clamp(9px, 1.8vw, 11px);
+  color: #4A330B; /* Deep mahogany gold text */
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* Deployed Node HUD Grid keys */
+.hud-nodes-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-nodes-grid-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #7E7C76;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hud-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Tactile floating keys */
+.hud-node-tactile-key {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(153, 101, 21, 0.15);
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgba(74, 51, 11, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-align: left;
+}
+
+.hud-node-tactile-key:hover {
+  border-color: rgba(153, 101, 21, 0.45);
+  box-shadow: 
+    0 12px 25px rgba(74, 51, 11, 0.08),
+    0 0 15px rgba(212, 175, 55, 0.03);
+}
+
+/* Golden circular notch for icons */
+.node-key-icon-wrap {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-dim);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.hud-node-tactile-key:hover .node-key-icon-wrap {
+  background: var(--gold-dim);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+
+.node-key-icon {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hud-node-tactile-key:hover .node-key-icon {
+  transform: rotate(15deg) scale(1.15);
+}
+
+.node-key-text {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #0C0C0B;
+  line-height: 1.4;
+}
+
+/* ---- RESPONSIVENESS OVERRIDES ---- */
+@media (max-width: 990px) {
+  .audience-section {
+    padding: 120px 0;
+  }
+
+  .audience-grid-spread {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .audience-canvas-frame {
+    aspect-ratio: 16 / 10;
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .audience-section {
+    padding: 100px 16px;
+  }
+
+  .audience-premium-header {
+    margin-bottom: 50px;
+  }
+
+  /* Segmented capsule turns into responsive vertical drawer */
+  .audience-tabs-capsule {
+    flex-direction: column;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    gap: 4px;
+    margin-bottom: 50px;
+  }
+
+  .audience-capsule-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .hud-nodes-grid {
+    grid-template-columns: 1fr; /* Single column key list */
+    gap: 12px;
+  }
+
+  .hud-stats-foil-banner {
+    padding: 14px 18px;
+    margin-bottom: 30px;
+  }
+}

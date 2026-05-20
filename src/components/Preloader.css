@@ -1,0 +1,289 @@
+/* Preloader.css — Deep Velvet Luxury Preloader Styles */
+
+:root {
+  --loader-gold: #D4AF37;
+  --loader-gold-light: #F3E5AB;
+  --loader-gold-dark: #846114;
+  --loader-bg-velvet: radial-gradient(circle at center, #0F0E0B 0%, #030303 100%);
+}
+
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--loader-bg-velvet);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 1;
+  filter: blur(0px);
+  /* Long, ultra-smooth background fading reveal transition */
+  transition: opacity 1.5s cubic-bezier(0.76, 0, 0.24, 1), 
+              filter 1.5s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: opacity, filter;
+}
+
+/* Staggered backdrop fade-out applied only after logo has zoomed past viewport */
+.preloader-overlay.fade-active {
+  opacity: 0;
+  filter: blur(15px);
+  pointer-events: none;
+}
+
+/* 1. Deep Space Velvet Grid */
+.preloader-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(212, 175, 55, 0.015) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(212, 175, 55, 0.015) 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: center;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+  animation: gridShift 40s linear infinite;
+}
+
+@keyframes gridShift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100px); }
+}
+
+/* Luxury backing glow */
+.preloader-bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+  filter: blur(50px);
+}
+
+/* 2. Concentric Cosmic Orbital Rings */
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(212, 175, 55, 0.1);
+  z-index: 3;
+  pointer-events: none;
+  transition: transform 2.2s cubic-bezier(0.76, 0, 0.24, 1), opacity 1.2s;
+}
+
+.preloader-overlay.zoom-active .orbital-ring {
+  transform: scale(0.05);
+  opacity: 0;
+}
+
+.orbital-outer {
+  width: 320px;
+  height: 320px;
+  border-style: solid;
+  border-color: rgba(212, 175, 55, 0.02);
+  animation: orbitCounterClockwise 35s linear infinite;
+}
+
+.orbital-middle {
+  width: 240px;
+  height: 240px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgba(212, 175, 55, 0.08);
+  animation: orbitClockwise 25s linear infinite;
+}
+
+.orbital-inner {
+  width: 180px;
+  height: 180px;
+  border-style: dotted;
+  border-width: 2px;
+  border-color: rgba(212, 175, 55, 0.15);
+  animation: orbitCounterClockwise 18s linear infinite;
+}
+
+@keyframes orbitClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbitCounterClockwise {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* 3. Spinning Logo Wrapper & Ring */
+.preloader-logo-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Cinematic slow scale zoom-in transition */
+  transition: transform 2.2s cubic-bezier(0.76, 0, 0.24, 1), 
+              opacity 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform, opacity;
+}
+
+/* Majestic Cinematic Zoom Phase (Accelerated rotation & ultra massive scale) */
+.preloader-logo-wrapper.zoom-out {
+  transform: scale(65) rotate(540deg);
+  opacity: 0;
+}
+
+.preloader-logo-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 2.5px;
+  background: linear-gradient(135deg, var(--loader-gold) 0%, #1a1a17 50%, var(--loader-gold-dark) 100%);
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.3),
+              inset 0 0 15px rgba(212, 175, 55, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+}
+
+.preloader-logo-circle img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #020202;
+}
+
+/* Orbiting digital spark trail on logo rim - styled as constant slow rotation */
+.logo-spark-glow {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  border-top-color: rgba(212, 175, 55, 0.5);
+  animation: orbitClockwise 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0.6;
+}
+
+/* 4. Loader Elements Footer Group (Contains only percentage) */
+.preloader-footer {
+  position: absolute;
+  bottom: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 15;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.6s ease;
+}
+
+.preloader-overlay.zoom-active .preloader-footer {
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Elegant digital percent counter */
+.preloader-counter-container {
+  display: flex;
+  align-items: baseline;
+  font-family: 'Syncopate', sans-serif;
+  color: var(--loader-gold-light);
+  text-shadow: 0 0 15px rgba(243, 229, 171, 0.15);
+}
+
+.preloader-counter {
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.preloader-percent {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: var(--loader-gold);
+  margin-left: 2px;
+}
+
+/* 5. Full-Length Minimalist Horizontal Loading Progress Bar at absolute bottom of viewport */
+.preloader-bar-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px; /* Super thin, architectural gold line */
+  background: rgba(212, 175, 55, 0.05);
+  overflow: hidden;
+  z-index: 20;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+/* Slide away the full-width loader line on completion */
+.preloader-overlay.zoom-active .preloader-bar-track {
+  transform: translateY(4px);
+  opacity: 0;
+}
+
+/* Clean, flat luxury gold line progress */
+.preloader-bar-fill {
+  height: 100%;
+  background: var(--loader-gold);
+  transition: width 0.08s linear;
+}
+
+/* Disable Custom Cursor and restore default pointer while loading states */
+body:has(.preloader-overlay) {
+  cursor: default !important;
+}
+body:has(.preloader-overlay) .custom-cursor-glow {
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* Responsive sizes */
+@media (max-width: 480px) {
+  .orbital-outer {
+    width: 250px;
+    height: 250px;
+  }
+  .orbital-middle {
+    width: 190px;
+    height: 190px;
+  }
+  .orbital-inner {
+    width: 140px;
+    height: 140px;
+  }
+  .preloader-logo-circle {
+    width: 95px;
+    height: 95px;
+  }
+  .logo-spark-glow {
+    width: 105px;
+    height: 105px;
+  }
+}
+
+/* Website Page Content Reveal Animations */
+.reveal-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.reveal-active {
+  opacity: 1 !important;
+  /* Buttery-smooth cinematic entrance transition */
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+

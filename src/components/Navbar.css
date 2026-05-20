@@ -1,0 +1,315 @@
+/* Navbar.css — Full-Width Architectural Horizon Bar */
+.navbar-outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 60px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+/* Golden bottom accent line */
+.navbar-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  right: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+
+/* Scrolled state */
+.navbar-outer.scrolled .navbar-bar {
+  padding: 16px 60px;
+  background: rgba(5, 5, 6, 0.92);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-outer.scrolled .navbar-bar::after {
+  left: 0;
+  right: 0;
+  opacity: 0.6;
+}
+
+/* Logo */
+.nav-logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-logo-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+  background: #020202;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.nav-logo-link:hover .nav-logo-circle {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  border-color: var(--gold-light);
+  transform: scale(1.08);
+}
+
+.nav-logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-brand-name {
+  font-family: var(--font-brand);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.nav-brand-name .gold {
+  color: var(--gold);
+}
+
+/* ---- RIGHT SIDE: Links + Button grouped together ---- */
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-link-item {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 10px 20px;
+  position: relative;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-item:hover {
+  color: var(--text);
+}
+
+/* Hover: gold underline that slides from left */
+.nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-item:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active Nav link styles */
+.nav-link-item.active {
+  color: var(--gold);
+}
+
+.nav-link-item.active::after {
+  transform: scaleX(1);
+}
+
+.nav-mobile-link-item.active {
+  color: var(--gold);
+}
+
+/* Vertical gold dividers between links */
+.nav-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--gold-dim);
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+/* Book Audit button — sits inline with links */
+.nav-book-btn {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #050506;
+  background: var(--gold);
+  border: none;
+  padding: 12px 30px;
+  margin-left: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-book-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-light);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.nav-book-btn:hover::before {
+  transform: translateY(0);
+}
+
+.nav-book-btn span {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+}
+
+/* ---- Mobile toggle ---- */
+.nav-mobile-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-mobile-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ---- Mobile Fullscreen Drawer ---- */
+.nav-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: #020202;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 40px;
+}
+
+.nav-mobile-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-mobile-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.nav-mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-mobile-link-item {
+  font-family: var(--font-brand);
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.nav-mobile-link-item:hover {
+  color: var(--gold);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1050px) {
+  .navbar-bar {
+    padding: 22px 30px;
+  }
+  .navbar-bar::after {
+    left: 30px;
+    right: 30px;
+  }
+  .navbar-outer.scrolled .navbar-bar {
+    padding: 14px 30px;
+  }
+  .navbar-outer.scrolled .navbar-bar::after {
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .navbar-bar {
+    padding: 18px 24px;
+  }
+  .navbar-bar::after {
+    left: 24px;
+    right: 24px;
+  }
+  .nav-right-group {
+    display: none !important;
+  }
+  .nav-mobile-toggle {
+    display: flex !important;
+  }
+}

@@ -1,0 +1,476 @@
+/* OurWorks.css - Premium Luxury Case Studies Styling (Light/White Theme) */
+
+.works-section {
+  position: relative;
+  padding: 160px 0;
+  background-color: #FAF8F5; /* Warm luxury ivory backdrop matching Testimonials */
+  border-top: 1px solid rgba(12, 12, 11, 0.05);
+  border-bottom: 1px solid rgba(12, 12, 11, 0.05);
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Background ripples */
+.works-bg-ripples {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 600px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.w-ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(74, 51, 11, 0.035);
+  pointer-events: none;
+}
+
+.w-ripple-1 {
+  width: 400px;
+  height: 400px;
+}
+
+.w-ripple-2 {
+  width: 700px;
+  height: 700px;
+  border-style: dotted;
+}
+
+/* Custom Premium Header Styling for Works Section */
+.works-section .section-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4.2vw, 52px) !important;
+  color: #0C0C0B !important;
+  font-weight: 800 !important; /* Bold, high-prestige style */
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  margin-top: 14px !important;
+  margin-bottom: 24px !important;
+}
+
+.works-section .section-h2 em {
+  display: inline-block;
+  font-style: italic !important;
+  font-family: var(--font-brand) !important;
+  color: var(--gold) !important;
+  position: relative;
+  padding-right: 8px; /* Prevents skewed italic letter clipping */
+}
+
+/* Beautiful custom gold underline below em word "Works" */
+.works-section .section-h2 em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 8px;
+  bottom: -4px;
+  height: 2px;
+  background: var(--gold-metallic);
+  border-radius: 2px;
+}
+
+/* Luxury Divider Ornament below subtitle */
+.works-section .luxury-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Works List Grid */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 140px; /* Generous separation between works */
+  margin-top: 90px;
+  position: relative;
+  z-index: 10;
+}
+
+.work-row-item {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.row-normal {
+  flex-direction: row;
+}
+
+.row-reversed {
+  flex-direction: row-reverse;
+}
+
+/* --- TEXT CONTENT COLUMN --- */
+.work-content-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.work-ledger-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.work-index-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #4A330B; /* Rich dark gold index */
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.work-subtitle-tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #5E5A4F;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.work-project-title {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 3.8vw, 48px);
+  color: #0C0C0B !important; /* Premium dark brand typography */
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.work-project-desc {
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  color: #3C382F; /* Warm dark gray paragraph copy */
+  line-height: 1.8;
+  margin-bottom: 34px;
+  font-weight: 400;
+}
+
+/* Tags Pill Block */
+.work-tags-wrap {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 38px;
+}
+
+.work-tag-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #4A330B; /* Contrast color on light theme */
+  border: 1px solid rgba(74, 51, 11, 0.12);
+  background: rgba(74, 51, 11, 0.03);
+  padding: 6px 14px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* Stats Matrix Card Grid */
+.work-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 42px;
+  border-top: 1px solid rgba(12, 12, 11, 0.08);
+  border-bottom: 1px solid rgba(12, 12, 11, 0.08);
+  padding: 28px 0;
+}
+
+.work-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.work-stat-val {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: #0C0C0B; /* Elegant dark gold/black value */
+  font-weight: 700;
+  line-height: 1;
+}
+
+.work-stat-lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #5E5A4F;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* Link CTA block */
+.work-cta-wrap {
+  display: flex;
+}
+
+.work-editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #0C0C0B; /* Dark Link */
+  text-decoration: none;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.work-editorial-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: #0C0C0B;
+  transform: scaleX(0.7);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-editorial-link:hover::after {
+  transform: scaleX(1);
+}
+
+.work-editorial-link .arrow-icon {
+  color: var(--gold-dark);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-editorial-link:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+
+/* --- VISUAL SLIDESHOW COLUMN --- */
+.work-visual-col {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.visual-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+.slideshow-vessel {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideshow-vessel:hover {
+  transform: translateY(-8px);
+}
+
+/* Image container inner - Configured to mathematically exact 16:9 Aspect Ratio */
+.slideshow-frame-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Exact 16:9 Aspect Ratio */
+  height: auto;
+  background: #141415; /* Sleek mock device dark border canvas */
+  border-radius: 4px;
+  border: 1px solid rgba(12, 12, 11, 0.08);
+  box-shadow: 0 30px 65px rgba(74, 51, 11, 0.06), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Shows the entire image perfectly without side cropping */
+  object-position: center;
+}
+
+/* Beautiful dark gradient reflection overlay on top */
+.slideshow-border-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Fine structural luxury bracket accents at outer corners */
+.slideshow-corners-accent {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(74, 51, 11, 0.04);
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Floating index tag overlay (Contrasting dark canvas overlay for premium visual cue) */
+.floating-project-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(12, 12, 11, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 8px 16px;
+  border-radius: 2px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.floating-project-badge span {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.15em;
+  color: var(--gold-light);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-spark {
+  color: var(--gold);
+  animation: pulseOpacity 2s infinite ease-in-out;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* --- SLIDESHOW INDICATORS / BULLETS --- */
+.slideshow-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  position: relative;
+  z-index: 10;
+}
+
+.slide-bullet {
+  width: 24px;
+  height: 2.5px;
+  background: rgba(12, 12, 11, 0.15); /* Pinned contrast for light theme background */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1px;
+}
+
+.slide-bullet:hover {
+  background: rgba(12, 12, 11, 0.35);
+}
+
+.slide-bullet.bullet-active {
+  background: var(--active-color, var(--gold)) !important;
+  width: 48px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT STYLES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .work-row-item {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .works-section {
+    padding: 100px 0;
+  }
+  
+  .works-section .section-h2 {
+    font-size: clamp(22px, 6vw, 32px) !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.3 !important;
+  }
+  
+  .works-list {
+    gap: 100px;
+    margin-top: 60px;
+  }
+  
+  .work-row-item {
+    flex-direction: column !important; /* Force stacked layouts always on smaller screens */
+    gap: 40px;
+  }
+  
+  .work-content-col {
+    width: 100%;
+  }
+  
+  .work-visual-col {
+    width: 100%;
+  }
+  
+  .work-project-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-stats-grid {
+    grid-template-columns: 1fr; /* Stack statistics vertically */
+    gap: 20px;
+    padding: 20px 0;
+  }
+  
+  .work-stat-card {
+    align-items: flex-start;
+  }
+  
+  .work-project-title {
+    font-size: 26px;
+  }
+  
+  .floating-project-badge {
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+  }
+}

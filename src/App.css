@@ -1,0 +1,6 @@
+/* App.css - Page Layout Core */
+.main-content-wrapper {
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}

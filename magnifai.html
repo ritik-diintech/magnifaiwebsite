@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MagnifAI — AI-Powered Influence</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --black: #050505;
+      --white: #F5F0E8;
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-dim: #7A5E28;
+      --surface: #0D0D0D;
+      --surface2: #141414;
+      --muted: #5A5A5A;
+      --border: rgba(201, 168, 76, 0.15);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201, 168, 76, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9000;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(5, 5, 5, 0.95), transparent);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(5, 5, 5, 0.97);
+      border-bottom-color: var(--border);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 140px 60px 100px;
+      text-align: center;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(201, 168, 76, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 168, 76, 0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-label::before,
+    .hero-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 9vw, 130px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .hero-h1 .italic {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-h1 .outline {
+      -webkit-text-stroke: 1px rgba(245, 240, 232, 0.3);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245, 240, 232, 0.5);
+      margin: 28px auto 52px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-primary {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 16px 40px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold-light);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:hover::after {
+      transform: translateX(0);
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-secondary {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 1px solid rgba(245, 240, 232, 0.2);
+      padding: 16px 40px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .hero-scroll span {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    .ticker {
+      background: var(--gold);
+      padding: 12px 0;
+      overflow: hidden;
+    }
+
+    .ticker-track {
+      display: flex;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .ticker-item::after {
+      content: '◆';
+      font-size: 8px;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    section {
+      padding: 120px 60px;
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .section-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 5vw, 68px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .section-h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .section-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.6);
+      max-width: 520px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+      background: var(--surface);
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .about-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(201, 168, 76, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(201, 168, 76, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .about-number {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      font-weight: 300;
+      color: rgba(201, 168, 76, 0.08);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+    }
+
+    .about-badge {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+      background: rgba(5, 5, 5, 0.8);
+    }
+
+    .about-badge-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .about-badge-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--white);
+      display: block;
+      line-height: 1;
+    }
+
+    .about-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-hex {
+      width: 160px;
+      height: 160px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-style: italic;
+      color: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .about-hex span {
+      transform: rotate(-45deg);
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin-top: 48px;
+      background: var(--border);
+    }
+
+    .stat-box {
+      background: var(--surface);
+      padding: 28px 32px;
+      transition: background 0.2s;
+    }
+
+    .stat-box:hover {
+      background: var(--surface2);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-desc {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    .services {
+      background: var(--black);
+    }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+      align-items: end;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--surface);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover {
+      background: var(--surface2);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .service-icon {
+      font-size: 28px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .service-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .service-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(245, 240, 232, 0.45);
+    }
+
+    .clients {
+      background: var(--surface);
+      padding: 100px 60px;
+    }
+
+    .clients-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .client-card {
+      background: var(--surface2);
+      padding: 48px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .client-card:hover {
+      background: var(--surface);
+    }
+
+    .client-icon {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .client-type {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .client-desc {
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.35);
+    }
+
+    .process {
+      background: var(--black);
+    }
+
+    .process-steps {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+      position: relative;
+      align-items: start;
+    }
+
+    .step-marker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .step-dot {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .process-step:hover .step-dot {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .step-content {
+      padding-top: 8px;
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .step-body {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.5);
+      max-width: 560px;
+    }
+
+    .results {
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .results-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .results-numbers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .result-box {
+      background: var(--surface2);
+      padding: 40px 32px;
+      transition: background 0.3s;
+    }
+
+    .result-box:first-child {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--surface2), rgba(201, 168, 76, 0.06));
+    }
+
+    .result-box:hover {
+      background: var(--black);
+    }
+
+    .result-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .result-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+      display: block;
+    }
+
+    .result-sub {
+      font-size: 13px;
+      color: rgba(245, 240, 232, 0.4);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .testimonials {
+      background: var(--black);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 80px;
+    }
+
+    .testimonial-card {
+      background: var(--surface);
+      padding: 48px 40px;
+      transition: background 0.3s;
+    }
+
+    .testimonial-card:hover {
+      background: var(--surface2);
+    }
+
+    .testimonial-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      background: linear-gradient(135deg, var(--surface2), rgba(201, 168, 76, 0.05));
+    }
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 0.8;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(245, 240, 232, 0.8);
+      margin-bottom: 32px;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+
+    .author-avatar.alt {
+      background: var(--surface2);
+      color: var(--gold);
+      border: 1px solid var(--border);
+    }
+
+    .author-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      display: block;
+    }
+
+    .author-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .quote-highlight {
+      border-left: 2px solid var(--gold);
+      padding-left: 32px;
+    }
+
+    .quote-highlight .quote-text {
+      font-size: 32px;
+      color: var(--white);
+    }
+
+    .cta-section {
+      background: var(--surface);
+      text-align: center;
+      padding: 140px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 260px;
+      font-weight: 700;
+      color: rgba(201, 168, 76, 0.03);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .cta-section .section-label {
+      justify-content: center;
+    }
+
+    .cta-section .section-label::after {
+      display: none;
+    }
+
+    .cta-section .section-label::before {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .cta-section .section-h2 {
+      font-size: clamp(44px, 6vw, 80px);
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+
+    .cta-section .section-body {
+      max-width: 480px;
+      margin: 0 auto 52px;
+    }
+
+    .cta-divider {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 48px;
+      opacity: 0.4;
+    }
+
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 80px 60px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand .nav-logo {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(245, 240, 232, 0.4);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 32px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-social-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .footer-col-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(245, 240, 232, 0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .footer-pills {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-d1 {
+      transition-delay: 0.1s;
+    }
+
+    .fade-up-d2 {
+      transition-delay: 0.2s;
+    }
+
+    .fade-up-d3 {
+      transition-delay: 0.3s;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      section,
+      .clients {
+        padding: 80px 24px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .services-header {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .clients-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .results-inner {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-card.featured {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .cta-bg-text {
+        font-size: 80px;
+      }
+
+      .hero {
+        padding: 120px 24px 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Magnif<span>AI</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#results">Results</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"
+      style="position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse-glow 4s ease-in-out infinite;">
+    </div>
+    <style>
+      @keyframes pulse-glow {
+
+        0%,
+        100% {
+          opacity: .5;
+          transform: translate(-50%, -50%) scale(1)
+        }
+
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.1)
+        }
+      }
+    </style>
+    <div class="hero-label">AI-Powered Influence Agency</div>
+    <h1 class="hero-h1">
+      <div>From <span class="italic">Unknown</span></div>
+      <div class="outline">to Unforgettable</div>
+    </h1>
+    <p class="hero-sub">We engineer influence at scale — visibility, authority, and audience growth for leaders,
+      organizations, and movements that refuse to be ignored.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary"><span>Book a Strategy Call</span></a>
+      <a href="#services" class="btn-secondary">Explore Our Work</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-item">Political Leaders</div>
+      <div class="ticker-item">Spiritual Organizations</div>
+      <div class="ticker-item">Founders &amp; Executives</div>
+      <div class="ticker-item">Influencers &amp; Creators</div>
+      <div class="ticker-item">AI Viral Content</div>
+      <div class="ticker-item">Digital PR</div>
+      <div class="ticker-item">Audience Growth</div>
+      <div class="ticker-item">Brands &amp; Movements</div>
+      <div class="ticker-item">Political Leaders</div>
+      <div class="ticker-item">Spiritual Organizations</div>
+      <div class="ticker-item">Founders &amp; Executives</div>
+      <div class="ticker-item">Influencers &amp; Creators</div>
+      <div class="ticker-item">AI Viral Content</div>
+      <div class="ticker-item">Digital PR</div>
+      <div class="ticker-item">Audience Growth</div>
+      <div class="ticker-item">Brands &amp; Movements</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-visual">
+      <div class="about-grid-lines"></div>
+      <div
+        style="position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(201,168,76,0.08) 100%);">
+      </div>
+      <div class="about-center">
+        <div class="about-hex"><span>AI</span></div>
+      </div>
+      <div class="about-number">∞</div>
+      <div class="about-badge">
+        <span class="about-badge-label">Established</span>
+        <span class="about-badge-val">2024</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label fade-up">About MagnifAI</div>
+      <h2 class="section-h2 fade-up fade-up-d1">We Don't Just Market.<br><em>We Engineer Influence.</em></h2>
+      <p class="section-body fade-up fade-up-d2">MagnifAI is an AI-powered influence agency built for individuals and
+        organizations that demand more than content — they demand impact. We combine artificial intelligence, strategic
+        storytelling, and distribution systems to amplify public presence at unprecedented scale.</p>
+      <p class="section-body fade-up fade-up-d3" style="margin-top:16px;">In the attention economy, visibility isn't
+        optional. It's the foundation of every form of power.</p>
+      <div class="about-stats fade-up fade-up-d3">
+        <div class="stat-box">
+          <span class="stat-num">10×</span>
+          <span class="stat-desc">Faster Content Output</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">5+</span>
+          <span class="stat-desc">Languages Distributed</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">360°</span>
+          <span class="stat-desc">Platform Coverage</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">AI</span>
+          <span class="stat-desc">Native Infrastructure</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <div>
+        <div class="section-label fade-up">What We Do</div>
+        <h2 class="section-h2 fade-up fade-up-d1">Complete <em>Influence</em><br>Ecosystems</h2>
+      </div>
+      <p class="section-body fade-up fade-up-d2">Every service is designed to work together — from content creation to
+        distribution to perception management — creating an unstoppable digital presence.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <span class="service-num">01</span>
+        <span class="service-icon">🎬</span>
+        <div class="service-title">AI Viral Reels &amp; Short Video</div>
+        <p class="service-desc">Platform-native short-form content engineered for algorithmic reach. Hooks, pacing, and
+          narratives optimized by AI for maximum shareability.</p>
+      </div>
+      <div class="service-card fade-up fade-up-d1">
+        <span class="service-num">02</span>
+        <span class="service-icon">🏛️</span>
+        <div class="service-title">Political Digital Campaigns</div>
+        <p class="service-desc">Constituency engagement, message amplification, and digital mobilization systems built
+          for candidates and political movements.</p>
+      </div>
+      <div class="service-card fade-up fade-up-d2">
+        <span class="service-num">03</span>
+        <span class="service-icon">👤</span>
+        <div class="service-title">Personal Brand Building</div>
+        <p class="service-desc">Authority positioning, narrative architecture, and consistent identity systems that make
+          executives and founders unmistakable in their field.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-num">04</span>
+        <span class="service-icon">⚡</span>
+        <div class="service-title">AI Content Automation</div>
+        <p class="service-desc">Intelligent pipelines that produce, schedule, and adapt content across every platform —
+          without sacrificing quality or voice consistency.</p>
+      </div>
+      <div class="service-card fade-up fade-up-d1">
+        <span class="service-num">05</span>
+        <span class="service-icon">🎙️</span>
+        <div class="service-title">AI Voice &amp; Avatar Systems</div>
+        <p class="service-desc">Scalable AI-generated voice and video assets that let your presence multiply across
+          formats, platforms, and languages simultaneously.</p>
+      </div>
+      <div class="service-card fade-up fade-up-d2">
+        <span class="service-num">06</span>
+        <span class="service-icon">🌐</span>
+        <div class="service-title">Multi-Language Distribution</div>
+        <p class="service-desc">Break language barriers and expand your influence globally. AI-powered localization that
+          preserves tone, message, and cultural nuance.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-num">07</span>
+        <span class="service-icon">📡</span>
+        <div class="service-title">Public Perception Management</div>
+        <p class="service-desc">Proactive narrative control, reputation monitoring, and strategic communication to shape
+          how the world sees you — on your terms.</p>
+      </div>
+      <div class="service-card fade-up fade-up-d1">
+        <span class="service-num">08</span>
+        <span class="service-icon">📱</span>
+        <div class="service-title">AI WhatsApp &amp; Calling Campaigns</div>
+        <p class="service-desc">Direct-to-audience communication at scale. Personalized outreach that feels human and
+          drives measurable engagement and action.</p>
+      </div>
+      <div class="service-card fade-up fade-up-d2">
+        <span class="service-num">09</span>
+        <span class="service-icon">📰</span>
+        <div class="service-title">Digital PR &amp; Media Amplification</div>
+        <p class="service-desc">Strategic press, media placements, and earned attention that builds credibility and
+          accelerates authority in your category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE WORK WITH -->
+  <section class="clients" id="clients">
+    <div class="clients-header">
+      <div class="section-label fade-up" style="justify-content:center;">Who We Work With</div>
+      <h2 class="section-h2 fade-up fade-up-d1" style="text-align:center;max-width:600px;margin:0 auto;">Built for the
+        <em>Next Generation</em><br>of Influence Builders</h2>
+    </div>
+    <div class="clients-grid">
+      <div class="client-card fade-up">
+        <span class="client-icon">🏛️</span>
+        <span class="client-type">Political Leaders</span>
+        <p class="client-desc">Candidates, parties, and movements building constituency power through AI-driven digital
+          campaigns and mass communication systems.</p>
+      </div>
+      <div class="client-card fade-up fade-up-d1">
+        <span class="client-icon">🕊️</span>
+        <span class="client-type">Spiritual Organizations</span>
+        <p class="client-desc">Gurus, temples, churches, and faith communities expanding reach and distributing wisdom
+          across languages and borders.</p>
+      </div>
+      <div class="client-card fade-up fade-up-d2">
+        <span class="client-icon">🚀</span>
+        <span class="client-type">Founders &amp; Executives</span>
+        <p class="client-desc">Visionary builders establishing authority, building trust, and scaling personal brand
+          alongside company growth.</p>
+      </div>
+      <div class="client-card fade-up fade-up-d1">
+        <span class="client-icon">⭐</span>
+        <span class="client-type">Influencers &amp; Creators</span>
+        <p class="client-desc">Content creators accelerating follower growth, improving content performance, and
+          monetizing influence more effectively.</p>
+      </div>
+      <div class="client-card fade-up fade-up-d2">
+        <span class="client-icon">💎</span>
+        <span class="client-type">Ambitious Brands</span>
+        <p class="client-desc">Brands that want to dominate digital attention, deepen customer connection, and create
+          cultural relevance in their category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="section-label fade-up">How It Works</div>
+    <h2 class="section-h2 fade-up fade-up-d1" style="max-width:480px;">The MagnifAI <em>Influence</em><br>Process</h2>
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="step-marker">
+          <div class="step-dot">01</div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Discover</div>
+          <p class="step-body">We begin with a deep audit of your existing presence, audience psychology, competitive
+            positioning, and communication voice. Understanding who you are and where you want to go is the foundation
+            of everything we build.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up fade-up-d1">
+        <div class="step-marker">
+          <div class="step-dot">02</div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Strategize</div>
+          <p class="step-body">We craft a custom visibility roadmap — selecting the right channels, content formats, AI
+            tools, and distribution strategies to achieve your influence objectives faster than any traditional agency.
+          </p>
+        </div>
+      </div>
+      <div class="process-step fade-up fade-up-d2">
+        <div class="step-marker">
+          <div class="step-dot">03</div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Create</div>
+          <p class="step-body">Our hybrid team — human strategists paired with advanced AI systems — produces premium
+            content, campaigns, and communication assets at a scale and quality impossible to achieve with traditional
+            methods.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-marker">
+          <div class="step-dot">04</div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Amplify</div>
+          <p class="step-body">We deploy and optimize content across every relevant platform — algorithmic targeting,
+            distribution timing, cross-platform adaptation — to maximize reach, engagement, and audience conversion.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up fade-up-d1">
+        <div class="step-marker">
+          <div class="step-dot">05</div>
+        </div>
+        <div class="step-content">
+          <div class="step-title">Scale</div>
+          <p class="step-body">We build long-term influence engines — automated systems, audience growth loops, and
+            feedback-driven optimization that compound your visibility, authority, and impact month after month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results" id="results">
+    <div class="results-inner">
+      <div>
+        <div class="section-label fade-up">Why MagnifAI</div>
+        <h2 class="section-h2 fade-up fade-up-d1">Built to <em>Dominate</em><br>the Attention Economy</h2>
+        <p class="section-body fade-up fade-up-d2">In a world where every leader, brand, and movement competes for the
+          same finite attention, MagnifAI gives you an unfair advantage: the infrastructure of AI-native influence.</p>
+        <p class="section-body fade-up fade-up-d3" style="margin-top:20px;">We don't just generate content. We build the
+          systems, strategy, and amplification layers that turn unknown voices into unmissable presences.</p>
+      </div>
+      <div class="results-numbers fade-up fade-up-d1">
+        <div class="result-box">
+          <span class="result-val">10×</span>
+          <span class="result-label">Content Velocity</span>
+          <p class="result-sub">More content produced and distributed than any traditional agency model — without
+            sacrificing quality or strategic intent.</p>
+        </div>
+        <div class="result-box">
+          <span class="result-val">5+</span>
+          <span class="result-label">Platforms Covered</span>
+        </div>
+        <div class="result-box">
+          <span class="result-val">AI</span>
+          <span class="result-label">Native Since Day One</span>
+        </div>
+        <div class="result-box">
+          <span class="result-val">∞</span>
+          <span class="result-label">Scalable Reach</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-label fade-up">What Clients Say</div>
+    <h2 class="section-h2 fade-up fade-up-d1" style="max-width:480px;">Influence That <em>Speaks</em><br>for Itself</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card featured fade-up">
+        <div>
+          <span class="quote-mark">"</span>
+          <p class="quote-text">MagnifAI transformed our digital campaign entirely. What used to take weeks to produce,
+            they now deliver in days — with significantly higher engagement across every platform we operate on.</p>
+          <div class="quote-author" style="margin-top:28px;">
+            <div class="author-avatar">R</div>
+            <div>
+              <span class="author-name">Rajiv Mehta</span>
+              <span class="author-role">Political Campaign Director</span>
+            </div>
+          </div>
+        </div>
+        <div class="quote-highlight">
+          <p class="quote-text">"Visibility is the new power. MagnifAI gave us exactly that — and more than we imagined
+            was possible."</p>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Our organization was reaching thousands. After MagnifAI built our multilingual content
+          system, we were reaching millions — in six different languages simultaneously.</p>
+        <div class="quote-author" style="margin-top:24px;">
+          <div class="author-avatar alt">S</div>
+          <div>
+            <span class="author-name">Swami Prakashananda</span>
+            <span class="author-role">Spiritual Organization Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up fade-up-d1">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">As a founder, building a public profile alongside running the company felt impossible.
+          MagnifAI's founder branding system made it effortless — I look omnipresent without spending all day creating
+          content.</p>
+        <div class="quote-author" style="margin-top:24px;">
+          <div class="author-avatar alt">A</div>
+          <div>
+            <span class="author-name">Arjun Sharma</span>
+            <span class="author-role">Tech Startup Founder</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up fade-up-d2">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">The AI systems MagnifAI built run 24/7. Our audience sees us everywhere — Instagram,
+          YouTube, LinkedIn, WhatsApp. The level of digital omnipresence they created is extraordinary.</p>
+        <div class="quote-author" style="margin-top:24px;">
+          <div class="author-avatar alt">P</div>
+          <div>
+            <span class="author-name">Priya Nair</span>
+            <span class="author-role">Brand Director, Lifestyle Co.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg-text">MAGNIFY</div>
+    <div class="section-label fade-up">Ready to Begin</div>
+    <h2 class="section-h2 fade-up fade-up-d1">Your Audience<br>Is Already <em>Online.</em></h2>
+    <div class="cta-divider"></div>
+    <p class="section-body fade-up fade-up-d2" style="text-align:center;">The question is whether they can ignore you.
+      Let MagnifAI build the influence infrastructure that makes invisibility impossible.</p>
+    <div class="hero-buttons fade-up fade-up-d3" style="margin-top:52px;">
+      <a href="#" class="btn-primary"><span>Start Building Your Influence</span></a>
+      <a href="#services" class="btn-secondary">Explore Services</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Magnif<span>AI</span></a>
+        <p class="footer-tagline">AI-powered visibility, communication, and audience growth for leaders, creators,
+          organizations, and movements that demand more.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link">Instagram</a>
+          <a href="#" class="footer-social-link">LinkedIn</a>
+          <a href="#" class="footer-social-link">X / Twitter</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">AI Viral Content</a></li>
+          <li><a href="#">Personal Branding</a></li>
+          <li><a href="#">Political Campaigns</a></li>
+          <li><a href="#">Content Automation</a></li>
+          <li><a href="#">Voice &amp; Avatar AI</a></li>
+          <li><a href="#">Digital PR</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Our Process</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">Book a Strategy Call</a></li>
+          <li><a href="#">hello@magnifai.com</a></li>
+          <li><a href="#">WhatsApp Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 MagnifAI. All rights reserved.</span>
+      <div class="footer-pills">
+        <span class="footer-pill">AI-Powered</span>
+        <span class="footer-pill">Influence</span>
+        <span class="footer-pill">Visibility</span>
+        <span class="footer-pill">Growth</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    });
+    (function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a, button, .service-card, .client-card, .process-step').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width = '18px'; cursor.style.height = '18px'; ring.style.width = '52px'; ring.style.height = '52px'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; });
+    });
+
+
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+    // Scroll-triggered fade-up
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>

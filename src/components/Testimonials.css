@@ -1,0 +1,829 @@
+/* Testimonials.css - Custom Bespoke Cards & Premium Asymmetric Typography Design */
+
+.testimonials-section {
+  position: relative;
+  padding: 160px 0;
+  background-color: #FAF8F5; /* Warm luxury ivory backdrop */
+  border-bottom: 1px solid rgba(12, 12, 11, 0.05);
+  overflow: hidden;
+}
+
+/* Background concentric loops */
+.testimonials-ripples {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 500px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.t-ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(74, 51, 11, 0.035);
+}
+
+.t-ripple-1 {
+  width: 320px;
+  height: 320px;
+}
+
+.t-ripple-2 {
+  width: 580px;
+  height: 580px;
+  border-style: dotted;
+}
+
+/* Consolidated Luxury Header Styling */
+.testimonials-section .luxury-title-wrap {
+  text-align: center;
+  margin-bottom: 90px;
+  position: relative;
+  z-index: 5;
+}
+
+.testimonials-section .section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #4A330B !important;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.testimonials-section .section-label::before,
+.testimonials-section .section-label::after {
+  content: '';
+  width: 45px;
+  height: 1px;
+  background: rgba(74, 51, 11, 0.2) !important;
+}
+
+.testimonials-section .section-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4.2vw, 52px);
+  color: #0C0C0B !important;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 14px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.testimonials-section .section-h2 em {
+  display: inline-block;
+  font-style: italic !important;
+  font-family: var(--font-brand) !important;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  color: #0C0C0B !important;
+  padding-right: 8px; /* Prevents skewed italic letter clipping */
+}
+
+.testimonials-section .section-subtitle {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: #3C382F !important;
+  line-height: 1.8;
+  max-width: 660px;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+/* Staggered Grid of Bespoke Cards */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- BASE CARD DEFINITION --- */
+.client-quote-card {
+  position: relative;
+  padding: 52px 42px;
+  border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Ledger Details */
+.card-top-ledger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  z-index: 3;
+}
+
+.card-ledger-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.client-quote-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+/* Stars Rating */
+.client-stars-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+/* Card Body */
+.client-quote-body {
+  position: relative;
+  z-index: 2;
+}
+
+/* Author Details Split */
+.client-author-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  margin-top: auto;
+  z-index: 3;
+}
+
+/* Double Ring Luxury Avatar Badge */
+.client-author-avatar-wrap {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.avatar-ring-outer {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+  pointer-events: none;
+}
+
+.client-author-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  transition: all 0.4s;
+}
+
+.client-author-texts {
+  text-align: left;
+}
+
+.client-author-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  display: block;
+}
+
+.client-author-role {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* --- CARD HOVER ACCENT STRIP --- */
+.card-hover-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0px;
+  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+.client-quote-card:hover .card-hover-strip {
+  height: 3.5px;
+}
+
+
+/* ==========================================================================
+   BESPOKE HIGH-END CARD STYLES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   STYLE 1: classic (The Political Sovereignty / Siddharth Sharma)
+   Aesthetic: Heritage Editorial, Clean Ivory, Sharp Serif Font
+   -------------------------------------------------------------------------- */
+.card-style-classic {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(12, 12, 11, 0.08);
+  box-shadow: 0 15px 40px rgba(74, 51, 11, 0.015);
+}
+
+.card-style-classic:hover {
+  transform: translateY(-8px);
+  border-color: rgba(12, 12, 11, 0.16);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 30px 65px rgba(74, 51, 11, 0.04);
+}
+
+.card-style-classic .card-hover-strip {
+  background: #0C0C0B;
+}
+
+.card-style-classic .card-ledger-index {
+  color: #4A330B;
+  opacity: 0.65;
+}
+
+.card-style-classic .client-quote-tag {
+  color: #0C0C0B;
+  border: 1px solid rgba(12, 12, 11, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* FONT: High-fashion, legible, clean editorial serif */
+.card-style-classic .client-quote-text {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  font-weight: 500;
+  font-style: normal;
+  color: #0C0C0B;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  margin-bottom: 34px;
+}
+
+.card-style-classic .client-author-info {
+  border-top: 1px solid rgba(12, 12, 11, 0.06);
+}
+
+.card-style-classic .avatar-ring-outer {
+  border: 1px solid rgba(12, 12, 11, 0.12);
+}
+
+.card-style-classic:hover .avatar-ring-outer {
+  transform: scale(1.15) rotate(90deg);
+  border-color: #0C0C0B;
+}
+
+.card-style-classic .client-author-avatar {
+  background: #FAF8F5;
+  border: 1px solid rgba(12, 12, 11, 0.18);
+  color: #0C0C0B;
+}
+
+.card-style-classic:hover .client-author-avatar {
+  background: #0C0C0B;
+  color: #FAF8F5;
+  border-color: #0C0C0B;
+}
+
+.card-style-classic .client-author-name {
+  color: #0C0C0B;
+}
+
+.card-style-classic .client-author-role {
+  color: #5E5A4F;
+}
+
+
+/* --------------------------------------------------------------------------
+   STYLE 2: spiritual (The Spiritual Heritage / Acharya Nityananda)
+   Aesthetic: Vedic Calm, Soft Sand Backdrop, Flowing Italic Book Serif
+   -------------------------------------------------------------------------- */
+.card-style-spiritual {
+  background: rgba(244, 240, 232, 0.7);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  box-shadow: 0 15px 40px rgba(197, 160, 89, 0.02);
+}
+
+.card-style-spiritual:hover {
+  transform: translateY(-8px);
+  border-color: rgba(197, 160, 89, 0.4);
+  background: rgba(244, 240, 232, 0.9);
+  box-shadow: 0 30px 65px rgba(197, 160, 89, 0.07);
+}
+
+.card-style-spiritual .card-ledger-index {
+  color: #4A330B;
+}
+
+.card-style-spiritual .client-quote-tag {
+  color: #4A330B;
+  border: 1px solid rgba(197, 160, 89, 0.22);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* FONT: Soulful, elegant, italic bookish serif for spiritual vertical */
+.card-style-spiritual .client-quote-text {
+  font-family: var(--font-serif);
+  font-size: 17.5px;
+  font-style: italic;
+  font-weight: 500;
+  color: #3C382F;
+  line-height: 1.75;
+  margin-bottom: 34px;
+}
+
+.card-style-spiritual .client-author-info {
+  border-top: 1px solid rgba(197, 160, 89, 0.12);
+}
+
+.card-style-spiritual .avatar-ring-outer {
+  border: 1px dashed rgba(197, 160, 89, 0.3);
+}
+
+.card-style-spiritual:hover .avatar-ring-outer {
+  transform: scale(1.18) rotate(-45deg);
+  border-color: #4A330B;
+}
+
+.card-style-spiritual .client-author-avatar {
+  background: #FAF8F5;
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  color: #4A330B;
+}
+
+.card-style-spiritual:hover .client-author-avatar {
+  background: #4A330B;
+  color: #FAF8F5;
+}
+
+.card-style-spiritual .client-author-name {
+  color: #3C382F;
+}
+
+.card-style-spiritual .client-author-role {
+  color: #5E5A4F;
+}
+
+
+/* --------------------------------------------------------------------------
+   STYLE 3: venture (The Venture Capital / Vikram Kalra)
+   Aesthetic: Tech/Capital Executive, Left-Border Block, Spacious Sans-Serif
+   -------------------------------------------------------------------------- */
+.card-style-venture {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(12, 12, 11, 0.05);
+  border-left: 3.5px solid #0C0C0B; /* Signature high-tech boundary block */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.01);
+}
+
+.card-style-venture:hover {
+  transform: translateY(-8px);
+  border-color: rgba(12, 12, 11, 0.12);
+  border-left-color: #D4AF37; /* Shifts from dark to gold border */
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 30px 65px rgba(0, 0, 0, 0.04);
+}
+
+.card-style-venture .card-hover-strip {
+  background: #D4AF37;
+}
+
+.card-style-venture .card-ledger-index {
+  color: #5E5A4F;
+}
+
+.card-style-venture .client-quote-tag {
+  color: #0C0C0B;
+  border: 1px solid rgba(12, 12, 11, 0.08);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* FONT: Luxurious, modern, spacious sans-serif for sharp venture vibes */
+.card-style-venture .client-quote-text {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  font-style: normal;
+  color: #0C0C0B;
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+  margin-bottom: 34px;
+}
+
+.card-style-venture .client-author-info {
+  border-top: 1px solid rgba(12, 12, 11, 0.05);
+}
+
+.card-style-venture .avatar-ring-outer {
+  border: 1px solid rgba(12, 12, 11, 0.08);
+}
+
+.card-style-venture:hover .avatar-ring-outer {
+  transform: scale(1.15);
+  border-color: #D4AF37;
+}
+
+.card-style-venture .client-author-avatar {
+  background: #FAF8F5;
+  border: 1px solid rgba(12, 12, 11, 0.12);
+  color: #5E5A4F;
+  font-family: var(--font-mono);
+}
+
+.card-style-venture:hover .client-author-avatar {
+  background: #D4AF37;
+  color: #0C0C0B;
+  border-color: #D4AF37;
+}
+
+.card-style-venture .client-author-name {
+  color: #0C0C0B;
+}
+
+.card-style-venture .client-author-role {
+  color: #5E5A4F;
+}
+
+
+/* --------------------------------------------------------------------------
+   STYLE 4: royal (Royal Narrative Office / Meera Al-Mansoori)
+   Aesthetic: Prestige Royal Blackout, Gold Dashed Border, Gilded Serif Font
+   -------------------------------------------------------------------------- */
+.card-style-royal {
+  background: #0C0C0B; /* Deep prestigious royal black canvas! */
+  border: 1px dashed rgba(212, 175, 55, 0.22);
+  box-shadow: 0 25px 60px rgba(12, 12, 11, 0.35);
+}
+
+.card-style-royal:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.4);
+  background: #111110;
+  box-shadow: 0 35px 75px rgba(12, 12, 11, 0.45);
+}
+
+.card-style-royal .card-ledger-index {
+  color: var(--gold-light);
+  opacity: 0.8;
+}
+
+.card-style-royal .client-quote-tag {
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* FONT: Stunning, glowing ivory-gold italic book serif */
+.card-style-royal .client-quote-text {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--gold-light) !important;
+  line-height: 1.75;
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+  margin-bottom: 34px;
+}
+
+.card-style-royal .client-author-info {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-style-royal .avatar-ring-outer {
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.card-style-royal:hover .avatar-ring-outer {
+  transform: scale(1.15) rotate(180deg);
+  border-color: var(--gold);
+}
+
+.card-style-royal .client-author-avatar {
+  background: #0C0C0B;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold-light);
+}
+
+.card-style-royal:hover .client-author-avatar {
+  background: var(--gold-metallic);
+  color: #0C0C0B;
+  border-color: var(--gold);
+}
+
+.card-style-royal .client-author-name {
+  color: #FAF9F6;
+}
+
+.card-style-royal .client-author-role {
+  color: var(--gold-light);
+  opacity: 0.8;
+}
+
+
+/* --------------------------------------------------------------------------
+   STYLE 5: intellect (Global Thought Leader / Dr. Ronald Harris)
+   Aesthetic: Academic Wisdom, Soft Cream Gold Backdrop, Quotation Emblem
+   -------------------------------------------------------------------------- */
+.card-style-intellect {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(74, 51, 11, 0.06);
+  box-shadow: 0 15px 40px rgba(74, 51, 11, 0.015);
+}
+
+.card-style-intellect:hover {
+  transform: translateY(-8px);
+  border-color: rgba(74, 51, 11, 0.16);
+  background: #FAF8F5;
+  box-shadow: 0 30px 65px rgba(74, 51, 11, 0.05);
+}
+
+.card-style-intellect .card-ledger-index {
+  color: #4A330B;
+}
+
+.card-style-intellect .client-quote-tag {
+  color: #4A330B;
+  border: 1px solid rgba(74, 51, 11, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Large decorative backdrop quotation mark */
+.intellect-quote-emblem {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  font-family: var(--font-serif);
+  font-size: 96px;
+  font-style: italic;
+  font-weight: 700;
+  color: rgba(74, 51, 11, 0.05);
+  line-height: 0;
+  pointer-events: none;
+}
+
+/* FONT: Bold, authoritative bookish serif representing deep philosophy */
+.card-style-intellect .client-quote-text {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  font-style: normal;
+  color: #1A1713;
+  line-height: 1.7;
+  letter-spacing: 0.015em;
+  margin-bottom: 34px;
+}
+
+.card-style-intellect .client-author-info {
+  border-top: 1px solid rgba(74, 51, 11, 0.06);
+}
+
+.card-style-intellect .avatar-ring-outer {
+  border: 1px solid rgba(74, 51, 11, 0.15);
+}
+
+.card-style-intellect:hover .avatar-ring-outer {
+  transform: scale(1.15) rotate(45deg);
+  border-color: #4A330B;
+}
+
+.card-style-intellect .client-author-avatar {
+  background: #FAF8F5;
+  border: 1px solid rgba(74, 51, 11, 0.18);
+  color: #4A330B;
+}
+
+.card-style-intellect:hover .client-author-avatar {
+  background: #4A330B;
+  color: #FAF8F5;
+}
+
+.card-style-intellect .client-author-name {
+  color: #1A1713;
+}
+
+.card-style-intellect .client-author-role {
+  color: #5E5A4F;
+}
+
+
+/* --------------------------------------------------------------------------
+   STYLE 6: contemporary (Executive Influence / Elena Petrova)
+   Aesthetic: Contemporary Minimalist, Elegant Gold Top Line, Clean Modern Sans
+   -------------------------------------------------------------------------- */
+.card-style-contemporary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(244, 240, 232, 0.45) 100%);
+  border: 1px solid rgba(12, 12, 11, 0.04);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.005);
+}
+
+.card-style-contemporary:hover {
+  transform: translateY(-8px);
+  border-color: rgba(12, 12, 11, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 240, 232, 0.6) 100%);
+  box-shadow: 0 25px 55px rgba(74, 51, 11, 0.03);
+}
+
+/* Beautiful dynamic top bar clip */
+.contemporary-top-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gold-metallic);
+  z-index: 5;
+  opacity: 0.8;
+  transition: opacity 0.4s;
+}
+
+.card-style-contemporary:hover .contemporary-top-bar {
+  opacity: 1;
+}
+
+.card-style-contemporary .card-ledger-index {
+  color: #5E5A4F;
+}
+
+.card-style-contemporary .client-quote-tag {
+  color: #4A330B;
+  border: 1px solid rgba(74, 51, 11, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* FONT: Clean, highly-tracked, elite contemporary sans-serif */
+.card-style-contemporary .client-quote-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 550;
+  font-style: normal;
+  color: #3C382F;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  margin-bottom: 34px;
+}
+
+.card-style-contemporary .client-author-info {
+  border-top: 1px solid rgba(12, 12, 11, 0.05);
+}
+
+.card-style-contemporary .avatar-ring-outer {
+  border: 1px solid rgba(12, 12, 11, 0.08);
+}
+
+.card-style-contemporary:hover .avatar-ring-outer {
+  transform: scale(1.15);
+  border-color: #4A330B;
+}
+
+.card-style-contemporary .client-author-avatar {
+  background: #FAF8F5;
+  border: 1px solid rgba(12, 12, 11, 0.12);
+  color: #3C382F;
+}
+
+.card-style-contemporary:hover .client-author-avatar {
+  background: #0C0C0B;
+  color: #FAF8F5;
+  border-color: #0C0C0B;
+}
+
+.card-style-contemporary .client-author-name {
+  font-family: var(--font-sans);
+  color: #0C0C0B;
+}
+
+.card-style-contemporary .client-author-role {
+  color: #5E5A4F;
+}
+
+
+/* ==========================================================================
+   ASYMMETRIC MASONRY / GRID LAYOUT SIZES FOR LARGE SCREENS
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 30px; /* Wider spacing */
+  }
+  
+  .card-style-classic {
+    grid-column: span 1;
+    min-height: 420px;
+  }
+  
+  /* Staggered vertical displacement (masonry offset!) */
+  .card-style-spiritual {
+    grid-column: span 1;
+    margin-top: 50px;
+    min-height: 420px;
+  }
+  
+  .card-style-venture {
+    grid-column: span 1;
+    min-height: 420px;
+  }
+  
+  /* Grand 2-column wide center-stage banner! */
+  .card-style-royal {
+    grid-column: span 2;
+    min-height: 380px;
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-style-royal .client-quote-text {
+    font-size: 20px; /* Royal center text is bigger */
+  }
+  
+  /* Extra tall vertical book card next to the wide royal block */
+  .card-style-intellect {
+    grid-column: span 1;
+    min-height: 420px;
+    margin-top: -40px; /* Tucks beautifully next to royal block */
+  }
+  
+  /* Magnificent full horizontal closing banner at the very bottom */
+  .card-style-contemporary {
+    grid-column: span 3;
+    min-height: 260px;
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: row !important;
+    gap: 50px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .card-style-contemporary .client-quote-body {
+    flex: 1.4;
+  }
+  
+  .card-style-contemporary .client-quote-text {
+    margin-bottom: 0 !important;
+    font-size: 16px;
+  }
+  
+  .card-style-contemporary .client-author-info {
+    flex: 0.6;
+    border-top: none !important;
+    border-left: 1px solid rgba(12, 12, 11, 0.08);
+    padding-top: 0 !important;
+    padding-left: 50px;
+    margin-top: 0 !important;
+  }
+}
+
+/* Responsiveness overrides */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 100px 0;
+  }
+  
+  .testimonials-section .section-h2 {
+    font-size: clamp(20px, 6vw, 32px) !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.3 !important;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .client-quote-card {
+    padding: 40px 30px;
+    min-height: auto !important;
+  }
+}

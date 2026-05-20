@@ -1,0 +1,262 @@
+/* Hero.css — Centered Cinematic Video Stage */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 180px 0 100px 0;
+  overflow: hidden;
+  background-color: #020202;
+}
+
+/* Fullscreen Background Video Wrapper */
+.hero-video-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg-video-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: contrast(1.1) brightness(0.8) grayscale(0.1);
+  transition: opacity 0.5s ease-in-out; /* 0.5s snappy crossfade */
+  pointer-events: none;
+}
+
+/* Reduced dark overlay shield to make the video much more visible */
+.hero-video-overlay-shield {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(2, 2, 2, 0.2) 0%, rgba(2, 2, 2, 0.55) 70%, rgba(2, 2, 2, 0.8) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.5;
+}
+
+/* Centered Content Container */
+.hero-centered-content {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center; /* Centers description and buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers all flex items */
+}
+
+/* Brand Group: Spans full content width so tagline can align left */
+.hero-title-wrapper-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+/* ONLY the tagline pill aligns to the left boundary of the block by default */
+.hero-status-pill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: rgba(2, 2, 2, 0.7);
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start; /* Forces only this element to the left edge on desktop */
+  animation: pulseBorder 2s infinite alternate;
+}
+
+@keyframes pulseBorder {
+  0% { border-color: rgba(212, 175, 55, 0.2); }
+  100% { border-color: rgba(212, 175, 55, 0.6); }
+}
+
+/* Heading remains centered within the page */
+.hero-main-title {
+  font-family: var(--font-brand);
+  font-size: clamp(36px, 5.5vw, 68px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center; /* Centers heading words */
+  align-self: center; /* Centers the block itself */
+}
+
+.hero-main-title span.gold-highlight {
+  color: var(--gold);
+  position: relative;
+}
+
+.hero-main-title span.gold-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold-gradient);
+}
+
+.hero-subdescription {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 720px;
+  margin-bottom: 48px;
+  opacity: 0.9;
+  text-align: center; /* Centers original description paragraph */
+}
+
+.hero-centered-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Centers original buttons */
+  flex-wrap: wrap;
+}
+
+/* Ticker Marquee underlay */
+.hero-bottom-ticker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 12, 0.85);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  padding: 16px 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.hero-ticker-flex {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+}
+
+.hero-ticker-word {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-ticker-word .dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* 100% Robust Mobile Responsive Adjustments */
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 140px 0 80px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 130px 12px 80px 12px; /* Opened up 16px of horizontal space */
+  }
+  
+  .hero-title-wrapper-block {
+    margin-bottom: 20px;
+  }
+
+  /* Tagline pill scaling down and centering on mobile for perfect screen balance */
+  .hero-status-pill {
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    padding: 6px 14px;
+    margin-bottom: 16px;
+    align-self: center; /* Centers for perfect alignment on small screens */
+  }
+
+  /* Balanced mobile heading: large, bold and snug letters to prevent truncation leaks */
+  .hero-main-title {
+    font-size: clamp(24px, 8.2vw, 36px); /* Impactful, but safe for mobile screens */
+    line-height: 1.25;
+    letter-spacing: -0.02em; /* Tight negative letter-spacing for premium luxury-tech look */
+    align-self: center;
+  }
+
+  /* Subdescription safety margin inside padding */
+  .hero-subdescription {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    padding: 0 8px;
+  }
+
+  /* Buttons stack beautifully with proper responsive boundaries */
+  .hero-centered-buttons {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .hero-centered-buttons .gold-btn,
+  .hero-centered-buttons .outline-btn {
+    width: 100%;
+    max-width: 290px;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra safety rule for ultra small phones (e.g. iPhone SE) */
+  .hero-main-title {
+    font-size: clamp(22px, 7.8vw, 32px); /* High impact visual fit for very small displays */
+    letter-spacing: -0.03em; /* Aggressive premium spacing to snug letters comfortably */
+  }
+  .hero-status-pill {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+  }
+}

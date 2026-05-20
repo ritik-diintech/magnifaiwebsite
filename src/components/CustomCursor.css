@@ -1,0 +1,32 @@
+/* CustomCursor.css - Simple Ambient AI Cursor Glow */
+.custom-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  /* Ultra-clean, beautiful soft ambient light golden glow */
+  background: radial-gradient(circle, rgba(243, 229, 171, 0.2) 0%, rgba(212, 175, 55, 0.05) 50%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(8px);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              background 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, width, height;
+}
+
+.custom-cursor-glow.hovered {
+  width: 200px;
+  height: 200px;
+  /* Expands smoothly and intensifies slightly on hover */
+  background: radial-gradient(circle, rgba(243, 229, 171, 0.32) 0%, rgba(212, 175, 55, 0.1) 50%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* On mobile/touch screens, hide all cursor elements */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-glow {
+    display: none !important;
+  }
+}
