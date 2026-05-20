@@ -192,7 +192,7 @@ Spiritual Gurus
 
 Influencers
 
-Celebrities
+Actors & Creators
 
 Startup Founders
 

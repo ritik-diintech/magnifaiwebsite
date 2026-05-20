@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Users, Award, Zap, 
-  Landmark, Sparkles, Cpu, Crown 
+import {
+  Users, Award, Zap,
+  Landmark, Sparkles, Cpu, Crown
 } from 'lucide-react';
 import './TargetAudience.css';
 
 // Import local image assets
-import celebrityImg from '../assets/images/Generate_celebrity_man_image_202605172117.jpeg';
+import actorsCreatorsImg from '../assets/images/Generate_celebrity_man_image_202605172117.jpeg';
 import stageImg from '../assets/images/Man_on_stage_addressing_public_202605172116.jpeg';
-import ceoImg from '../assets/images/Man_sitting_as_CEO_202605172115.jpeg';
+import ceoImg from '../assets/images/ceoSection.jpeg';
 import gurusImg from '../assets/images/gurusAddressing.jpeg'; // Guru custom asset requested
 
 export default function TargetAudience() {
@@ -41,9 +41,9 @@ export default function TargetAudience() {
       nodes: ['Executive Thought Leadership', 'Signature Founder Storytelling', 'Zero-Burnout Omnipresence', 'Organic Lead Gen Amplifiers']
     },
     {
-      title: 'Celebrities & Creators',
+      title: 'Actors & Creators',
       subtitle: 'THE ATTENTION ECONOMY MONOPOLY',
-      image: celebrityImg,
+      image: actorsCreatorsImg,
       desc: 'For public figures, lifestyle creators, and creators seeking to establish brand independence, scale audience velocity, and monetize influence with strategic precision.',
       stats: '✦ Automated Creative Pipelines  |  ✦ 120% Engagement Growth',
       nodes: ['Predictive Content Hooks', 'Cross-Platform Synced Feeds', 'Premium Digital Identity Kit', 'Vocal Matrix Custom Assets']
@@ -54,27 +54,27 @@ export default function TargetAudience() {
   const getTabIcon = (idx, isActive) => {
     const color = isActive ? 'var(--gold-dim)' : '#7E7C76';
     const size = 15;
-    
-    switch(idx) {
-      case 0: 
+
+    switch (idx) {
+      case 0:
         return <Landmark size={size} style={{ color, transition: 'color 0.4s' }} />;
-      case 1: 
+      case 1:
         return <Sparkles size={size} style={{ color, transition: 'color 0.4s' }} />;
-      case 2: 
+      case 2:
         return <Cpu size={size} style={{ color, transition: 'color 0.4s' }} />;
-      case 3: 
+      case 3:
         return <Crown size={size} style={{ color, transition: 'color 0.4s' }} />;
-      default: 
+      default:
         return null;
     }
   };
 
   const getTabLabel = (idx) => {
-    switch(idx) {
+    switch (idx) {
       case 0: return 'Politics';
       case 1: return 'Gurus';
       case 2: return 'Founders';
-      case 3: return 'Celebrities';
+      case 3: return 'Actors & Creators';
       default: return '';
     }
   };
@@ -93,9 +93,9 @@ export default function TargetAudience() {
 
   const keyVariants = {
     hidden: { opacity: 0, scale: 0.85, y: 15 },
-    show: { 
-      opacity: 1, 
-      scale: 1, 
+    show: {
+      opacity: 1,
+      scale: 1,
       y: 0,
       transition: { type: 'spring', stiffness: 100, damping: 15 }
     }
@@ -107,10 +107,10 @@ export default function TargetAudience() {
       <div className="audience-grid-overlay" />
 
       <div className="luxury-container">
-        
+
         {/* Title */}
         <div className="audience-premium-header">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, letterSpacing: '0.05em' }}
             whileInView={{ opacity: 1, letterSpacing: '0.15em' }}
             viewport={{ once: true, margin: "-20px" }}
@@ -121,7 +121,7 @@ export default function TargetAudience() {
             TARGET ARCHETYPES WE SCALE
           </motion.span>
 
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 35, clipPath: 'inset(100% 0% 0% 0%)' }}
             whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0% 0% 0% 0%)' }}
             viewport={{ once: true, margin: "-20px" }}
@@ -131,15 +131,15 @@ export default function TargetAudience() {
             Built for the <span className="gold-accent">Elite</span>
           </motion.h2>
 
-          <motion.div 
+          <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, margin: "-20px" }}
             transition={{ duration: 1.5, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
-            className="audience-header-line" 
+            className="audience-header-line"
           />
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, filter: 'blur(4px)' }}
             whileInView={{ opacity: 1, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: "-20px" }}
@@ -151,7 +151,7 @@ export default function TargetAudience() {
         </div>
 
         {/* Segmented Control Capsule Deck - track expansion spring */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scaleX: 0.8 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true, margin: "-20px" }}
@@ -186,27 +186,27 @@ export default function TargetAudience() {
           >
             {/* Left Side: Portrait Visual Canvas with horizontal wipe & zoom */}
             <div className="audience-visual-column">
-              <motion.div 
-                initial={{ 
+              <motion.div
+                initial={{
                   opacity: 0,
                   clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)'
                 }}
-                animate={{ 
+                animate={{
                   opacity: 1,
                   clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
                 }}
                 transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
                 className="audience-canvas-frame"
               >
-                <motion.img 
+                <motion.img
                   initial={{ scale: 1.18 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                  src={categories[selectedCategory].image} 
-                  alt={categories[selectedCategory].title} 
+                  src={categories[selectedCategory].image}
+                  alt={categories[selectedCategory].title}
                   className="audience-canvas-image"
                 />
-                
+
                 {/* Inner double gold framing hairlines */}
                 <div className="audience-canvas-frame-hairline" />
                 <div className="audience-canvas-light-leak" />
@@ -215,7 +215,7 @@ export default function TargetAudience() {
 
             {/* Right Side: Strategy Matrix HUD */}
             <div className="audience-hud-column">
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, x: -15 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
@@ -224,8 +224,8 @@ export default function TargetAudience() {
                 <Award size={13} style={{ marginRight: '8px', color: 'var(--gold-dim)' }} />
                 {categories[selectedCategory].subtitle}
               </motion.span>
-              
-              <motion.h3 
+
+              <motion.h3
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.18, ease: 'easeOut' }}
@@ -233,8 +233,8 @@ export default function TargetAudience() {
               >
                 {categories[selectedCategory].title}
               </motion.h3>
-              
-              <motion.p 
+
+              <motion.p
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0, delay: 0.26, ease: 'easeOut' }}
@@ -244,7 +244,7 @@ export default function TargetAudience() {
               </motion.p>
 
               {/* Gold-Foil Frosted Highlight Metric Banner - scale up spring */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
@@ -260,7 +260,7 @@ export default function TargetAudience() {
                 <span className="hud-nodes-grid-label">
                   DEPLOYED LEVERAGE NODES
                 </span>
-                <motion.div 
+                <motion.div
                   variants={containerVariants}
                   initial="hidden"
                   animate="show"

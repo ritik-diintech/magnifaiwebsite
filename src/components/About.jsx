@@ -4,7 +4,7 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 import './About.css';
 
 // Import our CEO image asset
-import ceoImg from '../assets/images/Man_sitting_as_CEO_202605172115.jpeg';
+import ceoImg from '../assets/images/about.jpeg';
 
 export default function About() {
   const statsList = [
