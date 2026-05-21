@@ -7,7 +7,7 @@ import img1 from '../assets/roadMapImages/Real_Path_Concept__Ek_professional_202
 import img2 from '../assets/roadMapImages/Notebook_with_flowcharts_and_pen_202605181521.jpeg';
 import img3 from '../assets/roadMapImages/Real_Path_Concept__Ek_elite_202605181522.jpeg';
 import img4 from '../assets/roadMapImages/Computer_deck_with_live_analytics_202605181527.jpeg';
-import img5 from '../assets/roadMapImages/Indian_leader_walking_on_stage_202605181524.jpeg';
+import img5 from '../assets/roadMapImages/Man_on_stage_taking_selfie_202605181446.jpeg';
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
@@ -98,15 +98,15 @@ export default function Process() {
   useEffect(() => {
     const parent = document.querySelector('.process-tabs-container');
     const activeTab = document.querySelector('.process-tab-btn.active');
-    
+
     if (parent && activeTab) {
       const parentWidth = parent.clientWidth;
       const tabOffset = activeTab.offsetLeft;
       const tabWidth = activeTab.clientWidth;
-      
+
       // Center the active tab button within the horizontally scrolling parent
       const targetScrollLeft = tabOffset - parentWidth / 2 + tabWidth / 2;
-      
+
       parent.scrollTo({
         left: targetScrollLeft,
         behavior: 'smooth'
@@ -120,10 +120,10 @@ export default function Process() {
       <div className="process-bg-glow" />
 
       <div className="luxury-container">
-        
+
         {/* Section Heading Title */}
         <div className="luxury-title-wrap text-center">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, letterSpacing: '0.1em' }}
             whileInView={{ opacity: 1, letterSpacing: '0.2em' }}
             viewport={{ once: true }}
@@ -133,7 +133,7 @@ export default function Process() {
             THE MAGNIFAI ROADMAP
           </motion.span>
 
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 30, clipPath: 'inset(100% 0% 0% 0%)' }}
             whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0% 0% 0% 0%)' }}
             viewport={{ once: true }}
@@ -143,7 +143,7 @@ export default function Process() {
             Narrative Engineering <em>Process</em>
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -155,7 +155,7 @@ export default function Process() {
         </div>
 
         {/* Minimal High-Prestige Navigation Tabs */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -177,7 +177,7 @@ export default function Process() {
                   <span className="tab-num">0{idx + 1}</span>
                   <span className="tab-title">{step.title}</span>
                   {isActive && (
-                    <motion.div 
+                    <motion.div
                       layoutId="activeTabIndicator"
                       className="active-tab-line"
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
@@ -191,7 +191,7 @@ export default function Process() {
 
         {/* Dynamic Editorial Grid */}
         <div className="process-editorial-grid">
-          
+
           {/* Left Column: Premium Editorial Image Frame */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -202,7 +202,7 @@ export default function Process() {
           >
             <div className="image-frame-inner">
               <AnimatePresence mode="wait">
-                <motion.img 
+                <motion.img
                   key={activeStep}
                   initial={{ opacity: 0, scale: 1.04, filter: 'brightness(0.7) blur(8px)' }}
                   animate={{ opacity: 1, scale: 1, filter: 'brightness(0.9) blur(0px)' }}
@@ -249,7 +249,7 @@ export default function Process() {
                   <h4 className="outcomes-header">KEY DELIVERABLES</h4>
                   <div className="outcomes-list">
                     {steps[activeStep].subDeliverables.map((item, idx) => (
-                      <motion.div 
+                      <motion.div
                         key={idx}
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}

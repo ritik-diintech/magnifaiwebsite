@@ -19,8 +19,9 @@ import AuditModal from '../../components/AuditModal';
 import '../../App.css';
 
 export default function Home() {
-  const [loaderActive, setLoaderActive] = useState(true);
-  const [pageRevealed, setPageRevealed] = useState(false);
+  const hasRunPreloader = sessionStorage.getItem('magnifai_preloader_run') === 'true';
+  const [loaderActive, setLoaderActive] = useState(!hasRunPreloader);
+  const [pageRevealed, setPageRevealed] = useState(hasRunPreloader);
   const [auditModalOpen, setAuditModalOpen] = useState(false);
 
   return (
@@ -29,7 +30,10 @@ export default function Home() {
       {loaderActive && (
         <Preloader 
           onStartReveal={() => setPageRevealed(true)}
-          onComplete={() => setLoaderActive(false)} 
+          onComplete={() => {
+            setLoaderActive(false);
+            sessionStorage.setItem('magnifai_preloader_run', 'true');
+          }} 
         />
       )}
 

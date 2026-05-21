@@ -88,21 +88,44 @@ export default function Metrics() {
   const getGraphPath = () => {
     const ratio = (followerGoal - 10000) / 990000;
     
-    const y0 = 85; 
-    const y1 = 80 - ratio * 20; 
-    const y2 = 68 - ratio * 32; 
-    const y3 = 48 - ratio * 48; 
-    const y4 = 20 - ratio * 66; 
+    const startX = 20;
+    const endX = 280;
+    const startY = 85;
+    const peakY = 80 - ratio * 60; 
+    
+    // 1. Generate a smooth high-density path
+    const pathPoints = [];
+    const steps = 20; 
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = startX + t * (endX - startX);
+      const compoundingFactor = Math.pow(t, 1.8);
+      const y = startY - (startY - peakY) * compoundingFactor;
+      pathPoints.push({ x, y });
+    }
+    
+    let path = `M ${pathPoints[0].x},${pathPoints[0].y}`;
+    for (let i = 1; i < pathPoints.length; i++) {
+      path += ` L ${pathPoints[i].x.toFixed(1)},${pathPoints[i].y.toFixed(1)}`;
+    }
+    
+    // 2. Generate specific node points for labels (Month 1, 4, 6, 8, 12)
+    const selectedMonths = [1, 4, 6, 8, 12];
+    const points = selectedMonths.map(m => {
+      const t = (m - 1) / 11;
+      const x = startX + t * (endX - startX);
+      const compoundingFactor = Math.pow(t, 1.8);
+      const y = startY - (startY - peakY) * compoundingFactor;
+      return {
+        x: Math.round(x * 10) / 10,
+        y: Math.round(y * 10) / 10,
+        label: `M${m}`
+      };
+    });
     
     return {
-      path: `M 20,${y0} C 85,${y1} 150,${y2} 280,${y4}`,
-      points: [
-        { x: 20, y: y0, label: 'Y1' },
-        { x: 85, y: Math.round(y1), label: 'Y2' },
-        { x: 150, y: Math.round(y2), label: 'Y3' },
-        { x: 215, y: Math.round((y2 + y3) / 2), label: 'Y4' },
-        { x: 280, y: Math.round(y4), label: 'Y5' }
-      ]
+      path,
+      points
     };
   };
 
@@ -360,7 +383,7 @@ export default function Metrics() {
                 <div className="final-result-border" />
                 <div className="final-result-label-wrap">
                   <TrendingUp size={13} className="final-label-icon" />
-                  <span className="final-result-label">TOTAL ANNUAL PROJECTED REACH</span>
+                  <span className="final-result-label">TOTAL 12-MONTH PROJECTED REACH</span>
                 </div>
                 <div className="final-result-value-wrap">
                   <span className="final-result-value font-gold-gradient">

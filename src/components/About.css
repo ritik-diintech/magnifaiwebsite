@@ -317,7 +317,7 @@
   font-size: clamp(24px, 3.2vw, 36px);
   font-weight: 800;
   min-width: 105px;
-  background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa7c11 100%);
+  background: linear-gradient(135deg, #996515 0%, #c59b3f 50%, #66460b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

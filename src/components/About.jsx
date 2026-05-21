@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import './About.css';
 
-// Import our CEO image asset
-import ceoImg from '../assets/images/about.jpeg';
+// Import our CEO video asset
+import aboutVideo from '../assets/video/aboutVideo.mp4';
 
 export default function About() {
   const statsList = [
@@ -49,15 +49,19 @@ export default function About() {
             >
               <div className="about-image-shading" />
 
-              {/* Internal Image slow scale pan */}
-              <motion.img
+              {/* Internal Video autoplay loop */}
+              <motion.video
                 initial={{ scale: 1.22 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
-                src={ceoImg}
-                alt="MagnifAI Authority Representation"
+                src={aboutVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="about-portrait-source"
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
 
               {/* Minimal Luxury Stamp */}

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users, Award, Zap,
-  Landmark, Sparkles, Cpu, Crown
+  Landmark, Sparkles, Cpu, Crown, Globe,
+  ArrowUpRight
 } from 'lucide-react';
 import './TargetAudience.css';
 
@@ -11,6 +13,7 @@ import actorsCreatorsImg from '../assets/images/Generate_celebrity_man_image_202
 import stageImg from '../assets/images/Man_on_stage_addressing_public_202605172116.jpeg';
 import ceoImg from '../assets/images/ceoSection.jpeg';
 import gurusImg from '../assets/images/gurusAddressing.jpeg'; // Guru custom asset requested
+import activistImg from '../assets/images/Man_activist_with_Indian_profess…_202605210736 (1).jpeg';
 
 export default function TargetAudience() {
   const [selectedCategory, setSelectedCategory] = useState(0);
@@ -22,15 +25,17 @@ export default function TargetAudience() {
       image: stageImg,
       desc: 'For political figures, candidates, and social campaigns requiring broad-based digital trust, direct-to-constituent reach, and high-velocity message amplification.',
       stats: '✦ 10x Constituency Penetration  |  ✦ Live Narrative Anchoring',
-      nodes: ['Direct WhatsApp Mobilization', 'Constituency Mapping Audits', 'Viral Campaign Speeches', 'Mass Scale Opinion Shaping']
+      nodes: ['Direct WhatsApp Mobilization', 'Constituency Mapping Audits', 'Viral Campaign Speeches', 'Mass Scale Opinion Shaping'],
+      pageUrl: '/archetypes/politics'
     },
     {
       title: 'Spiritual Gurus & Organizations',
       subtitle: 'WISDOM WITHOUT BORDERS',
-      image: gurusImg, // Replaced with user's requested custom image asset
+      image: gurusImg,
       desc: 'For faith organizations, ashrams, and spiritual leaders seeking to distribute spiritual discourse globally across multi-lingual platforms without losing the profound depth of transmission.',
       stats: '✦ 8+ Global Dialects Synced  |  ✦ Omnipresent Audio Streams',
-      nodes: ['Multilingual Speech Adaptation', 'Calm Aesthetics Architecture', 'Profound Discourse Snippets', 'Global Community Management']
+      nodes: ['Multilingual Speech Adaptation', 'Calm Aesthetics Architecture', 'Profound Discourse Snippets', 'Global Community Management'],
+      pageUrl: '/archetypes/gurus'
     },
     {
       title: 'Elite Founders & Executives',
@@ -38,7 +43,8 @@ export default function TargetAudience() {
       image: ceoImg,
       desc: 'For visionary builders, startup tech founders, and executives who wish to establish absolute authority and drive company metrics via a powerful, premium personal brand.',
       stats: '✦ Compounded Founder Authority  |  ✦ B2B Strategic Growth',
-      nodes: ['Executive Thought Leadership', 'Signature Founder Storytelling', 'Zero-Burnout Omnipresence', 'Organic Lead Gen Amplifiers']
+      nodes: ['Executive Thought Leadership', 'Signature Founder Storytelling', 'Zero-Burnout Omnipresence', 'Organic Lead Gen Amplifiers'],
+      pageUrl: '#'
     },
     {
       title: 'Actors & Creators',
@@ -46,7 +52,17 @@ export default function TargetAudience() {
       image: actorsCreatorsImg,
       desc: 'For public figures, lifestyle creators, and creators seeking to establish brand independence, scale audience velocity, and monetize influence with strategic precision.',
       stats: '✦ Automated Creative Pipelines  |  ✦ 120% Engagement Growth',
-      nodes: ['Predictive Content Hooks', 'Cross-Platform Synced Feeds', 'Premium Digital Identity Kit', 'Vocal Matrix Custom Assets']
+      nodes: ['Predictive Content Hooks', 'Cross-Platform Synced Feeds', 'Premium Digital Identity Kit', 'Vocal Matrix Custom Assets'],
+      pageUrl: '/archetypes/celebs'
+    },
+    {
+      title: 'Activists & Change Makers',
+      subtitle: 'GLOBAL IMPACT & NARRATIVE LEVERAGE',
+      image: activistImg,
+      desc: 'For social leaders, reformists, and global advocates driving systemic shifts who require high-credibility amplification, absolute message integrity, and grassroots mobilization leverage.',
+      stats: '✦ 10x Grassroots Engagement  |  ✦ Cross-Border Coalition Scale',
+      nodes: ['Grassroots Mobilization Matrix', 'High-Trust Broadcast Channels', 'Systemic Narrative Shaping', 'Rapid-Response Advocacy Keys'],
+      pageUrl: '#'
     }
   ];
 
@@ -64,6 +80,8 @@ export default function TargetAudience() {
         return <Cpu size={size} style={{ color, transition: 'color 0.4s' }} />;
       case 3:
         return <Crown size={size} style={{ color, transition: 'color 0.4s' }} />;
+      case 4:
+        return <Globe size={size} style={{ color, transition: 'color 0.4s' }} />;
       default:
         return null;
     }
@@ -71,10 +89,11 @@ export default function TargetAudience() {
 
   const getTabLabel = (idx) => {
     switch (idx) {
-      case 0: return 'Politics';
-      case 1: return 'Gurus';
-      case 2: return 'Founders';
-      case 3: return 'Actors & Creators';
+      case 0: return 'Political Leaders';
+      case 1: return 'Spiritual Guru';
+      case 2: return 'Founder & CEO';
+      case 3: return 'Actors & Artists';
+      case 4: return 'Activist & Change Maker';
       default: return '';
     }
   };
@@ -178,12 +197,13 @@ export default function TargetAudience() {
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="audience-grid-spread"
+            className="audience-tab-content-wrap"
           >
+            <div className="audience-grid-spread">
             {/* Left Side: Portrait Visual Canvas with horizontal wipe & zoom */}
             <div className="audience-visual-column">
               <motion.div
@@ -283,6 +303,30 @@ export default function TargetAudience() {
                 </motion.div>
               </div>
 
+            </div>
+          </div>
+
+            {/* Premium Large CTA Button */}
+            <div className="hud-cta-container centered">
+              {categories[selectedCategory].pageUrl !== '#' ? (
+                <Link 
+                  to={categories[selectedCategory].pageUrl} 
+                  className="hud-premium-cta-btn interactive"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <span>EXPLORE MORE</span>
+                  <ArrowUpRight size={14} className="hud-cta-icon" />
+                </Link>
+              ) : (
+                <a 
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  className="hud-premium-cta-btn interactive"
+                >
+                  <span>EXPLORE MORE</span>
+                  <ArrowUpRight size={14} className="hud-cta-icon" />
+                </a>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
