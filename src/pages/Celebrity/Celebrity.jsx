@@ -230,6 +230,51 @@ export default function CelebrityPage() {
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════
+          4. LEVERAGE — White bg, numbered feature list
+      ═══════════════════════════════════════════ */}
+      <section className="cc-leverage cc-white">
+        <div className="cc-container">
+          <div className="cc-lev-header">
+            <div className="cc-lev-header-left">
+              <span className="cc-label-blue">TACTICAL PLAYBOOK</span>
+              <h2 className="cc-h2-dark">DEPLOYED <em>LEVERAGE</em></h2>
+              <p className="cc-body-dark">Six precision instruments engineered to multiply your cultural and commercial reach without physical constraints.</p>
+            </div>
+            <div className="cc-lev-header-img-wrap">
+              <img src={celebs2} alt="Deployed Leverage" className="cc-lev-img" />
+              <div className="cc-lev-img-overlay" />
+            </div>
+          </div>
+          <div className="cc-lev-grid">
+            {leverageItems.map((item, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="cc-lev-card"
+              >
+                <div className="cc-lev-card-top">
+                  <span className="cc-lev-card-num">{item.num}</span>
+                  <div className="cc-lev-card-icon">{item.icon}</div>
+                </div>
+                <h4 className="cc-lev-card-title">{item.title}</h4>
+                <p className="cc-lev-card-desc">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
       <AuditModal isOpen={auditModalOpen} onClose={() => setAuditModalOpen(false)} />
     </div>
   );
