@@ -45,10 +45,10 @@ export default function PoliticianPage() {
   const getGraphPath = () => {
     const ratio = (voterBase - 50000) / 950000;
     
-    const startX = 20;
-    const endX = 280;
-    const startY = 85;
-    const peakY = 80 - ratio * 60; 
+    const startX = 25;
+    const endX = 285;
+    const startY = 80;
+    const peakY = 80 - ratio * 55; 
     
     const pathPoints = [];
     const steps = 20;
@@ -533,53 +533,104 @@ export default function PoliticianPage() {
                 <div className="dynamic-graph-container orange-graph">
                   <span className="graph-label">CONSTITUENCY PENETRATION TRAJECTORY</span>
                   <div className="graph-canvas-wrap">
-                    <svg className="growth-graph-svg" viewBox="0 0 300 100">
+                    <svg className="growth-graph-svg" viewBox="0 0 310 115">
                       <defs>
                         <linearGradient id="orangeGraphFillDark" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="rgba(234, 92, 10, 0.22)" />
                           <stop offset="100%" stopColor="rgba(234, 92, 10, 0)" />
                         </linearGradient>
+                        <filter id="neonOrangeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="2.5" result="blur" />
+                          <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
+                        </filter>
                       </defs>
                       
-                      {/* Dynamic filled area under the curve */}
+                      {/* Horizontal Dotted Grids */}
+                      <line x1="25" y1="20" x2="285" y2="20" stroke="rgba(234, 92, 10, 0.03)" strokeWidth="1" strokeDasharray="3 4" />
+                      <line x1="25" y1="40" x2="285" y2="40" stroke="rgba(234, 92, 10, 0.05)" strokeWidth="1" strokeDasharray="3 4" />
+                      <line x1="25" y1="60" x2="285" y2="60" stroke="rgba(234, 92, 10, 0.07)" strokeWidth="1" strokeDasharray="3 4" />
+
+                      {/* Axis lines */}
+                      <line x1="25" y1="10" x2="25" y2="80" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+                      <line x1="25" y1="80" x2="295" y2="80" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+
+                      {/* Arrowheads */}
+                      <path d="M 22,14 L 25,9 L 28,14" fill="none" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+                      <path d="M 290,77 L 295,80 L 290,83" fill="none" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+
+                      {/* Ticks */}
+                      <text x="18" y="23" textAnchor="end" fill="rgba(255, 255, 255, 0.4)" fontSize="7" fontFamily="monospace">MAX</text>
+                      <text x="18" y="52" textAnchor="end" fill="rgba(255, 255, 255, 0.3)" fontSize="7" fontFamily="monospace">MID</text>
+                      <text x="18" y="83" textAnchor="end" fill="rgba(255, 255, 255, 0.4)" fontSize="7" fontFamily="monospace">0</text>
+
+                      {/* Vertical projections */}
+                      {graphData.points.map((pt, i) => (
+                        <line 
+                          key={`pvgrid-${i}`} 
+                          x1={pt.x} 
+                          y1={15} 
+                          x2={pt.x} 
+                          y2={80} 
+                          stroke="rgba(234, 92, 10, 0.06)" 
+                          strokeWidth="1" 
+                          strokeDasharray="2 3"
+                        />
+                      ))}
+                      
+                      {/* Fill */}
                       <path 
-                        d={`${graphData.path} L 280,95 L 20,95 Z`}
+                        d={`${graphData.path} L 285,80 L 25,80 Z`}
                         fill="url(#orangeGraphFillDark)"
                         className="graph-fill-path"
                       />
                       
-                      {/* Dynamic line pathway (Glowing Orange) */}
+                      {/* Path */}
                       <path 
                         d={graphData.path}
                         fill="none"
                         stroke="var(--orange-solid)"
                         strokeWidth="2.5"
                         strokeLinecap="round"
+                        filter="url(#neonOrangeGlow)"
                         className="graph-stroke-path"
                       />
                       
-                      {/* Nodes and Labels */}
-                      {graphData.points.map((pt, i) => (
-                        <g key={i} className="graph-node-group">
-                          <circle 
-                            cx={pt.x} 
-                            cy={pt.y} 
-                            r="3" 
-                            fill="var(--orange-light)" 
-                            stroke="#0d0806" 
-                            strokeWidth="1.5" 
-                            className="graph-node-circle"
-                          />
-                          <text 
-                            x={pt.x} 
-                            y="95" 
-                            textAnchor="middle" 
-                            className="graph-node-text"
-                          >
-                            {pt.label}
-                          </text>
-                        </g>
-                      ))}
+                      {/* Nodes */}
+                      {graphData.points.map((pt, i) => {
+                        const isLast = i === graphData.points.length - 1;
+                        return (
+                          <g key={i} className="graph-node-group">
+                            {isLast && (
+                              <circle 
+                                cx={pt.x} 
+                                cy={pt.y} 
+                                r="6" 
+                                className="graph-pulse-ring"
+                              />
+                            )}
+                            <circle 
+                              cx={pt.x} 
+                              cy={pt.y} 
+                              r={isLast ? "4" : "3"} 
+                              fill={isLast ? "#FFFFFF" : "var(--orange-light)"} 
+                              stroke={isLast ? "var(--orange-solid)" : "#0d0806"} 
+                              strokeWidth="1.5" 
+                              className="graph-node-circle"
+                            />
+                            <text 
+                              x={pt.x} 
+                              y="96" 
+                              textAnchor="middle" 
+                              className="graph-node-text"
+                            >
+                              {pt.label}
+                            </text>
+                          </g>
+                        );
+                      })}
                     </svg>
                   </div>
                 </div>

@@ -1217,6 +1217,10 @@
     grid-template-columns: 1fr;
     gap: 60px;
   }
+  .protocol-editorial-narrative {
+    position: relative !important;
+    top: auto !important;
+  }
 }
 
 /* LEFT COLUMN: EDITORIAL NARRATIVE */
@@ -1590,10 +1594,10 @@
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 4px;
+  height: 6px;
   background: rgba(255, 255, 255, 0.08) !important;
   outline: none;
-  border-radius: 2px;
+  border-radius: 3px;
   z-index: 2;
   cursor: pointer;
   margin: 0 !important;
@@ -1602,37 +1606,38 @@
 .slider-progress {
   position: absolute;
   left: 0;
-  height: 4px;
-  background: var(--orange-solid) !important;
+  height: 6px;
+  background: linear-gradient(90deg, var(--orange-solid), var(--orange-light)) !important;
   pointer-events: none;
-  border-radius: 2px;
+  border-radius: 3px;
   z-index: 1;
+  box-shadow: 0 0 10px rgba(234, 92, 10, 0.4);
 }
 
 .radar-input-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #FFFFFF !important;
-  border: 4px solid var(--orange-solid) !important;
-  box-shadow: 0 0 12px rgba(234, 92, 10, 0.4);
+  border: 4.5px solid var(--orange-light) !important;
+  box-shadow: 0 0 15px var(--orange-light), 0 2px 5px rgba(0,0,0,0.5);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .radar-input-range::-webkit-slider-thumb:hover {
-  transform: scale(1.25);
+  transform: scale(1.3);
 }
 
 .radar-input-range::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #FFFFFF !important;
-  border: 4px solid var(--orange-solid) !important;
-  box-shadow: 0 0 12px rgba(234, 92, 10, 0.4);
+  border: 4.5px solid var(--orange-light) !important;
+  box-shadow: 0 0 15px var(--orange-light), 0 2px 5px rgba(0,0,0,0.5);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1817,24 +1822,49 @@
 
 .split-bar-wrap {
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 2px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  border-radius: 3px;
   overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .split-bar-fill {
   height: 100%;
-  border-radius: 2px;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.split-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: shimmerBar 3s infinite linear;
+}
+
+@keyframes shimmerBar {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 .organic-fill {
   background: linear-gradient(90deg, #FFFFFF, var(--orange-light)) !important;
-  box-shadow: 0 0 10px rgba(246, 123, 45, 0.4);
+  box-shadow: 0 0 10px rgba(243, 128, 13, 0.4);
 }
 
 .inorganic-fill {
-  background: var(--orange-solid) !important;
+  background: linear-gradient(90deg, var(--orange-solid), var(--orange-light)) !important;
   box-shadow: 0 0 10px rgba(234, 92, 10, 0.4);
 }
 
@@ -1893,13 +1923,14 @@
     DYNAMIC COMPOUNDING WAVE GRAPH (ORANGE)
 ═══════════════════════════════════════════ */
 .dynamic-graph-container.orange-graph {
-  background: rgba(255, 255, 255, 0.015) !important;
-  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  background: rgba(20, 11, 7, 0.95) !important;
+  border: 1px solid rgba(234, 92, 10, 0.25) !important;
   padding: 24px 20px;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
 }
 
 .dynamic-graph-container.orange-graph .graph-label {
@@ -1914,12 +1945,12 @@
 .graph-canvas-wrap {
   position: relative;
   width: 100%;
-  height: 100px;
+  height: 115px;
 }
 
 .growth-graph-svg {
   width: 100%;
-  height: 100px;
+  height: 115px;
   overflow: visible;
 }
 
@@ -1937,7 +1968,21 @@
 
 .dynamic-graph-container.orange-graph .graph-node-text {
   font-family: var(--font-mono);
-  font-size: 9px;
-  fill: rgba(255, 255, 255, 0.35) !important;
-  font-weight: 600;
+  font-size: 10px !important;
+  fill: #FFFFFF !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
+
+/* Pulsing halo keyframes for peak voter popularity */
+@keyframes pulseRingAnim {
+  0% { r: 3px; opacity: 1; stroke-width: 1px; }
+  50% { opacity: 0.8; }
+  100% { r: 12px; opacity: 0; stroke-width: 2px; }
+}
+
+.graph-pulse-ring {
+  animation: pulseRingAnim 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  stroke: var(--orange-light);
+  fill: none;
 }

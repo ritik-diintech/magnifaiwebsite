@@ -161,7 +161,7 @@ export default function Navbar({ isPageReady, onBookAudit }) {
                               </div>
                             </a>
 
-                            <Link to="" className="mega-item item-gurus interactive" onClick={() => setMegaOpen(false)}>
+                            <Link to="/archetypes/gurus" className="mega-item item-gurus interactive" onClick={() => setMegaOpen(false)}>
                               <div className="mega-icon-wrap"><Sparkles size={14} /></div>
                               <div className="mega-info">
                                 <span className="mega-item-tag guru-text">GURUS</span>

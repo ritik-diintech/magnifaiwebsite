@@ -237,6 +237,7 @@
 }
 @media (max-width: 900px) {
   .cc-phil-layout { grid-template-columns: 1fr; gap: 60px; }
+  .cc-phil-left { position: relative !important; top: auto !important; }
 }
 .cc-phil-left { position: sticky; top: 120px; }
 .cc-pull-quote {
@@ -669,7 +670,10 @@
   gap: 100px;
   align-items: start;
 }
-@media (max-width: 900px) { .cc-faqs-layout { grid-template-columns: 1fr; gap: 60px; } }
+@media (max-width: 900px) {
+  .cc-faqs-layout { grid-template-columns: 1fr; gap: 60px; }
+  .cc-faqs-sticky-head { position: relative !important; top: auto !important; }
+}
 .cc-faqs-sticky-head { position: sticky; top: 120px; }
 .cc-faqs-list { display: flex; flex-direction: column; }
 .cc-faq-item {
@@ -930,4 +934,509 @@
   font-size: 13.5px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.55);
+}
+
+/* ==========================================================================
+   10. VIRTUAL TALENT RESONANCE MATRIX (CELEBRITY CALCULATOR)
+   ========================================================================== */
+.celeb-calculator-lux {
+  padding: 150px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--cc-navy);
+}
+
+.celeb-radar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 50px;
+  margin-top: 60px;
+  align-items: start;
+  text-align: left;
+}
+
+@media (max-width: 990px) {
+  .celeb-radar-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.celeb-glass-panel-dark {
+  position: relative;
+  background: rgba(4, 13, 30, 0.85) !important;
+  border: 1px solid rgba(59, 158, 255, 0.15) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  padding: 50px 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+@media (max-width: 768px) {
+  .celeb-glass-panel-dark {
+    padding: 35px 24px;
+    gap: 28px;
+  }
+}
+
+.celeb-glass-panel-dark:hover {
+  border-color: rgba(59, 158, 255, 0.3) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 
+              0 0 30px rgba(59, 158, 255, 0.04) !important;
+}
+
+.celeb-deck-glow {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 158, 255, 0.2), transparent);
+  pointer-events: none;
+}
+
+.celeb-deck-header h3 {
+  font-family: var(--cc-font);
+  font-size: 22px;
+  color: #FFFFFF !important;
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.celeb-deck-header p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Slider Custom Styling */
+.celeb-radar-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.celeb-slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.celeb-slider-lbl {
+  font-family: var(--cc-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--cc-blue-sky) !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.celeb-slider-val {
+  font-family: var(--cc-font);
+  font-size: 16px;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+.celeb-slider-control-bar {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.celeb-radar-input-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06) !important;
+  outline: none;
+  border-radius: 3px;
+  z-index: 2;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+.celeb-slider-progress {
+  position: absolute;
+  left: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--cc-blue), var(--cc-blue-light)) !important;
+  pointer-events: none;
+  border-radius: 3px;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(59, 158, 255, 0.4);
+}
+
+.celeb-radar-input-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFFFFF !important;
+  border: 4.5px solid var(--cc-blue-light) !important;
+  box-shadow: 0 0 15px var(--cc-blue-light), 0 2px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celeb-radar-input-range::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.celeb-radar-input-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFFFFF !important;
+  border: 4.5px solid var(--cc-blue-light) !important;
+  box-shadow: 0 0 15px var(--cc-blue-light), 0 2px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celeb-slider-limits {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--cc-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Strategy Selector buttons */
+.celeb-radar-strategy-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.celeb-strategy-lbl {
+  font-family: var(--cc-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--cc-blue-sky) !important;
+  font-weight: 700;
+}
+
+.celeb-strategy-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.celeb-strategy-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  font-family: var(--cc-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celeb-strategy-btn:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(59, 158, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+.celeb-strategy-btn.active {
+  background: var(--cc-blue) !important;
+  color: #FFFFFF !important;
+  border-color: var(--cc-blue) !important;
+  box-shadow: 0 4px 20px rgba(0, 102, 214, 0.35) !important;
+}
+
+.celeb-strategy-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 4px 0 0 0;
+  font-style: italic;
+}
+
+/* Outputs side styling */
+.celeb-radar-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Hero reach projection card */
+.celeb-stat-hero-card {
+  position: relative;
+  background: rgba(0, 102, 214, 0.03) !important;
+  border: 1px solid rgba(0, 102, 214, 0.15) !important;
+  border-left: 4px solid var(--cc-blue-light) !important;
+  padding: 30px;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.celeb-hero-lbl {
+  font-family: var(--cc-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  color: var(--cc-blue-sky) !important;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.celeb-hero-val-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.celeb-hero-val {
+  font-family: var(--cc-font) !important;
+  font-size: clamp(32px, 3.8vw, 48px) !important;
+  font-weight: 900 !important;
+  line-height: 1;
+  color: #FFFFFF !important;
+}
+
+.celeb-glowing-text {
+  background: linear-gradient(90deg, #FFFFFF 0%, var(--cc-blue-light) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 45px rgba(0, 102, 214, 0.2);
+}
+
+.celeb-hero-suffix {
+  font-family: var(--cc-font-mono);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Organic and Inorganic reach splits */
+.celeb-reach-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 600px) {
+  .celeb-reach-split-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.celeb-split-card {
+  background: rgba(255, 255, 255, 0.015) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 24px 20px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.celeb-split-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.celeb-split-lbl {
+  font-family: var(--cc-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.celeb-split-val {
+  font-family: var(--cc-font);
+  font-size: 18px;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+.celeb-split-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.celeb-split-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.celeb-split-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: celebShimmerBar 3s infinite linear;
+}
+
+@keyframes celebShimmerBar {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.celeb-split-desc {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 0.65;
+  line-height: 1.5;
+}
+
+/* Target & Video cadence list layout */
+.celeb-details-outcome-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.celeb-outcome-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 18px;
+}
+
+.celeb-outcome-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.celeb-outcome-lbl {
+  font-family: var(--cc-font);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.celeb-outcome-val {
+  font-family: var(--cc-font-mono);
+  font-size: 14px;
+  color: var(--cc-blue-sky) !important;
+  font-weight: 700;
+}
+
+.celeb-outcome-desc {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 0.7;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Compounding Graph Styles */
+.celeb-dynamic-graph-container {
+  background: rgba(4, 13, 30, 0.95) !important;
+  border: 1px solid rgba(59, 158, 255, 0.25) !important;
+  padding: 24px 20px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.celeb-graph-label {
+  font-family: var(--cc-font-mono);
+  font-size: 9.5px;
+  color: var(--cc-blue-sky) !important;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  margin: 0 !important;
+  text-align: left;
+}
+
+.celeb-graph-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 115px;
+}
+
+.celeb-growth-graph-svg {
+  width: 100%;
+  height: 115px;
+  overflow: visible;
+}
+
+.celeb-graph-stroke-path {
+  transition: d 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celeb-graph-fill-path {
+  transition: d 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celeb-graph-node-circle {
+  transition: cy 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celeb-graph-node-text {
+  font-family: var(--cc-font-mono);
+  font-size: 10px !important;
+  fill: #FFFFFF !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
+
+/* Pulsing halo keyframes for peak star popularity */
+@keyframes celebPulseRingAnim {
+  0% { r: 3px; opacity: 1; stroke-width: 1px; }
+  50% { opacity: 0.8; }
+  100% { r: 12px; opacity: 0; stroke-width: 2px; }
+}
+
+.celeb-graph-pulse-ring {
+  animation: celebPulseRingAnim 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  stroke: var(--cc-blue-light);
+  fill: none;
 }

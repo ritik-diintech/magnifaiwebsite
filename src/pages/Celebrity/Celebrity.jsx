@@ -22,6 +22,74 @@ export default function CelebrityPage() {
   const [auditModalOpen, setAuditModalOpen] = useState(false);
   const [mobileTab, setMobileTab] = useState('threats');
 
+  const [fanBase, setFanBase] = useState(1500000);
+  const [syndicationStrategy, setSyndicationStrategy] = useState('omnipresence');
+
+  const syndicationStrategies = {
+    localization: {
+      name: "REGIONAL LOCALIZATION",
+      multiplier: 4.0,
+      description: "Applies Vocal Matrix custom accents to translate and lip-sync core content across 3+ localized geographic markets."
+    },
+    omnipresence: {
+      name: "DAILY OMNIPRESENCE",
+      multiplier: 8.5,
+      description: "Deploys daily automated high-fidelity cloned Reels, Shorts, and TikTok clips to flood algorithmic feeds 24/7."
+    },
+    blockbuster: {
+      name: "GLOBAL BLOCKBUSTER SYNDICATION",
+      multiplier: 14.5,
+      description: "Launches fully automated localized brand endorsement campaigns, virtual interactive avatars, and 8+ language lip-synced networks."
+    }
+  };
+
+  const selectedStrategy = syndicationStrategies[syndicationStrategy];
+  const projectedFanReach = Math.round(fanBase * selectedStrategy.multiplier);
+  const internationalReach = Math.round(projectedFanReach * 0.80);
+  const regionalReach = Math.round(projectedFanReach * 0.20);
+  const coreFansEngaged = Math.round(fanBase * 0.70);
+  const weeklyOutputs = syndicationStrategy === 'localization' ? 12 : syndicationStrategy === 'omnipresence' ? 28 : 56;
+  const personalizedWishesPerWeek = Math.round(fanBase * 0.005 * (syndicationStrategy === 'blockbuster' ? 3 : 1));
+
+  const getCelebGraphPath = () => {
+    const ratio = (fanBase - 100000) / 4900000;
+    const startX = 25;
+    const endX = 285;
+    const startY = 80;
+    const peakY = 80 - ratio * 55;
+    
+    const pathPoints = [];
+    const steps = 20;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = startX + t * (endX - startX);
+      const compoundingFactor = Math.pow(t, 1.8);
+      const y = startY - (startY - peakY) * compoundingFactor;
+      pathPoints.push({ x, y });
+    }
+    
+    let path = `M ${pathPoints[0].x},${pathPoints[0].y}`;
+    for (let i = 1; i < pathPoints.length; i++) {
+      path += ` L ${pathPoints[i].x.toFixed(1)},${pathPoints[i].y.toFixed(1)}`;
+    }
+    
+    const points = [1, 4, 6, 8, 12].map(m => {
+      const t = (m - 1) / 11;
+      const x = startX + t * (endX - startX);
+      const compoundingFactor = Math.pow(t, 1.8);
+      const y = startY - (startY - peakY) * compoundingFactor;
+      return {
+        x: Math.round(x * 10) / 10,
+        y: Math.round(y * 10) / 10,
+        label: `M${m}`
+      };
+    });
+    
+    return { path, points };
+  };
+
+  const celebGraphData = getCelebGraphPath();
+
   const toggleVideo = () => {
     const video = document.getElementById('cc-hero-vid');
     if (video) {
@@ -266,15 +334,460 @@ export default function CelebrityPage() {
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════
+          5. DEMO — Dark bg, side-by-side
+      ═══════════════════════════════════════════ */}
+      <section className="cc-demo cc-dark">
+        <div className="cc-container">
+          <div className="cc-demo-layout">
+            <div className="cc-demo-left">
+              <span className="cc-label-sky">TECHNOLOGY IN ACTION</span>
+              <h2 className="cc-h2-white">THE VOCAL <em>MATRIX SYSTEM</em></h2>
+              <p className="cc-body-light">
+                Our proprietary generative engines align high-resolution lip-sync coordinates with synthetic audio feeds. This guarantees absolute natural posture, expressive eye micro-movements, and perfect dynamic vocal weight adjustment.
+              </p>
+              <div className="cc-demo-metrics">
+                <div className="cc-demo-metric">
+                  <span className="cc-demo-num">99.8%</span>
+                  <span className="cc-demo-lbl">Timbre Alignment Score</span>
+                </div>
+                <div className="cc-demo-metric-divider" />
+                <div className="cc-demo-metric">
+                  <span className="cc-demo-num">&lt;15ms</span>
+                  <span className="cc-demo-lbl">Lip-Sync Coherence Delay</span>
+                </div>
+              </div>
+              <button onClick={() => setAuditModalOpen(true)} className="cc-btn-primary cc-mt">
+                SEE IT IN ACTION <ArrowRight size={13} />
+              </button>
+            </div>
+            <div className="cc-demo-right">
+              <div className="cc-demo-screen">
+                <video src={celebsDemoVideo} autoPlay loop muted playsInline className="cc-demo-video" />
+                <div className="cc-demo-corner tl" />
+                <div className="cc-demo-corner tr" />
+                <div className="cc-demo-corner bl" />
+                <div className="cc-demo-corner br" />
+                <div className="cc-demo-live-tag">
+                  <Tv size={9} /> SYNTHESIS ACTIVE
+                </div>
+                <div className="cc-demo-scan" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* ═══════════════════════════════════════════
+          6. METRICS — Solid Blue bg, giant numbers
+      ═══════════════════════════════════════════ */}
+      <section className="cc-metrics cc-blue">
+        <div className="cc-container">
+          <div className="cc-metrics-header">
+            <div>
+              <span className="cc-label-white-dim">AUDIENCE METRICS</span>
+              <h2 className="cc-h2-white">THE 120% <em>ENGAGEMENT SPIKE</em></h2>
+            </div>
+            <p className="cc-metrics-tagline">
+              By multiplying platforms and maintaining pristine narrative control, our client base experiences compounding digital growth, unlocking massive B2B sponsorships and global fan monetization.
+            </p>
+          </div>
+          <div className="cc-metrics-numbers">
+            <div className="cc-metric-item">
+              <span className="cc-metric-giant">120%</span>
+              <span className="cc-metric-label">Average Audience Engagement Spike</span>
+            </div>
+            <div className="cc-metric-vline" />
+            <div className="cc-metric-item">
+              <span className="cc-metric-giant">8+</span>
+              <span className="cc-metric-label">Global Dialects Perfectly Synced</span>
+            </div>
+            <div className="cc-metric-vline" />
+            <div className="cc-metric-item">
+              <span className="cc-metric-giant">10x</span>
+              <span className="cc-metric-label">Content Distribution Rate Multiplier</span>
+            </div>
+            <div className="cc-metric-vline" />
+            <div className="cc-metric-item">
+              <span className="cc-metric-giant">3</span>
+              <span className="cc-metric-label">Exclusive Clients Per Quarter</span>
+            </div>
+          </div>
+          <div className="cc-metrics-img-strip">
+            <img src={celebs3} alt="Celebrity Impact" className="cc-metrics-img" />
+            <div className="cc-metrics-img-fade" />
+          </div>
+        </div>
+      </section>
 
+      {/* ═══════════════════════════════════════════
+          6b. THE PIPELINE — Dark Navy bg, gorgeous interactive lifecycle
+      ═══════════════════════════════════════════ */}
+      <section className="cc-pipeline cc-dark">
+        <div className="cc-container">
+          <div className="cc-pipeline-header">
+            <span className="cc-label-sky">THE SYNDICATION PIPELINE</span>
+            <h2 className="cc-h2-white">THE LIKENESS <em>SYNTHESIS PROCESS</em></h2>
+            <p className="cc-body-light">Four engineered phases transforming a single 20-minute physical session into infinite, secure, global digital omnipresence.</p>
+          </div>
 
+          <div className="cc-pipeline-grid">
+            <div className="cc-pipeline-card">
+              <div className="cc-pipe-num">PHASE 01</div>
+              <div className="cc-pipe-icon-wrap"><Mic size={18} /></div>
+              <h4 className="cc-pipe-title">Precision Capture</h4>
+              <p className="cc-pipe-desc">A secure, encrypted 20-minute voice and video calibration records micro-accents, vocal ranges, and facial metrics.</p>
+            </div>
 
+            <div className="cc-pipeline-card">
+              <div className="cc-pipe-num">PHASE 02</div>
+              <div className="cc-pipe-icon-wrap"><Cpu size={18} /></div>
+              <h4 className="cc-pipe-title">Vocal & Tone Calibration</h4>
+              <p className="cc-pipe-desc">Our proprietary neural engine maps the capture data, aligning vocal resonance and lip-sync coordinates for seamless output.</p>
+            </div>
 
+            <div className="cc-pipeline-card">
+              <div className="cc-pipe-num">PHASE 03</div>
+              <div className="cc-pipe-icon-wrap"><Shield size={18} /></div>
+              <h4 className="cc-pipe-title">Cryptographic Lock</h4>
+              <p className="cc-pipe-desc">Injects immutable digital watermarks and cryptographic stamps to verify authorized streams and completely block deepfakes.</p>
+            </div>
 
+            <div className="cc-pipeline-card">
+              <div className="cc-pipe-num">PHASE 04</div>
+              <div className="cc-pipe-icon-wrap"><Globe size={18} /></div>
+              <h4 className="cc-pipe-title">Omnipresent Dispatch</h4>
+              <p className="cc-pipe-desc">Instantly dispatch localized visual statements, podcast streams, and media content in 8+ dialects simultaneously.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* ═══════════════════════════════════════════
+          6c. DYNAMIC AMPLIFICATION RADAR (VIRTUAL RESONANCE MATRIX)
+      ═══════════════════════════════════════════ */}
+      <section className="celeb-calculator-lux cc-navy">
+        <div className="cc-container">
+          <div className="cc-section-head-center">
+            <span className="cc-label-sky">DYNAMIC AMPLIFICATION RADAR</span>
+            <h2 className="cc-h2-white">VIRTUAL RESONANCE <em>MATRIX</em></h2>
+            <p className="cc-subtitle-dim">
+              Configure your core global fanbase size and syndication intensity to audit synthetic reach, weekly output cadence, and market distribution in real-time.
+            </p>
+          </div>
 
+          <div className="celeb-radar-grid">
+            {/* Input Deck */}
+            <div className="celeb-glass-panel-dark">
+              <div className="celeb-deck-glow" />
+              
+              <div className="celeb-deck-header">
+                <h3>RESONANCE CRITERIA</h3>
+                <p>Define your star scale and syndication level</p>
+              </div>
 
+              {/* Slider for Fan Base */}
+              <div className="celeb-radar-slider-wrap">
+                <div className="celeb-slider-meta">
+                  <span className="celeb-slider-lbl">GLOBAL FAN BASE</span>
+                  <span className="celeb-slider-val">{fanBase.toLocaleString()} FANS</span>
+                </div>
+                <div className="celeb-slider-control-bar">
+                  <div 
+                    className="celeb-slider-progress" 
+                    style={{ width: `${((fanBase - 100000) / 4900000) * 100}%` }}
+                  />
+                  <input 
+                    type="range" 
+                    min="100000" 
+                    max="5000000" 
+                    step="50000"
+                    value={fanBase} 
+                    onChange={(e) => setFanBase(Number(e.target.value))}
+                    className="celeb-radar-input-range"
+                  />
+                </div>
+                <div className="celeb-slider-limits">
+                  <span>100K (CULT STAR)</span>
+                  <span>5M (GLOBAL ICON)</span>
+                </div>
+              </div>
+
+              {/* Strategy Selector */}
+              <div className="celeb-radar-strategy-wrap">
+                <span className="celeb-strategy-lbl">SYNDICATION LEVEL</span>
+                <div className="celeb-strategy-buttons">
+                  {Object.keys(syndicationStrategies).map((stratKey) => {
+                    const strat = syndicationStrategies[stratKey];
+                    const isActive = syndicationStrategy === stratKey;
+                    return (
+                      <button
+                        key={stratKey}
+                        onClick={() => setSyndicationStrategy(stratKey)}
+                        className={`celeb-strategy-btn ${isActive ? 'active' : ''}`}
+                      >
+                        {strat.name} ({strat.multiplier}x)
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="celeb-strategy-desc">
+                  "{selectedStrategy.description}"
+                </p>
+              </div>
+            </div>
+
+            {/* Output Deck */}
+            <div className="celeb-radar-stats-list">
+              {/* Giant Reach Card */}
+              <div className="celeb-stat-hero-card">
+                <span className="celeb-hero-lbl">PROJECTED SYNTHETIC IMPACT</span>
+                <div className="celeb-hero-val-wrap">
+                  <span className="celeb-hero-val celeb-glowing-text">
+                    {projectedFanReach.toLocaleString()}
+                  </span>
+                  <span className="celeb-hero-suffix">IMPRESSIONS / YEAR</span>
+                </div>
+              </div>
+
+              {/* Compounding wave chart */}
+              <div className="celeb-dynamic-graph-container">
+                <span className="celeb-graph-label">AUDIENCE RESONANCE & POPULARITY PATHWAY</span>
+                <div className="celeb-graph-canvas-wrap">
+                  <svg className="celeb-growth-graph-svg" viewBox="0 0 310 115">
+                    <defs>
+                      <linearGradient id="celebGraphFillDark" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="rgba(59, 158, 255, 0.22)" />
+                        <stop offset="100%" stopColor="rgba(59, 158, 255, 0)" />
+                      </linearGradient>
+                      <filter id="neonBlueGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="2.5" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    
+                    {/* Horizontal Dotted Grids */}
+                    <line x1="25" y1="20" x2="285" y2="20" stroke="rgba(59, 158, 255, 0.03)" strokeWidth="1" strokeDasharray="3 4" />
+                    <line x1="25" y1="40" x2="285" y2="40" stroke="rgba(59, 158, 255, 0.05)" strokeWidth="1" strokeDasharray="3 4" />
+                    <line x1="25" y1="60" x2="285" y2="60" stroke="rgba(59, 158, 255, 0.07)" strokeWidth="1" strokeDasharray="3 4" />
+
+                    {/* Axis lines */}
+                    <line x1="25" y1="10" x2="25" y2="80" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+                    <line x1="25" y1="80" x2="295" y2="80" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+
+                    {/* Arrowheads */}
+                    <path d="M 22,14 L 25,9 L 28,14" fill="none" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+                    <path d="M 290,77 L 295,80 L 290,83" fill="none" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.5" />
+
+                    {/* Ticks */}
+                    <text x="18" y="23" textAnchor="end" fill="rgba(255, 255, 255, 0.4)" fontSize="7" fontFamily="monospace">MAX</text>
+                    <text x="18" y="52" textAnchor="end" fill="rgba(255, 255, 255, 0.3)" fontSize="7" fontFamily="monospace">MID</text>
+                    <text x="18" y="83" textAnchor="end" fill="rgba(255, 255, 255, 0.4)" fontSize="7" fontFamily="monospace">0</text>
+
+                    {/* Vertical projections */}
+                    {celebGraphData.points.map((pt, i) => (
+                      <line 
+                        key={`cvgrid-${i}`} 
+                        x1={pt.x} 
+                        y1={15} 
+                        x2={pt.x} 
+                        y2={80} 
+                        stroke="rgba(59, 158, 255, 0.06)" 
+                        strokeWidth="1" 
+                        strokeDasharray="2 3"
+                      />
+                    ))}
+                    
+                    {/* Fill */}
+                    <path 
+                      d={`${celebGraphData.path} L 285,80 L 25,80 Z`}
+                      fill="url(#celebGraphFillDark)"
+                      className="celeb-graph-fill-path"
+                    />
+                    
+                    {/* Path */}
+                    <path 
+                      d={celebGraphData.path}
+                      fill="none"
+                      stroke="var(--cc-blue-sky)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      filter="url(#neonBlueGlow)"
+                      className="celeb-graph-stroke-path"
+                    />
+                    
+                    {/* Nodes */}
+                    {celebGraphData.points.map((pt, i) => {
+                      const isLast = i === celebGraphData.points.length - 1;
+                      return (
+                        <g key={i} className="celeb-graph-node-group">
+                          {isLast && (
+                            <circle 
+                              cx={pt.x} 
+                              cy={pt.y} 
+                              r="6" 
+                              className="celeb-graph-pulse-ring"
+                            />
+                          )}
+                          <circle 
+                            cx={pt.x} 
+                            cy={pt.y} 
+                            r={isLast ? "4" : "3"} 
+                            fill={isLast ? "#FFFFFF" : "var(--cc-blue-sky)"} 
+                            stroke={isLast ? "var(--cc-blue)" : "#03060f"} 
+                            strokeWidth="1.5" 
+                            className="celeb-graph-node-circle"
+                          />
+                          <text 
+                            x={pt.x} 
+                            y="96" 
+                            textAnchor="middle" 
+                            className="celeb-graph-node-text"
+                          >
+                            {pt.label}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </svg>
+                </div>
+              </div>
+
+              {/* Geographic Distribution Splits */}
+              <div className="celeb-reach-split-grid">
+                <div className="celeb-split-card">
+                  <div className="celeb-split-meta">
+                    <span className="celeb-split-lbl">INTERNATIONAL MARKETS (80%)</span>
+                    <span className="celeb-split-val">{internationalReach.toLocaleString()}</span>
+                  </div>
+                  <div className="celeb-split-bar-wrap">
+                    <div className="celeb-split-bar-fill" style={{ width: '80%', background: 'linear-gradient(90deg, var(--cc-blue), var(--cc-blue-sky))' }} />
+                  </div>
+                  <p className="celeb-split-desc">Synthesized global voice translations and dynamic dialect tracks driving rapid adoption outside native markets.</p>
+                </div>
+
+                <div className="celeb-split-card">
+                  <div className="celeb-split-meta">
+                    <span className="celeb-split-lbl">REGIONAL CORE (20%)</span>
+                    <span className="celeb-split-val">{regionalReach.toLocaleString()}</span>
+                  </div>
+                  <div className="celeb-split-bar-wrap">
+                    <div className="celeb-split-bar-fill" style={{ width: '20%', background: 'linear-gradient(90deg, var(--cc-blue-light), var(--cc-blue-sky))' }} />
+                  </div>
+                  <p className="celeb-split-desc">Direct platform engagement inside native regional markets utilizing custom localization features.</p>
+                </div>
+              </div>
+
+              {/* Weekly Synthesized outputs detail */}
+              <div className="celeb-details-outcome-grid">
+                <div className="celeb-outcome-item">
+                  <div className="celeb-outcome-meta">
+                    <span className="celeb-outcome-lbl">WEEKLY SYNTHESIZED OMNIPRESENT OUTPUTS</span>
+                    <span className="celeb-outcome-val">{weeklyOutputs} CLONED CLIPS / WEEK</span>
+                  </div>
+                  <p className="celeb-outcome-desc">
+                    YouTube Shorts, TikToks, and Instagram Reels generated automatically in your authentic voice and posture.
+                  </p>
+                </div>
+
+                <div className="celeb-outcome-item">
+                  <div className="celeb-outcome-meta">
+                    <span className="celeb-outcome-lbl">HIGH-ENGAGEMENT FAN RELATIONS</span>
+                    <span className="celeb-outcome-val">{coreFansEngaged.toLocaleString()} HIGH-ACTIVE FANS</span>
+                  </div>
+                  <p className="celeb-outcome-desc">
+                    Synthesized 24/7 fan response modules retaining core artistic connections without direct physical interaction.
+                  </p>
+                </div>
+
+                <div className="celeb-outcome-item">
+                  <div className="celeb-outcome-meta">
+                    <span className="celeb-outcome-lbl">DYNAMIC PERSONALIZED STAR WISHES</span>
+                    <span className="celeb-outcome-val">{personalizedWishesPerWeek.toLocaleString()} WISHES / WEEK</span>
+                  </div>
+                  <p className="celeb-outcome-desc">
+                    Vocal matrix system automatically dispatching custom audio messages to fan club members addressing them by their first name.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          7. FAQS — White bg, clean accordion
+      ═══════════════════════════════════════════ */}
+      <section className="cc-faqs cc-white">
+        <div className="cc-container">
+          <div className="cc-faqs-layout">
+            <div className="cc-faqs-sticky-head">
+              <span className="cc-label-blue">QUESTIONS & ANSWERS</span>
+              <h2 className="cc-h2-dark">CREATOR <em>FAQS</em></h2>
+              <p className="cc-body-dark">Addressing critical creator security, identity, and integration concerns with complete clarity.</p>
+            </div>
+            <div className="cc-faqs-list">
+              {faqs.map((faq, idx) => {
+                const isOpen = activeFaq === idx;
+                return (
+                  <div
+                    key={idx}
+                    className={`cc-faq-item ${isOpen ? 'cc-faq-open' : ''}`}
+                    onClick={() => setActiveFaq(isOpen ? null : idx)}
+                  >
+                    <div className="cc-faq-q">
+                      <span className="cc-faq-num">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="cc-faq-text">{faq.q}</span>
+                      <button className="cc-faq-toggle">
+                        {isOpen ? <Minus size={14} /> : <Plus size={14} />}
+                      </button>
+                    </div>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                          className="cc-faq-a"
+                        >
+                          <p>{faq.a}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          8. CTA — Dark with blue drama
+      ═══════════════════════════════════════════ */}
+      <section className="cc-cta cc-dark">
+        <div className="cc-cta-glow-left" />
+        <div className="cc-cta-glow-right" />
+        <div className="cc-container cc-cta-inner">
+          <span className="cc-label-sky">LIMITED VIP INTEGRATION</span>
+          <h2 className="cc-cta-h2">
+            READY TO SECURE<br /><span className="cc-h2-blue-underline">SYSTEMIC DOMINANCE?</span>
+          </h2>
+          <p className="cc-cta-sub">
+            We onboard only 3 high-profile celebrity campaigns per quarter to guarantee absolute production polish. Secure your exclusive audit today.
+          </p>
+          <button onClick={() => setAuditModalOpen(true)} className="cc-btn-primary cc-btn-lg">
+            SECURE AN EXCLUSIVE AUDIT <ArrowRight size={15} />
+          </button>
+        </div>
+      </section>
+
+      <Footer />
       <AuditModal isOpen={auditModalOpen} onClose={() => setAuditModalOpen(false)} />
     </div>
   );
