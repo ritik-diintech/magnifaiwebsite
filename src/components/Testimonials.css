@@ -802,7 +802,43 @@
 /* Responsiveness overrides */
 @media (max-width: 1024px) {
   .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  /* Reset all masonry and column span styles for tablet/mobile */
+  .card-style-classic,
+  .card-style-spiritual,
+  .card-style-venture,
+  .card-style-royal,
+  .card-style-intellect,
+  .card-style-contemporary {
+    grid-column: span 1 !important;
+    min-height: auto !important;
+    margin-top: 0 !important;
+    flex-direction: column !important;
+  }
+
+  .card-style-royal .client-quote-text {
+    font-size: 16.5px !important;
+  }
+
+  .card-style-contemporary {
+    padding: 52px 42px !important;
+  }
+
+  .card-style-contemporary .client-quote-body {
+    flex: none !important;
+    margin-bottom: 30px;
+  }
+
+  .card-style-contemporary .client-author-info {
+    flex: none !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(12, 12, 11, 0.05) !important;
+    padding-left: 0 !important;
+    padding-top: 24px !important;
+    margin-top: auto !important;
   }
 }
 
@@ -812,7 +848,7 @@
   }
   
   .testimonials-section .section-h2 {
-    font-size: clamp(20px, 6vw, 32px) !important;
+    font-size: clamp(28px, 6vw, 38px) !important;
     letter-spacing: 0.02em !important;
     line-height: 1.3 !important;
   }
@@ -823,7 +859,7 @@
   }
   
   .client-quote-card {
-    padding: 40px 30px;
-    min-height: auto !important;
+    padding: 40px 30px !important;
   }
 }
+

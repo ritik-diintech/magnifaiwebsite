@@ -57,7 +57,7 @@ export default function CelebrityPage() {
     const endX = 285;
     const startY = 80;
     const peakY = 80 - ratio * 55;
-    
+
     const pathPoints = [];
     const steps = 20;
     for (let i = 0; i <= steps; i++) {
@@ -67,12 +67,12 @@ export default function CelebrityPage() {
       const y = startY - (startY - peakY) * compoundingFactor;
       pathPoints.push({ x, y });
     }
-    
+
     let path = `M ${pathPoints[0].x},${pathPoints[0].y}`;
     for (let i = 1; i < pathPoints.length; i++) {
       path += ` L ${pathPoints[i].x.toFixed(1)},${pathPoints[i].y.toFixed(1)}`;
     }
-    
+
     const points = [1, 4, 6, 8, 12].map(m => {
       const t = (m - 1) / 11;
       const x = startX + t * (endX - startX);
@@ -84,7 +84,7 @@ export default function CelebrityPage() {
         label: `M${m}`
       };
     });
-    
+
     return { path, points };
   };
 
@@ -140,15 +140,20 @@ export default function CelebrityPage() {
           1. HERO — Dark, immersive video
       ═══════════════════════════════════════════ */}
       <section className="cc-hero">
-        <div className="cc-hero-video-bg">
+        <motion.div 
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+          className="cc-hero-video-bg"
+        >
           <video id="cc-hero-vid" src={celebsHeroVideo} autoPlay loop muted playsInline className="cc-hero-video" />
           <div className="cc-hero-overlay" />
-        </div>
+        </motion.div>
         <div className="cc-container cc-hero-content">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="cc-hero-inner"
           >
             <div className="cc-hero-badge">
@@ -185,15 +190,27 @@ export default function CelebrityPage() {
         <div className="cc-phil-bg-num">02</div>
         <div className="cc-container">
           <div className="cc-phil-layout">
-            <div className="cc-phil-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-phil-left"
+            >
               <span className="cc-label-blue">EDITORIAL PHILOSOPHY</span>
               <h2 className="cc-h2-dark">Infinite Presence.<br /><em>Zero Burnout.</em></h2>
               <blockquote className="cc-pull-quote">
                 "The ultimate asset in the 21st century is not just attention — it is the freedom to decide where you give it."
               </blockquote>
               <div className="cc-phil-line" />
-            </div>
-            <div className="cc-phil-right">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-phil-right"
+            >
               <p className="cc-body-dark">
                 Historically, the reach of a cultural icon was constrained by their physical body. The demands of creation led directly to creative fatigue and digital saturation.
               </p>
@@ -204,7 +221,7 @@ export default function CelebrityPage() {
                 <img src={celebs1} alt="Creator Editorial Philosophy" className="cc-phil-img" />
                 <div className="cc-phil-img-stripe" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -223,7 +240,13 @@ export default function CelebrityPage() {
             <p className="cc-subtitle-dim">Why standard content systems fail the world's most prominent creative forces — and how MagnifAI resolves them.</p>
           </div>
 
-          <div className="cc-table-wrapper">
+          <motion.div 
+            initial={{ opacity: 0, y: 45 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            className="cc-table-wrapper"
+          >
             <table className="cc-matrix-table">
               <thead>
                 <tr>
@@ -260,13 +283,20 @@ export default function CelebrityPage() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </motion.div>
 
           {/* Mobile-Only Matrix Ledger Cards */}
           <div className="cc-mobile-matrix-container">
             <div className="cc-mobile-matrix-list">
               {creatorCrisisData.map((item, idx) => (
-                <div key={idx} className="cc-mobile-matrix-card">
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: (idx % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="cc-mobile-matrix-card"
+                >
                   <div className="cc-mobile-card-top-row">
                     <span className="cc-mobile-card-idx">{item.id}</span>
                   </div>
@@ -291,7 +321,7 @@ export default function CelebrityPage() {
                       <p className="cc-mobile-card-desc">{item.solutionDesc}</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -304,22 +334,37 @@ export default function CelebrityPage() {
       <section className="cc-leverage cc-white">
         <div className="cc-container">
           <div className="cc-lev-header">
-            <div className="cc-lev-header-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-lev-header-left"
+            >
               <span className="cc-label-blue">TACTICAL PLAYBOOK</span>
               <h2 className="cc-h2-dark">DEPLOYED <em>LEVERAGE</em></h2>
               <p className="cc-body-dark">Six precision instruments engineered to multiply your cultural and commercial reach without physical constraints.</p>
-            </div>
-            <div className="cc-lev-header-img-wrap">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.94 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-lev-header-img-wrap"
+            >
               <img src={celebs2} alt="Deployed Leverage" className="cc-lev-img" />
               <div className="cc-lev-img-overlay" />
-            </div>
+            </motion.div>
           </div>
           <div className="cc-lev-grid">
             {leverageItems.map((item, idx) => (
               <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
                 className="cc-lev-card"
               >
                 <div className="cc-lev-card-top">
@@ -340,7 +385,13 @@ export default function CelebrityPage() {
       <section className="cc-demo cc-dark">
         <div className="cc-container">
           <div className="cc-demo-layout">
-            <div className="cc-demo-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-demo-left"
+            >
               <span className="cc-label-sky">TECHNOLOGY IN ACTION</span>
               <h2 className="cc-h2-white">THE VOCAL <em>MATRIX SYSTEM</em></h2>
               <p className="cc-body-light">
@@ -360,20 +411,25 @@ export default function CelebrityPage() {
               <button onClick={() => setAuditModalOpen(true)} className="cc-btn-primary cc-mt">
                 SEE IT IN ACTION <ArrowRight size={13} />
               </button>
-            </div>
-            <div className="cc-demo-right">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+              style={{ perspective: 1000 }}
+              className="cc-demo-right"
+            >
               <div className="cc-demo-screen">
                 <video src={celebsDemoVideo} autoPlay loop muted playsInline className="cc-demo-video" />
                 <div className="cc-demo-corner tl" />
                 <div className="cc-demo-corner tr" />
                 <div className="cc-demo-corner bl" />
                 <div className="cc-demo-corner br" />
-                <div className="cc-demo-live-tag">
-                  <Tv size={9} /> SYNTHESIS ACTIVE
-                </div>
+
                 <div className="cc-demo-scan" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -393,30 +449,60 @@ export default function CelebrityPage() {
             </p>
           </div>
           <div className="cc-metrics-numbers">
-            <div className="cc-metric-item">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.85, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.1 }}
+              className="cc-metric-item"
+            >
               <span className="cc-metric-giant">120%</span>
               <span className="cc-metric-label">Average Audience Engagement Spike</span>
-            </div>
+            </motion.div>
             <div className="cc-metric-vline" />
-            <div className="cc-metric-item">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.85, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+              className="cc-metric-item"
+            >
               <span className="cc-metric-giant">8+</span>
               <span className="cc-metric-label">Global Dialects Perfectly Synced</span>
-            </div>
+            </motion.div>
             <div className="cc-metric-vline" />
-            <div className="cc-metric-item">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.85, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.3 }}
+              className="cc-metric-item"
+            >
               <span className="cc-metric-giant">10x</span>
               <span className="cc-metric-label">Content Distribution Rate Multiplier</span>
-            </div>
+            </motion.div>
             <div className="cc-metric-vline" />
-            <div className="cc-metric-item">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.85, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.4 }}
+              className="cc-metric-item"
+            >
               <span className="cc-metric-giant">3</span>
               <span className="cc-metric-label">Exclusive Clients Per Quarter</span>
-            </div>
+            </motion.div>
           </div>
-          <div className="cc-metrics-img-strip">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+            className="cc-metrics-img-strip"
+          >
             <img src={celebs3} alt="Celebrity Impact" className="cc-metrics-img" />
             <div className="cc-metrics-img-fade" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -432,33 +518,57 @@ export default function CelebrityPage() {
           </div>
 
           <div className="cc-pipeline-grid">
-            <div className="cc-pipeline-card">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-pipeline-card"
+            >
               <div className="cc-pipe-num">PHASE 01</div>
               <div className="cc-pipe-icon-wrap"><Mic size={18} /></div>
               <h4 className="cc-pipe-title">Precision Capture</h4>
               <p className="cc-pipe-desc">A secure, encrypted 20-minute voice and video calibration records micro-accents, vocal ranges, and facial metrics.</p>
-            </div>
+            </motion.div>
 
-            <div className="cc-pipeline-card">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-pipeline-card"
+            >
               <div className="cc-pipe-num">PHASE 02</div>
               <div className="cc-pipe-icon-wrap"><Cpu size={18} /></div>
               <h4 className="cc-pipe-title">Vocal & Tone Calibration</h4>
               <p className="cc-pipe-desc">Our proprietary neural engine maps the capture data, aligning vocal resonance and lip-sync coordinates for seamless output.</p>
-            </div>
+            </motion.div>
 
-            <div className="cc-pipeline-card">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-pipeline-card"
+            >
               <div className="cc-pipe-num">PHASE 03</div>
               <div className="cc-pipe-icon-wrap"><Shield size={18} /></div>
               <h4 className="cc-pipe-title">Cryptographic Lock</h4>
               <p className="cc-pipe-desc">Injects immutable digital watermarks and cryptographic stamps to verify authorized streams and completely block deepfakes.</p>
-            </div>
+            </motion.div>
 
-            <div className="cc-pipeline-card">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-pipeline-card"
+            >
               <div className="cc-pipe-num">PHASE 04</div>
               <div className="cc-pipe-icon-wrap"><Globe size={18} /></div>
               <h4 className="cc-pipe-title">Omnipresent Dispatch</h4>
               <p className="cc-pipe-desc">Instantly dispatch localized visual statements, podcast streams, and media content in 8+ dialects simultaneously.</p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -478,9 +588,15 @@ export default function CelebrityPage() {
 
           <div className="celeb-radar-grid">
             {/* Input Deck */}
-            <div className="celeb-glass-panel-dark">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="celeb-glass-panel-dark"
+            >
               <div className="celeb-deck-glow" />
-              
+
               <div className="celeb-deck-header">
                 <h3>RESONANCE CRITERIA</h3>
                 <p>Define your star scale and syndication level</p>
@@ -493,16 +609,16 @@ export default function CelebrityPage() {
                   <span className="celeb-slider-val">{fanBase.toLocaleString()} FANS</span>
                 </div>
                 <div className="celeb-slider-control-bar">
-                  <div 
-                    className="celeb-slider-progress" 
+                  <div
+                    className="celeb-slider-progress"
                     style={{ width: `${((fanBase - 100000) / 4900000) * 100}%` }}
                   />
-                  <input 
-                    type="range" 
-                    min="100000" 
-                    max="5000000" 
+                  <input
+                    type="range"
+                    min="100000"
+                    max="5000000"
                     step="50000"
-                    value={fanBase} 
+                    value={fanBase}
                     onChange={(e) => setFanBase(Number(e.target.value))}
                     className="celeb-radar-input-range"
                   />
@@ -535,10 +651,16 @@ export default function CelebrityPage() {
                   "{selectedStrategy.description}"
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Output Deck */}
-            <div className="celeb-radar-stats-list">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="celeb-radar-stats-list"
+            >
               {/* Giant Reach Card */}
               <div className="celeb-stat-hero-card">
                 <span className="celeb-hero-lbl">PROJECTED SYNTHETIC IMPACT</span>
@@ -568,7 +690,7 @@ export default function CelebrityPage() {
                         </feMerge>
                       </filter>
                     </defs>
-                    
+
                     {/* Horizontal Dotted Grids */}
                     <line x1="25" y1="20" x2="285" y2="20" stroke="rgba(59, 158, 255, 0.03)" strokeWidth="1" strokeDasharray="3 4" />
                     <line x1="25" y1="40" x2="285" y2="40" stroke="rgba(59, 158, 255, 0.05)" strokeWidth="1" strokeDasharray="3 4" />
@@ -589,27 +711,35 @@ export default function CelebrityPage() {
 
                     {/* Vertical projections */}
                     {celebGraphData.points.map((pt, i) => (
-                      <line 
-                        key={`cvgrid-${i}`} 
-                        x1={pt.x} 
-                        y1={15} 
-                        x2={pt.x} 
-                        y2={80} 
-                        stroke="rgba(59, 158, 255, 0.06)" 
-                        strokeWidth="1" 
+                      <line
+                        key={`cvgrid-${i}`}
+                        x1={pt.x}
+                        y1={15}
+                        x2={pt.x}
+                        y2={80}
+                        stroke="rgba(59, 158, 255, 0.06)"
+                        strokeWidth="1"
                         strokeDasharray="2 3"
                       />
                     ))}
-                    
+
                     {/* Fill */}
-                    <path 
+                    <motion.path
+                      key={celebGraphData.path}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1.0 }}
                       d={`${celebGraphData.path} L 285,80 L 25,80 Z`}
                       fill="url(#celebGraphFillDark)"
                       className="celeb-graph-fill-path"
                     />
-                    
+
                     {/* Path */}
-                    <path 
+                    <motion.path
+                      key={celebGraphData.path + "-stroke"}
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1.8, ease: "easeInOut" }}
                       d={celebGraphData.path}
                       fill="none"
                       stroke="var(--cc-blue-sky)"
@@ -618,33 +748,33 @@ export default function CelebrityPage() {
                       filter="url(#neonBlueGlow)"
                       className="celeb-graph-stroke-path"
                     />
-                    
+
                     {/* Nodes */}
                     {celebGraphData.points.map((pt, i) => {
                       const isLast = i === celebGraphData.points.length - 1;
                       return (
                         <g key={i} className="celeb-graph-node-group">
                           {isLast && (
-                            <circle 
-                              cx={pt.x} 
-                              cy={pt.y} 
-                              r="6" 
+                            <circle
+                              cx={pt.x}
+                              cy={pt.y}
+                              r="6"
                               className="celeb-graph-pulse-ring"
                             />
                           )}
-                          <circle 
-                            cx={pt.x} 
-                            cy={pt.y} 
-                            r={isLast ? "4" : "3"} 
-                            fill={isLast ? "#FFFFFF" : "var(--cc-blue-sky)"} 
-                            stroke={isLast ? "var(--cc-blue)" : "#03060f"} 
-                            strokeWidth="1.5" 
+                          <circle
+                            cx={pt.x}
+                            cy={pt.y}
+                            r={isLast ? "4" : "3"}
+                            fill={isLast ? "#FFFFFF" : "var(--cc-blue-sky)"}
+                            stroke={isLast ? "var(--cc-blue)" : "#03060f"}
+                            strokeWidth="1.5"
                             className="celeb-graph-node-circle"
                           />
-                          <text 
-                            x={pt.x} 
-                            y="96" 
-                            textAnchor="middle" 
+                          <text
+                            x={pt.x}
+                            y="96"
+                            textAnchor="middle"
                             className="celeb-graph-node-text"
                           >
                             {pt.label}
@@ -714,7 +844,7 @@ export default function CelebrityPage() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -725,17 +855,27 @@ export default function CelebrityPage() {
       <section className="cc-faqs cc-white">
         <div className="cc-container">
           <div className="cc-faqs-layout">
-            <div className="cc-faqs-sticky-head">
+            <motion.div 
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="cc-faqs-sticky-head"
+            >
               <span className="cc-label-blue">QUESTIONS & ANSWERS</span>
               <h2 className="cc-h2-dark">CREATOR <em>FAQS</em></h2>
               <p className="cc-body-dark">Addressing critical creator security, identity, and integration concerns with complete clarity.</p>
-            </div>
+            </motion.div>
             <div className="cc-faqs-list">
               {faqs.map((faq, idx) => {
                 const isOpen = activeFaq === idx;
                 return (
-                  <div
+                  <motion.div
                     key={idx}
+                    initial={{ opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     className={`cc-faq-item ${isOpen ? 'cc-faq-open' : ''}`}
                     onClick={() => setActiveFaq(isOpen ? null : idx)}
                   >
@@ -759,7 +899,7 @@ export default function CelebrityPage() {
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -773,7 +913,13 @@ export default function CelebrityPage() {
       <section className="cc-cta cc-dark">
         <div className="cc-cta-glow-left" />
         <div className="cc-cta-glow-right" />
-        <div className="cc-container cc-cta-inner">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.93, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          className="cc-container cc-cta-inner"
+        >
           <span className="cc-label-sky">LIMITED VIP INTEGRATION</span>
           <h2 className="cc-cta-h2">
             READY TO SECURE<br /><span className="cc-h2-blue-underline">SYSTEMIC DOMINANCE?</span>
@@ -784,7 +930,7 @@ export default function CelebrityPage() {
           <button onClick={() => setAuditModalOpen(true)} className="cc-btn-primary cc-btn-lg">
             SECURE AN EXCLUSIVE AUDIT <ArrowRight size={15} />
           </button>
-        </div>
+        </motion.div>
       </section>
 
       <Footer />

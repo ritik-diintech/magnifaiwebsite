@@ -367,15 +367,19 @@
 .mega-item.item-politics {
   border: 1px solid rgba(224, 86, 36, 0.25) !important;
 }
+
 .mega-item.item-celebs {
   border: 1px solid rgba(0, 102, 214, 0.25) !important;
 }
+
 .mega-item.item-founders {
-  border: 1px solid rgba(212, 175, 55, 0.25) !important;
+  border: 1px solid rgba(139, 92, 246, 0.25) !important;
 }
+
 .mega-item.item-gurus {
-  border: 1px solid rgba(168, 85, 247, 0.25) !important;
+  border: 1px solid rgba(231, 37, 215, 0.25) !important;
 }
+
 .mega-item.item-activists {
   border: 1px solid rgba(20, 184, 166, 0.25) !important;
 }
@@ -392,12 +396,12 @@
 }
 
 .mega-item.item-founders:hover {
-  border-color: #e5b842 !important;
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25) !important;
+  border-color: #a78bfa !important;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.25) !important;
 }
 
 .mega-item.item-gurus:hover {
-  border-color: #c084fc !important;
+  border-color: #f936dc !important;
   box-shadow: 0 10px 25px rgba(168, 85, 247, 0.25) !important;
 }
 
@@ -435,8 +439,8 @@
 }
 
 .mega-item.item-founders:hover .mega-icon-wrap {
-  background: #d4af37;
-  color: #000;
+  background: #8b5cf6;
+  color: #fff;
 }
 
 .mega-info {
@@ -452,11 +456,25 @@
   margin-bottom: 6px;
 }
 
-.orange-text { color: #ff7342; }
-.blue-text { color: #3b9eff; }
-.gold-text { color: #e5b842; }
-.guru-text { color: #c084fc; }
-.activist-text { color: #2dd4bf; }
+.orange-text {
+  color: #ff7342;
+}
+
+.blue-text {
+  color: #3b9eff;
+}
+
+.gold-text {
+  color: #9b24f6;
+}
+
+.guru-text {
+  color: #f545b1;
+}
+
+.activist-text {
+  color: #2dd4bf;
+}
 
 .mega-info h4 {
   font-family: var(--font-sans);
@@ -519,13 +537,16 @@
   .navbar-bar {
     padding: 22px 30px;
   }
+
   .navbar-bar::after {
     left: 30px;
     right: 30px;
   }
+
   .navbar-outer.scrolled .navbar-bar {
     padding: 14px 30px;
   }
+
   .navbar-outer.scrolled .navbar-bar::after {
     left: 0;
     right: 0;
@@ -536,13 +557,16 @@
   .navbar-bar {
     padding: 18px 24px;
   }
+
   .navbar-bar::after {
     left: 24px;
     right: 24px;
   }
+
   .nav-right-group {
     display: none !important;
   }
+
   .nav-mobile-toggle {
     display: flex !important;
   }

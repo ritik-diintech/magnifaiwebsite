@@ -152,14 +152,14 @@ export default function Navbar({ isPageReady, onBookAudit }) {
                               </div>
                             </Link>
 
-                            <a href="#" className="mega-item item-founders interactive" onClick={(e) => { e.preventDefault(); }}>
+                            <Link to="/archetypes/founders" className="mega-item item-founders interactive" onClick={() => setMegaOpen(false)}>
                               <div className="mega-icon-wrap"><Cpu size={14} /></div>
                               <div className="mega-info">
-                                <span className="mega-item-tag gold-text">FOUNDER</span>
+                                <span className="mega-item-tag purple-text">FOUNDER</span>
                                 <h4>Founder & CEO</h4>
                                 <p>Undisputed personal branding & founder lead amplification.</p>
                               </div>
-                            </a>
+                            </Link>
 
                             <Link to="/archetypes/gurus" className="mega-item item-gurus interactive" onClick={() => setMegaOpen(false)}>
                               <div className="mega-icon-wrap"><Sparkles size={14} /></div>
@@ -170,14 +170,14 @@ export default function Navbar({ isPageReady, onBookAudit }) {
                               </div>
                             </Link>
 
-                            <a href="#" className="mega-item item-activists interactive" onClick={(e) => { e.preventDefault(); }}>
+                            <Link to="" className="mega-item item-activists interactive" onClick={() => setMegaOpen(false)}>
                               <div className="mega-icon-wrap"><Globe size={14} /></div>
                               <div className="mega-info">
                                 <span className="mega-item-tag activist-text">ACTIVIST</span>
                                 <h4>Activist & Change Maker</h4>
                                 <p>Systemic message amplification and global solidarity networks.</p>
                               </div>
-                            </a>
+                            </Link>
                           </div>
                         </motion.div>
                       )}
@@ -245,9 +245,9 @@ export default function Navbar({ isPageReady, onBookAudit }) {
                       <ul className="mobile-mega-sublinks">
                         <li><a href="/archetypes/politics" className="mobile-sublink-item" onClick={() => setMobileOpen(false)}>Political Leaders</a></li>
                         <li><a href="/archetypes/celebs" className="mobile-sublink-item" onClick={() => setMobileOpen(false)}>Actors & Artists</a></li>
-                        <li><a href="#" className="mobile-sublink-item" onClick={(e) => { e.preventDefault(); }}>Founder & CEO</a></li>
+                        <li><Link to="/archetypes/founders" className="mobile-sublink-item" onClick={() => setMobileOpen(false)}>Founder & CEO</Link></li>
                         <li><Link to="/archetypes/gurus" className="mobile-sublink-item" onClick={() => setMobileOpen(false)}>Spiritual Guru</Link></li>
-                        <li><a href="#" className="mobile-sublink-item" onClick={(e) => { e.preventDefault(); }}>Activist & Change Maker</a></li>
+                        <li><Link to="/archetypes/activists" className="mobile-sublink-item" onClick={() => setMobileOpen(false)}>Activist & Change Maker</Link></li>
                       </ul>
                     </div>
                   ) : (

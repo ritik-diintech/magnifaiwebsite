@@ -241,7 +241,12 @@ export default function PoliticianPage() {
 
       {/* 1. HERO SECTION (Dark background, deep terracotta amber neons, Cinzel fonts) */}
       <section className="politician-hero sec-dark">
-        <div className="politician-hero-video-wrap">
+        <motion.div 
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+          className="politician-hero-video-wrap"
+        >
           <video 
             id="hero-video"
             src={politicianHeroVideo} 
@@ -253,13 +258,13 @@ export default function PoliticianPage() {
           />
           <div className="politician-hero-gradient-overlay" />
           <div className="politician-neon-glow" />
-        </div>
+        </motion.div>
 
         <div className="luxury-container politician-hero-content">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="politician-hero-text"
           >
             <span className="politician-tag">
@@ -292,7 +297,13 @@ export default function PoliticianPage() {
       <section className="politician-philosophy sec-white">
         <div className="luxury-container">
           <div className="politician-philosophy-grid">
-            <div className="politician-phil-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="politician-phil-left"
+            >
               <span className="section-label">CAMPAIGN DOCTRINE</span>
               <h2 className="section-h2">The Architecture of <em>Mass Resonance.</em></h2>
               <div className="phil-separator" />
@@ -305,15 +316,21 @@ export default function PoliticianPage() {
               <blockquote className="politician-quote">
                 "To lead a nation is to resonate within the heart of every single citizen in their own local tongue."
               </blockquote>
-            </div>
+            </motion.div>
 
-            <div className="politician-phil-right">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+              className="politician-phil-right"
+            >
               <div className="politician-img-frame">
                 <img src={politician3} alt="Political Campaign Philosophy" className="politician-frame-img" />
                 <div className="politician-frame-hairline" />
                 <div className="politician-orange-glow-leak" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -329,8 +346,12 @@ export default function PoliticianPage() {
 
           <div className="politician-crisis-detailed-grid">
             {narrativeCrisisData.map((item, index) => (
-              <div 
+              <motion.div 
                 key={item.id}
+                initial={{ opacity: 0, y: 50, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: (index % 3) * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="crisis-detailed-card"
               >
                 {/* Threat Side */}
@@ -353,7 +374,7 @@ export default function PoliticianPage() {
                   <h3>{item.solutionTitle}</h3>
                   <p>{item.solutionDesc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -363,38 +384,62 @@ export default function PoliticianPage() {
       <section className="politician-nodes sec-orange">
         <div className="luxury-container">
           <div className="politician-nodes-layout">
-            <div className="politician-nodes-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="politician-nodes-left"
+            >
               <div className="politician-img-frame">
                 <img src={politician2} alt="Political Deployed Leverage" className="politician-frame-img" />
                 <div className="politician-frame-hairline" />
               </div>
-            </div>
+            </motion.div>
 
             <div className="politician-nodes-right">
               <span className="section-label dark-label">TACTICAL PLAYBOOK</span>
               <h2 className="section-h2 dark-title">DEPLOYED <em>LEVERAGE</em></h2>
               <div className="politician-nodes-list">
-                <div className="node-item dark-node">
+                <motion.div 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="node-item dark-node"
+                >
                   <div className="node-num">01</div>
                   <div className="node-info">
                     <h4>Constituency Mobile Broadcasts</h4>
                     <p>Integrate verified voter lists with custom voice calibrations to deliver immediate announcements directly to mobile lines.</p>
                   </div>
-                </div>
-                <div className="node-item dark-node">
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="node-item dark-node"
+                >
                   <div className="node-num">02</div>
                   <div className="node-info">
                     <h4>Micro-Demographic Calibration</h4>
                     <p>Analyze local ward concerns and generate high-fidelity candidate recordings matching regional speech coordinates.</p>
                   </div>
-                </div>
-                <div className="node-item dark-node">
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="node-item dark-node"
+                >
                   <div className="node-num">03</div>
                   <div className="node-info">
                     <h4>High-Trust Crisis Defenses</h4>
                     <p>Create secure visual updates in under 15 minutes to address, counter, and neutralize public rumors instantly.</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -410,7 +455,14 @@ export default function PoliticianPage() {
             <p className="section-subtitle">Perfect regional accents and vocal weight calibrator details in action.</p>
           </div>
 
-          <div className="dialect-fullwidth-card">
+          <motion.div 
+            initial={{ opacity: 0, y: 60, rotateX: 6 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+            style={{ perspective: 1200 }}
+            className="dialect-fullwidth-card"
+          >
             <div className="dialect-card-info">
               <div className="dialect-info-text-col">
                 <span className="organic-accent-tag">Linguistic Resonance Calibration</span>
@@ -439,7 +491,7 @@ export default function PoliticianPage() {
               <img src={politicianStage} alt="Vocal Alignment Stage" className="dialect-card-img" />
               <div className="dialect-glow" />
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -456,7 +508,13 @@ export default function PoliticianPage() {
 
           <div className="radar-grid">
             {/* Left Deck: Dynamic Calculator Inputs */}
-            <div className="radar-input-deck glass-panel-dark">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="radar-input-deck glass-panel-dark"
+            >
               <div className="deck-glow" />
               <div className="deck-header">
                 <h3>Constituency Command Center</h3>
@@ -506,10 +564,16 @@ export default function PoliticianPage() {
                 </div>
                 <p className="strategy-desc">{currentStrategy.desc}</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Deck: Dynamic Visual Matrix Outputs */}
-            <div className="radar-output-deck glass-panel-dark">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="radar-output-deck glass-panel-dark"
+            >
               <div className="deck-glow" />
               <div className="deck-header">
                 <h3>Resonance Projections</h3>
@@ -581,14 +645,22 @@ export default function PoliticianPage() {
                       ))}
                       
                       {/* Fill */}
-                      <path 
+                      <motion.path 
+                        key={graphData.path}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.0 }}
                         d={`${graphData.path} L 285,80 L 25,80 Z`}
                         fill="url(#orangeGraphFillDark)"
                         className="graph-fill-path"
                       />
                       
                       {/* Path */}
-                      <path 
+                      <motion.path 
+                        key={graphData.path + "-stroke"}
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.8, ease: "easeInOut" }}
                         d={graphData.path}
                         fill="none"
                         stroke="var(--orange-solid)"
@@ -680,7 +752,7 @@ export default function PoliticianPage() {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -698,7 +770,13 @@ export default function PoliticianPage() {
           
           <div className="luxury-protocol-layout">
             {/* Left Column: Asymmetrical Editorial Narrative */}
-            <div className="protocol-editorial-narrative">
+            <motion.div 
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              className="protocol-editorial-narrative"
+            >
               <div className="editorial-divider-line" />
               <span className="narrative-tag">VIRAL COMMUNITY MOBILIZATION</span>
               <h3 className="narrative-quote">
@@ -718,15 +796,19 @@ export default function PoliticianPage() {
                   <p>Active voter engagement engine</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Column: Premium Minimal Stepper Accordion */}
             <div className="protocol-luxury-steps">
               {protocolStages.map((stage, idx) => {
                 const isActive = activeStage === idx;
                 return (
-                  <div 
+                  <motion.div 
                     key={idx}
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                     className={`luxury-step-row ${isActive ? 'active' : ''}`}
                     onClick={() => setActiveStage(idx)}
                   >
@@ -757,7 +839,7 @@ export default function PoliticianPage() {
                         )}
                       </AnimatePresence>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -778,8 +860,12 @@ export default function PoliticianPage() {
             {faqs.map((faq, idx) => {
               const isOpen = activeFaq === idx;
               return (
-                <div 
+                <motion.div 
                   key={idx} 
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className={`faq-accordion-item glass-panel border-dark-glass ${isOpen ? 'active' : ''}`}
                   onClick={() => setActiveFaq(isOpen ? null : idx)}
                 >
@@ -802,7 +888,7 @@ export default function PoliticianPage() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -812,7 +898,13 @@ export default function PoliticianPage() {
       {/* 8. LUXURY BOTTOM CALL-TO-ACTION (Dark background, orange glows) */}
       <section className="politician-cta sec-dark">
         <div className="luxury-container">
-          <div className="politician-cta-inner glass-panel">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="politician-cta-inner glass-panel"
+          >
             <div className="politician-cta-glow" />
             <span className="mono-tag">LIMITED REGIONAL COMPLIANCE</span>
             <h2>READY TO SECURE NARRATIVE HEGEMONY?</h2>
@@ -822,7 +914,7 @@ export default function PoliticianPage() {
             <button onClick={() => setAuditModalOpen(true)} className="politician-btn-primary interactive">
               <span>SECURE STRATEGY BRIEFING <ArrowRight size={13} /></span>
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 

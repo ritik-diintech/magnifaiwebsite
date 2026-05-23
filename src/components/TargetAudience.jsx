@@ -62,7 +62,7 @@ export default function TargetAudience() {
       desc: 'For social leaders, reformists, and global advocates driving systemic shifts who require high-credibility amplification, absolute message integrity, and grassroots mobilization leverage.',
       stats: '✦ 10x Grassroots Engagement  |  ✦ Cross-Border Coalition Scale',
       nodes: ['Grassroots Mobilization Matrix', 'High-Trust Broadcast Channels', 'Systemic Narrative Shaping', 'Rapid-Response Advocacy Keys'],
-      pageUrl: '#'
+      pageUrl: '/archetypes/activists'
     }
   ];
 
