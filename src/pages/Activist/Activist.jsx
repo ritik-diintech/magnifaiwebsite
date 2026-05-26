@@ -348,7 +348,537 @@ export default function ActivistPage() {
         </div>
       </section>
 
+      {/* SECTION 3: VISUAL SHOWCASE — Gilded Gallery & Raw Stat Impact */}
+      <section className="activist-showcase-lux">
+        <div className="activist-container-lux">
+          <div className="showcase-header">
+            <span className="tag-luxury mint">SOVEREIGN ACTION CAMPAIGNS</span>
+            <h2 className="light-title-lux">Campaigns Deployed <em>With Precision.</em></h2>
+          </div>
 
+          <div className="single-gilded-showcase-container">
+            <div className="gilded-canvas-frame">
+              <div className="canvas-inner-border" />
+              <img src={activistGroupSeat} alt="Activist Group Collaboration" className="gilded-canvas-img" />
+            </div>
+          </div>
+
+          <div className="showcase-metrics-grid">
+            <div className="s-metric">
+              <span className="s-metric-val">15M+</span>
+              <span className="s-metric-lbl">Follower Growth Surge</span>
+            </div>
+            <div className="s-metric-line" />
+            <div className="s-metric">
+              <span className="s-metric-val">45M+</span>
+              <span className="s-metric-lbl">Video Impressions</span>
+            </div>
+            <div className="s-metric-line" />
+            <div className="s-metric">
+              <span className="s-metric-val">25M+</span>
+              <span className="s-metric-lbl">Targeted Ad Views</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: BARRIERS SECTION — High Contrast Systemic Challenges & Solutions */}
+      <section className="activist-barriers-lux">
+        <div className="activist-container-lux">
+          <div className="barriers-intro">
+            <span className="tag-luxury violet">THE FRONTIER OF CONVICTION</span>
+            <h2 className="serif-title-lux">Systemic Barriers &amp; <em>High-Fidelity Catalysts.</em></h2>
+            <p className="body-lux-dark">
+              Grassroots social movements often fail due to standard digital limitations. We provide elite solutions to bypass algorithms and maximize campaign impact.
+            </p>
+          </div>
+
+          <div className="barriers-grid-list">
+            {systemicBarriers.map((item) => (
+              <div key={item.id} className="barrier-luxury-card">
+                <div className="card-top-glow" />
+                <div className="card-index-lux">{item.id}</div>
+                
+                <div className="barrier-block">
+                  <span className="card-block-tag threat-tag">SYSTEMIC BARRIER</span>
+                  <h3 className="card-subheading">{item.barrier}</h3>
+                  <p className="card-desc-lux">{item.barrierDesc}</p>
+                </div>
+
+                <div className="card-internal-divider" />
+
+                <div className="solution-block">
+                  <span className="card-block-tag solution-tag">MAGNIFAI SOLUTION</span>
+                  <h3 className="card-subheading">{item.solution}</h3>
+                  <p className="card-desc-lux">{item.solutionDesc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: PILLARS SECTION — Core Architectural Framework */}
+      <section className="activist-pillars-lux">
+        <div className="pillars-glows-bg">
+          <div className="glow-p-emerald" />
+          <div className="glow-p-mint" />
+        </div>
+
+        <div className="activist-container-lux">
+          <div className="pillars-intro max-w-720">
+            <span className="tag-luxury pink">SOVEREIGN ARCHITECTURAL PILLARS</span>
+            <h2 className="serif-title-lux">High-Performance <em>Advocacy Engine.</em></h2>
+            <p className="body-lux-light">
+              MagnifAI deploys a multi-dimensional, secure ecosystem specifically built for activist scale, preserving identity sovereignty while maximizing public reach.
+            </p>
+          </div>
+
+          <div className="pillars-luxury-grid">
+            {architecturalPillars.map((pillar) => (
+              <div key={pillar.num} className="pillar-luxury-card">
+                <div className="p-card-accent-line" />
+                <div className="p-card-top">
+                  <span className="p-card-num">{pillar.num}</span>
+                  <div className="p-card-icon-box">
+                    {pillar.icon}
+                  </div>
+                </div>
+                <h3 className="p-card-heading">{pillar.title}</h3>
+                <p className="p-card-body">{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: CHRONOLOGY SECTION — Deployed Movement Chronology */}
+      <section className="activist-chronology-lux">
+        <div className="activist-container-lux">
+          <div className="chronology-header max-w-640">
+            <span className="tag-luxury mint">DEPLOYED MOVEMENT CHRONOLOGY</span>
+            <h2 className="serif-title-lux">Sovereign <em>Campaign Case Studies.</em></h2>
+            <p className="body-lux-light">
+              Analyze how our high-converting video syndication and targeted ad models rocketed grassroots movements to mainstream popularity.
+            </p>
+          </div>
+
+          <div className="chronology-editorial-list">
+            {caseChronology.map((caseItem, idx) => (
+              <div key={idx} className={`chronology-row-card ${idx % 2 === 1 ? 'row-reverse' : ''}`}>
+                <div className="chronology-img-column">
+                  <div className="editorial-img-frame">
+                    <img src={caseItem.img} alt={caseItem.title} className="editorial-img" />
+                    <div className="frame-overlay-glow" />
+                    <div className="frame-gilded-line" />
+                  </div>
+                </div>
+
+                <div className="chronology-details-column">
+                  <div className="editorial-meta-box">
+                    <span className="meta-badge-tag">{caseItem.focus}</span>
+                    <span className="meta-dialect-tag">{caseItem.location}</span>
+                  </div>
+                  <h3 className="editorial-row-title">{caseItem.title}</h3>
+                  <p className="editorial-row-desc">{caseItem.description}</p>
+                  
+                  <div className="editorial-stats-row">
+                    <div className="e-stat-box">
+                      <span className="e-stat-val">{caseItem.reach}</span>
+                      <span className="e-stat-lbl">Projected Campaign Impact</span>
+                    </div>
+                    <div className="e-stat-indicator">
+                      <Zap size={14} className="flash-icon" />
+                      <span>HIGH IMPACT SCALE</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: INITIATION SECTION — Chamber Stages Process */}
+      <section className="activist-initiation-chamber">
+        <div className="activist-container-lux">
+          <div className="initiation-header max-w-640">
+            <span className="tag-luxury gold">CAMPAIGN INITIATION PROTOCOL</span>
+            <h2 className="serif-title-lux">Movement <em>Chamber Stages.</em></h2>
+            <p className="body-lux-light">
+              Our structured workflow transforms authentic conviction into a global voice clones pipeline in four stages.
+            </p>
+          </div>
+
+          <div className="initiation-editorial-grid">
+            {initiationPhases.map((phase) => (
+              <div key={phase.roman} className="editorial-step-card">
+                <div className="editorial-step-top">
+                  <span className="editorial-step-num">{phase.roman}</span>
+                  <span className="editorial-step-badge">{phase.badge}</span>
+                </div>
+                <h3 className="editorial-step-title">{phase.title}</h3>
+                <div className="editorial-step-divider" />
+                <p className="editorial-step-desc">{phase.desc}</p>
+                
+                <div className="editorial-step-detail-box">
+                  <p className="editorial-step-detail">{phase.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7.5: REACH & SCALE RADAR CALCULATOR — Interactive Projections Deck */}
+      <section className="activist-calculator-lux sec-dark">
+        <div className="activist-container-lux">
+          <div className="initiation-header max-w-640">
+            <span className="tag-luxury mint">CAMPAIGN REACH SIMULATOR</span>
+            <h2 className="serif-title-lux">Reach &amp; <em>Scale Radar.</em></h2>
+            <p className="body-lux-light">
+              Configure your movement's initial supporter base and dynamic campaign intensity to view real-time projections.
+            </p>
+          </div>
+
+          <div className="radar-grid">
+            {/* Input Deck */}
+            <div className="radar-input-deck glass-panel-dark">
+              <div className="deck-glow" />
+              <div className="deck-header">
+                <h3>Campaign Command Center</h3>
+                <p>Configure initial core community and video ad intensity</p>
+              </div>
+
+              {/* Slider */}
+              <div className="radar-slider-wrap">
+                <div className="slider-meta">
+                  <span className="slider-lbl">
+                    <Activity size={12} style={{ marginRight: '8px', color: 'var(--lux-mint-glow)' }} />
+                    INITIAL SUPPORTER BASE
+                  </span>
+                  <span className="slider-val">{supporterBase.toLocaleString()} Members</span>
+                </div>
+                <div className="slider-control-bar">
+                  <input
+                    type="range"
+                    min="10000"
+                    max="1000000"
+                    step="10000"
+                    value={supporterBase}
+                    onChange={(e) => setSupporterBase(Number(e.target.value))}
+                    className="radar-input-range"
+                  />
+                  <div className="slider-progress" style={{ width: `${((supporterBase - 10000) / 990000) * 100}%` }} />
+                </div>
+                <div className="slider-limits">
+                  <span>10,000 SEED</span>
+                  <span>1,000,000 CRITICAL MASS</span>
+                </div>
+              </div>
+
+              {/* Strategy Selector */}
+              <div className="radar-strategy-wrap">
+                <span className="strategy-lbl">CAMPAIGN INTENSITY PROTOCOL</span>
+                <div className="strategy-buttons">
+                  {strategies.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setCampaignIntensity(s.id)}
+                      className={`strategy-btn ${campaignIntensity === s.id ? 'active' : ''}`}
+                    >
+                      <span>{s.name}</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="strategy-desc">{selectedStrat.desc}</p>
+              </div>
+            </div>
+
+            {/* Output Deck */}
+            <div className="radar-output-deck glass-panel-dark">
+              <div className="deck-glow" />
+              <div className="deck-header">
+                <h3>Outreach &amp; Scaling Projections</h3>
+                <p>Live compiled reach calculations and growth graphs</p>
+              </div>
+
+              <div className="radar-stats-list">
+                {/* Hero Reach Card */}
+                <div className="stat-hero-card">
+                  <span className="hero-lbl">PROJECTED MOVEMENT REACH</span>
+                  <div className="hero-val-wrap">
+                    <span className="hero-val mint-glowing-text">
+                      {totalReach.toLocaleString()}
+                    </span>
+                    <span className="hero-suffix">Total Active Reach</span>
+                  </div>
+                </div>
+
+                {/* SVG neon curve */}
+                <div className="dynamic-graph-container">
+                  <span className="graph-label">DYNAMIC MOVEMENT GROWTH TRAJECTORY (12 WEEKS)</span>
+                  <div className="graph-canvas-wrap">
+                    <svg className="growth-graph-svg" viewBox="0 0 310 115">
+                      <defs>
+                        <linearGradient id="jadeGraphFillDark" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="rgba(52, 211, 153, 0.22)" />
+                          <stop offset="100%" stopColor="rgba(52, 211, 153, 0)" />
+                        </linearGradient>
+                        <filter id="neonJadeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="2.5" result="blur" />
+                          <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
+                        </filter>
+                      </defs>
+
+                      {/* Horizontal Dotted Grids */}
+                      <line x1="25" y1="20" x2="285" y2="20" stroke="rgba(52, 211, 153, 0.03)" strokeWidth="1" strokeDasharray="3 4" />
+                      <line x1="25" y1="40" x2="285" y2="40" stroke="rgba(52, 211, 153, 0.05)" strokeWidth="1" strokeDasharray="3 4" />
+                      <line x1="25" y1="60" x2="285" y2="60" stroke="rgba(52, 211, 153, 0.07)" strokeWidth="1" strokeDasharray="3 4" />
+
+                      {/* Axis Lines */}
+                      <line x1="25" y1="10" x2="25" y2="80" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1.5" />
+                      <line x1="25" y1="80" x2="295" y2="80" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1.5" />
+
+                      {/* Arrow terminals */}
+                      <path d="M 22,14 L 25,9 L 28,14" fill="none" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1.5" />
+                      <path d="M 290,77 L 295,80 L 290,83" fill="none" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1.5" />
+
+                      {/* Milestone labels */}
+                      <text x="18" y="23" textAnchor="end" fill="rgba(255, 255, 255, 0.3)" fontSize="7" fontFamily="monospace">MAX</text>
+                      <text x="18" y="52" textAnchor="end" fill="rgba(255, 255, 255, 0.2)" fontSize="7" fontFamily="monospace">MID</text>
+                      <text x="18" y="83" textAnchor="end" fill="rgba(255, 255, 255, 0.3)" fontSize="7" fontFamily="monospace">0</text>
+
+                      {/* Vertical grids */}
+                      {graphData.points.map((pt, i) => (
+                        <line
+                          key={`avg-${i}`}
+                          x1={pt.x}
+                          y1={15}
+                          x2={pt.x}
+                          y2={80}
+                          stroke="rgba(52, 211, 153, 0.05)"
+                          strokeWidth="1"
+                          strokeDasharray="2 3"
+                        />
+                      ))}
+
+                      {/* Fill Area */}
+                      <path
+                        d={`${graphData.path} L 285,80 L 25,80 Z`}
+                        fill="url(#jadeGraphFillDark)"
+                      />
+
+                      {/* Stroke Path */}
+                      <path
+                        d={graphData.path}
+                        fill="none"
+                        stroke="var(--lux-mint-glow)"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        filter="url(#neonJadeGlow)"
+                        className="graph-stroke-path"
+                      />
+
+                      {/* Nodes */}
+                      {graphData.points.map((pt, i) => {
+                        const isLast = i === graphData.points.length - 1;
+                        return (
+                          <g key={i}>
+                            {isLast && (
+                              <circle
+                                cx={pt.x}
+                                cy={pt.y}
+                                r="6"
+                                className="graph-pulse-ring"
+                              />
+                            )}
+                            <circle
+                              cx={pt.x}
+                              cy={pt.y}
+                              r={isLast ? "4" : "3"}
+                              fill={isLast ? "#FFFFFF" : "var(--lux-mint-glow)"}
+                              stroke={isLast ? "var(--lux-mint-glow)" : "#020705"}
+                              strokeWidth="1.5"
+                              className="graph-node-circle"
+                            />
+                            <text
+                              x={pt.x}
+                              y="96"
+                              textAnchor="middle"
+                              className="graph-node-text"
+                            >
+                              {pt.label}
+                            </text>
+                          </g>
+                        );
+                      })}
+                    </svg>
+                  </div>
+                </div>
+
+                {/* splits grid */}
+                <div className="reach-split-grid">
+                  <div className="split-card organic">
+                    <div className="split-meta">
+                      <span className="split-lbl">ORGANIC REACH (80%)</span>
+                      <span className="split-val">{organicReach.toLocaleString()}</span>
+                    </div>
+                    <div className="split-bar-wrap">
+                      <div className="split-bar-fill" style={{ width: '80%', background: 'var(--lux-mint-glow)' }} />
+                    </div>
+                    <span className="split-desc">Viral short-form content, sub-regional translated feeds, and organic shares.</span>
+                  </div>
+
+                  <div className="split-card inorganic">
+                    <div className="split-meta">
+                      <span className="split-lbl">TARGETED PAID ADS (20%)</span>
+                      <span className="split-val">{adsReach.toLocaleString()}</span>
+                    </div>
+                    <div className="split-bar-wrap">
+                      <div className="split-bar-fill" style={{ width: '20%', background: 'var(--lux-gold)' }} />
+                    </div>
+                    <span className="split-desc">Localized digital campaign ad pushes and automated influencer collab outreach.</span>
+                  </div>
+                </div>
+
+                {/* Outcome Grid */}
+                <div className="details-outcome-grid">
+                  <div className="outcome-item">
+                    <div className="outcome-meta">
+                      <span className="outcome-lbl">PROJECTED ACTIVE ADVOCATES</span>
+                      <span className="outcome-val">{engagedSupporters.toLocaleString()} Advocates</span>
+                    </div>
+                    <p className="outcome-desc">High-affinity change makers directly participating in campaigns and sharing declared updates.</p>
+                  </div>
+
+                  <div className="outcome-item">
+                    <div className="outcome-meta">
+                      <span className="outcome-lbl">STUDIO SHORTS &amp; AD OUTPUT</span>
+                      <span className="outcome-val">{selectedStrat.weeklyVideos} / Week ({monthlyVideos} / Month)</span>
+                    </div>
+                    <p className="outcome-desc">Automated visual content releases fully produced inside your closed-loop Biometric Identity Vault.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: DEVOTEE TESTIMONIALS — Digital Growth Testimonials */}
+      <section className="activist-testimonials-lux">
+        <div className="activist-container-lux">
+          <div className="testimonials-intro max-w-640">
+            <span className="tag-luxury mint">ADVOCATE RESONANCE TESTIMONIALS</span>
+            <h2 className="serif-title-lux">Campaign <em>Solidarity.</em></h2>
+            <p className="body-lux-light">
+              Discover how leading change makers and global trust directories expanded their reach and command absolute mainstream authority.
+            </p>
+          </div>
+
+          <div className="devotee-quotes-grid">
+            {testimonials.map((t, idx) => (
+              <div key={idx} className="devotee-quote-card">
+                <div className="quote-giant-bg">“</div>
+                <div className="quote-card-header">
+                  <Award className="card-floral-icon" size={16} />
+                  <span className="quote-card-index">0{idx + 1}</span>
+                </div>
+                <p className="quote-text">"{t.quote}"</p>
+                <div className="quote-divider" />
+                <div className="quote-author-profile">
+                  <div className="author-avatar-glow">{t.initials}</div>
+                  <div className="quote-author-meta">
+                    <span className="author-name">{t.author}</span>
+                    <span className="author-loc">{t.location}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: DIALOGUE INQUIRIES — FAQ Accordion Section */}
+      <section className="activist-faq-lux">
+        <div className="activist-container-lux">
+          <div className="faq-layout-lux">
+            <div className="faq-left-lux">
+              <span className="tag-luxury gold">SYSTEMIC KNOWLEDGE DECK</span>
+              <h2 className="serif-title-lux">Dialogue &amp; <em>Inquiries.</em></h2>
+              <p className="body-lux-light">
+                Common inquiries regarding organic growth calibration, translation safety, sovereign watermarking, and biometric access codes.
+              </p>
+            </div>
+
+            <div className="faq-list-lux">
+              {faqs.map((faq, idx) => {
+                const isOpen = activeFaq === idx;
+                return (
+                  <div
+                    key={idx}
+                    className={`faq-luxury-card ${isOpen ? 'open' : ''}`}
+                    onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                  >
+                    <div className="faq-q-bar">
+                      <span className="faq-index-number">0{idx + 1}</span>
+                      <span className="faq-question-text">{faq.q}</span>
+                      <div className="faq-toggle-circle">
+                        {isOpen ? <Minus size={12} /> : <Plus size={12} />}
+                      </div>
+                    </div>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="faq-answer-pane"
+                        >
+                          <p>{faq.a}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10: SOVEREIGN INVITATION — CTA Section */}
+      <section className="activist-cta-lux">
+        <div className="cta-lux-glows">
+          <div className="cta-glow-emerald" />
+          <div className="cta-glow-mint" />
+        </div>
+
+        <div className="cta-back-image">
+          <img src={savePlanetActivis} alt="Movement Blend Background" className="cta-img-blend" />
+          <div className="cta-shading-overlay" />
+        </div>
+
+        <div className="cta-inner-lux">
+          <h2 className="cta-headline-lux">
+            Amplify Your <span className="glow-text-mint">Cause</span> <em>Today.</em>
+          </h2>
+          <p className="cta-sub-lux">
+            Establish absolute visual authority. Duplicate your voice clones, launch massive targeted digital ad campaigns, and engage global influencer networks biometrically.
+          </p>
+          <button onClick={() => setAuditModalOpen(true)} className="btn-emerald-gold btn-large">
+            <span>REQUEST MOVEMENT CALIBRATION</span>
+            <ArrowRight size={14} />
+          </button>
+        </div>
+      </section>
+
+      <Footer />
       <AuditModal isOpen={auditModalOpen} onClose={() => setAuditModalOpen(false)} />
     </div>
   );

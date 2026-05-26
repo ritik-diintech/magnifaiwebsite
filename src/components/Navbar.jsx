@@ -170,7 +170,7 @@ export default function Navbar({ isPageReady, onBookAudit }) {
                               </div>
                             </Link>
 
-                            <Link to="" className="mega-item item-activists interactive" onClick={() => setMegaOpen(false)}>
+                            <Link to="/archetypes/activists" className="mega-item item-activists interactive" onClick={() => setMegaOpen(false)}>
                               <div className="mega-icon-wrap"><Globe size={14} /></div>
                               <div className="mega-info">
                                 <span className="mega-item-tag activist-text">ACTIVIST</span>

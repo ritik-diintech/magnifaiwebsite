@@ -18,7 +18,7 @@ const PoliticianPage = lazy(() => import('./pages/Politician/Politician'));
 const CelebrityPage = lazy(() => import('./pages/Celebrity/Celebrity'));
 const GuruPage = lazy(() => import('./pages/Guru/Guru'));
 const FounderPage = lazy(() => import('./pages/Founder/Founder'));
-
+const ActivistPage = lazy(() => import('./pages/Activist/Activist'));
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
           <Route path="/archetypes/celebs" element={<CelebrityPage />} />
           <Route path="/archetypes/gurus" element={<GuruPage />} />
           <Route path="/archetypes/founders" element={<FounderPage />} />
+          <Route path="/archetypes/activists" element={<ActivistPage />} />
         </Routes>
       </Suspense>
     </Router>

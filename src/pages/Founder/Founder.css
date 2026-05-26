@@ -2095,8 +2095,105 @@
   justify-content: center;
 }
 
-/* Duplicate testimonial style section removed to prevent styling collision with white background version */
+/* ==========================================================================
+   FOUNDER TESTIMONIALS SECTION Styles
+   ========================================================================== */
+.founder-testimonials {
+  padding: 150px 0;
+  position: relative;
+}
 
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  margin-top: 60px;
+}
+
+.testimonial-card-obsidian {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  padding: 45px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.testimonial-card-obsidian:hover {
+  transform: translateY(-5px);
+  border-color: var(--purple-solid) !important;
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.06);
+}
+
+.t-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 80px;
+  line-height: 1;
+  color: var(--purple-solid);
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.t-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #3f3f46 !important;
+  margin-bottom: 35px;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+}
+
+.t-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 25px;
+}
+
+.t-avatar-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--purple-solid);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+}
+
+.t-avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.t-meta {
+  text-align: left;
+}
+
+.t-meta h4 {
+  font-family: var(--font-brand);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0d0d0f !important;
+  margin-bottom: 3px;
+}
+
+.t-meta p {
+  font-size: 11px;
+  color: var(--purple-solid) !important;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
 
 /* ==========================================================================
    EXECUTIVE FAQ ACCORDION SECTION Styles
